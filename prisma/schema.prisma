@@ -1,0 +1,61 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+}
+
+model Bundle {
+  id          String   @id @default(cuid())
+  title       String
+  grade       String
+  description String?
+  coverImage  String?
+  subjects    String
+  features    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  books       Book[]
+}
+
+model Book {
+  id         String  @id @default(cuid())
+  title      String
+  subject    String
+  type       String
+  coverImage String?
+  samplePdf  String?
+  bundleId   String
+  bundle     Bundle  @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+}
+
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  school    String
+  email     String
+  phone     String?
+  message   String
+  status    String   @default("NEW")
+  createdAt DateTime @default(now())
+}
+
+model SiteContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  content   String
+  type      String   @default("TEXT")
+  updatedAt DateTime @updatedAt
+}
