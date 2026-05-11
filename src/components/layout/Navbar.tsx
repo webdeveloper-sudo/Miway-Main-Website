@@ -41,36 +41,32 @@ export default function Navbar() {
 
     return (
         <>
-            <header className={`${styles.header} ${isScrolled ? styles.scrolled : 'bg-white pb-5'}`}>
-                <div className={`container ${styles.navContainer}`}>
+            <header className={`${styles.header} ${isScrolled ? styles.scrolled : 'bg-transparent pt-8'}`}>
+                <div className={`container-premium ${styles.navContainer}`}>
                     <Link href="/" className="flex items-center gap-2 group">
                         <img
                             src="/official-logo.png"
-                            alt="MIWAY - Multiple Intelligence Way"
-                            className={`h-10 lg:h-14 w-auto object-contain transition-all duration-300 group-hover:scale-105 ${!isScrolled ? 'drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]' : ''
-                                }`}
+                            alt="MIWAY"
+                            className={`h-10 lg:h-12 w-auto object-contain transition-all duration-500 group-hover:scale-110`}
                         />
                     </Link>
 
-                    {/* Desktop Nav - Global Tech Aesthetic */}
+                    {/* Desktop Nav - Institutional Aesthetic */}
                     <nav className={styles.navLinks}>
                         {navItems.map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className={`text-sm font-bold transition-all tracking-wider uppercase ${pathname === item.href ? 'text-primary' : 'text-slate-500 hover:text-primary'
-                                    }`}
+                                className={`text-[12px] font-semibold transition-all tracking-[0.2em] uppercase ${isScrolled ? "text-gray-800" : "text-white"}`}
                             >
                                 {item.name}
                             </Link>
                         ))}
-                        <div className="h-4 w-[1px] bg-slate-200 mx-2" />
+                        <div className="h-4 w-px bg-primary/10 mx-4" />
                         <Link href="/contact">
                             <Button
-                                variant="primary"
                                 size="sm"
-                                className="rounded-full px-6 py-5 shadow-xl shadow-primary/20 hover:scale-105 transition-all text-xs font-black uppercase tracking-widest"
-                                icon={<ArrowRight size={14} />}
+                                className="bg-primary text-white rounded-full px-8 py-4 shadow-premium hover:bg-primary-hover transition-all text-[12px] font-semibold uppercase tracking-[0.2em]"
                             >
                                 Partner With Us
                             </Button>
@@ -79,11 +75,11 @@ export default function Navbar() {
 
                     {/* Mobile Toggle */}
                     <button
-                        className="lg:hidden w-10 h-10 flex items-center justify-center bg-slate-50 rounded-xl text-slate-900 shadow-sm"
+                        className="lg:hidden w-12 h-12 flex items-center justify-center bg-primary/5 rounded-2xl text-primary border border-primary/5"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle Menu"
                     >
-                        {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
             </header>
@@ -122,7 +118,7 @@ export default function Navbar() {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="group flex items-center justify-between"
                                 >
-                                    <span className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 group-hover:text-primary transition-all tracking-tighter font-serif italic">
+                                    <span className="text-3xl md:text-5xl lg:text-6xl font-semibold text-slate-900 group-hover:text-primary transition-all tracking-tighter font-serif">
                                         {item.name}
                                     </span>
                                     <ArrowRight className="text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" size={28} />
@@ -132,15 +128,15 @@ export default function Navbar() {
 
                         <div className="relative z-10 mt-auto pt-10 border-t border-slate-100/50 flex flex-col gap-6">
                             <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                                <Button size="lg" className="w-full py-6 md:py-8 text-xl md:text-2xl font-black rounded-[1.5rem] md:rounded-[2rem] shadow-2xl hover:scale-105 transition-all">Partner With Us</Button>
+                                <Button size="lg" className="w-full py-6 md:py-8 text-xl md:text-2xl font-semibold rounded-[1.5rem] md:rounded-[2rem] shadow-2xl hover:scale-105 transition-all">Partner With Us</Button>
                             </Link>
 
                             <div className="flex justify-between items-center text-slate-400">
                                 <div className="flex gap-4">
                                     <Globe size={16} />
-                                    <span className="text-[10px] font-black uppercase tracking-widest">Global Authority</span>
+                                    <span className="text-[12px] font-semibold uppercase tracking-widest">Global Authority</span>
                                 </div>
-                                <p className="text-[10px] font-black uppercase tracking-widest">© {new Date().getFullYear()} MIWAY Hub</p>
+                                <p className="text-[12px] font-semibold uppercase tracking-widest">© {new Date().getFullYear()} MIWAY Hub</p>
                             </div>
                         </div>
                     </motion.div>

@@ -17,7 +17,7 @@ export interface BundleDef {
     color: string;
     accent: string;
     bg_accent: string;
-    icon: LucideIcon;
+    icon: string;
     components: BundleComponent[];
 }
 
@@ -33,7 +33,7 @@ export const bundles: BundleDef[] = [
         color: 'from-[#f9b233] to-[#ed1c24]',
         accent: 'yellow',
         bg_accent: 'bg-[#f9b233]',
-        icon: Rocket,
+        icon: 'Rocket',
         components: [
             { title: 'Phonics & Literacy', description: 'Interactive alphabet stories and sound recognition modules.' },
             { title: 'Numeracy Blocks', description: 'Tactile counting guides and shape recognition playbooks.' },
@@ -52,7 +52,7 @@ export const bundles: BundleDef[] = [
         color: 'from-[#0088cc] to-[#76bc21]',
         accent: 'blue',
         bg_accent: 'bg-[#0088cc]',
-        icon: Sparkles,
+        icon: 'Sparkles',
         components: [
             { title: 'Core English Vol 1-5', description: 'Comprehensive grammar, comprehension, and creative writing.' },
             { title: 'Mathematics Mastery', description: 'Visual math concepts with real-world application exercises.' },
@@ -71,7 +71,7 @@ export const bundles: BundleDef[] = [
         color: 'from-[#662d91] to-[#0088cc]',
         accent: 'purple',
         bg_accent: 'bg-[#662d91]',
-        icon: Target,
+        icon: 'Target',
         components: [
             { title: 'Advanced Literature', description: 'Critical analysis of classic and contemporary texts.' },
             { title: 'Algebra & Geometry', description: 'Deep dive into abstract mathematical concepts.' },

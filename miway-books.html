@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIWAY Books — The Future of Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #050A1F;
+  --navy-mid: #0A1535;
+  --navy-light: #0F1E47;
+  --gold: #C9A84C;
+  --gold-light: #E8C96A;
+  --gold-pale: #F5E6B8;
+  --white: #FFFFFF;
+  --off-white: #F0EDE6;
+  --silver: #B8BED0;
+  --glass: rgba(255,255,255,0.05);
+  --glass-border: rgba(201,168,76,0.2);
+  --glow: rgba(201,168,76,0.15);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,168,76,0.5);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
+}
+
+/* TYPOGRAPHY */
+.display-font { font-family: 'Cormorant Garamond', serif; }
+.heading-font { font-family: 'Syne', sans-serif; }
+
+/* NOISE TEXTURE OVERLAY */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 1000; opacity: 0.4;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  padding: 24px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(180deg, rgba(5,10,31,0.95) 0%, transparent 100%);
+  backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px; font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--gold); }
+.nav-links {
+  display: flex; gap: 40px; list-style: none;
+}
+.nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--silver); text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  padding: 10px 28px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  background: transparent;
+  cursor: none;
+}
+.nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+/* ===================== HERO ===================== */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 120px 60px 80px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(15,30,71,0.9) 0%, var(--navy) 70%);
+}
+
+/* Animated orbs */
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); animation: float 8s ease-in-out infinite;
+}
+.orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  top: -100px; left: -100px; animation-delay: 0s;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(30,80,180,0.12) 0%, transparent 70%);
+  bottom: 0; right: 0; animation-delay: -4s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+  top: 50%; left: 50%; animation-delay: -2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+/* Grid lines decoration */
+.grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.hero-content {
+  position: relative; z-index: 10;
+  max-width: 900px; text-align: center;
+}
+
+.hero-eyebrow {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin-bottom: 32px;
+  animation: fadeUp 1s ease both;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.5;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 8vw, 108px);
+  font-weight: 300; line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  animation: fadeUp 1s ease 0.2s both;
+}
+.hero-title em {
+  font-style: italic; color: var(--gold);
+  display: block;
+}
+.hero-title strong {
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), #A07830);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px; font-weight: 300; line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 580px; margin: 28px auto 0;
+  animation: fadeUp 1s ease 0.4s both;
+}
+
+.hero-ctas {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  margin-top: 52px;
+  animation: fadeUp 1s ease 0.6s both;
+}
+
+.btn-primary {
+  padding: 16px 44px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--navy);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  text-decoration: none; border: none; cursor: none;
+  position: relative; overflow: hidden;
+  transition: all 0.3s;
+}
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%); transition: transform 0.3s;
+}
+.btn-primary:hover::after { transform: translateX(0); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 60px rgba(201,168,76,0.3); }
+
+.btn-secondary {
+  padding: 16px 44px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  text-decoration: none; cursor: none;
+  transition: all 0.3s;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+.hero-stats {
+  display: flex; gap: 60px; justify-content: center;
+  margin-top: 80px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  animation: fadeUp 1s ease 0.8s both;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 600;
+  color: var(--gold);
+  display: block; line-height: 1;
+}
+.stat-label {
+  font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--silver);
+  margin-top: 6px; display: block;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: fadeUp 1s ease 1s both;
+}
+.scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+.scroll-text {
+  font-size: 9px; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--silver);
+}
+@keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* ===================== SECTIONS ===================== */
+section { position: relative; }
+
+.section-pad { padding: 120px 60px; }
+.section-pad-lg { padding: 160px 60px; }
+
+.container { max-width: 1200px; margin: 0 auto; }
+.container-narrow { max-width: 800px; margin: 0 auto; }
+
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px;
+}
+.section-label::before {
+  content: ''; width: 32px; height: 1px; background: var(--gold);
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--white);
+}
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-body {
+  font-size: 17px; line-height: 1.8; font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  max-width: 600px;
+}
+
+/* ===================== ABOUT ===================== */
+#about {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.about-visual {
+  position: relative; height: 520px;
+}
+.about-card {
+  position: absolute;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  padding: 32px;
+}
+.about-card-main {
+  inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  background: linear-gradient(160deg, rgba(201,168,76,0.08) 0%, rgba(15,30,71,0.6) 60%);
+}
+.about-card-float {
+  width: 200px;
+  top: -20px; right: -20px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+  border-color: rgba(201,168,76,0.3);
+}
+.philosophy-word {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px; font-weight: 300;
+  color: rgba(201,168,76,0.08);
+  line-height: 1; position: absolute;
+  top: 20px; left: 20px;
+  pointer-events: none;
+  font-style: italic;
+}
+.about-manifesto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300; font-style: italic;
+  line-height: 1.5; color: var(--off-white);
+}
+.about-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  font-size: 11px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px;
+}
+
+/* ===================== FOUNDER ===================== */
+#founder {
+  background: var(--navy-mid);
+  overflow: hidden;
+}
+.founder-inner {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center;
+}
+.founder-portrait {
+  position: relative;
+}
+.founder-portrait-frame {
+  width: 100%; aspect-ratio: 3/4;
+  background: linear-gradient(145deg, var(--navy-light) 0%, var(--navy-mid) 100%);
+  border: 1px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.founder-portrait-frame::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 60%);
+}
+.founder-initials {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 120px; font-weight: 300;
+  color: rgba(201,168,76,0.12);
+  letter-spacing: -0.05em;
+  font-style: italic;
+}
+.founder-badge {
+  position: absolute; bottom: -1px; left: -1px; right: -1px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05));
+  border-top: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+}
+.founder-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px; font-weight: 700; color: var(--white);
+}
+.founder-title-small {
+  font-size: 12px; letter-spacing: 0.1em;
+  color: var(--gold); margin-top: 4px;
+}
+
+.founder-quote-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 160px; line-height: 0.7;
+  color: rgba(201,168,76,0.08);
+  display: block; margin-bottom: -20px;
+}
+.founder-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 300; font-style: italic;
+  line-height: 1.6; color: var(--off-white);
+}
+.founder-message strong {
+  font-style: normal; font-weight: 600; color: var(--gold);
+}
+.founder-signature {
+  margin-top: 40px; display: flex; align-items: center; gap: 20px;
+}
+.founder-sig-line { width: 60px; height: 1px; background: var(--gold); opacity: 0.4; }
+.founder-sig-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-style: italic; color: var(--silver);
+}
+
+/* ===================== LEARNING SYSTEM ===================== */
+#learning-system {
+  background: var(--navy);
+}
+.system-intro { text-align: center; max-width: 700px; margin: 0 auto 80px; }
+.system-intro .section-label { justify-content: center; }
+.system-intro .section-label::before { display: none; }
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.1);
+}
+.pillar-card {
+  background: var(--navy);
+  padding: 44px 32px;
+  position: relative; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: none;
+}
+.pillar-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(145deg, rgba(201,168,76,0.05) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.pillar-card:hover { background: var(--navy-light); }
+.pillar-card:hover::before { opacity: 1; }
+
+.pillar-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px; font-weight: 300;
+  color: rgba(201,168,76,0.1);
+  line-height: 1; display: block;
+  transition: color 0.3s;
+}
+.pillar-card:hover .pillar-number { color: rgba(201,168,76,0.2); }
+
+.pillar-icon {
+  width: 40px; height: 40px; margin: 16px 0 20px;
+  color: var(--gold); opacity: 0.8;
+}
+
+.pillar-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--white); letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+.pillar-desc {
+  font-size: 13px; line-height: 1.7; font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.3s;
+}
+.pillar-card:hover .pillar-desc { color: rgba(255,255,255,0.7); }
+
+.pillar-glow {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0); transition: transform 0.4s;
+}
+.pillar-card:hover .pillar-glow { transform: scaleX(1); }
+
+/* ===================== SPIRAL SECTION ===================== */
+#spiral {
+  background: var(--navy-mid);
+  overflow: hidden;
+}
+.spiral-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.spiral-visual {
+  display: flex; align-items: center; justify-content: center;
+  position: relative; height: 480px;
+}
+.spiral-rings {
+  position: relative; width: 380px; height: 380px;
+}
+.ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center;
+  animation: rotateSlow linear infinite;
+}
+.ring-1 { width: 100%; height: 100%; border-color: rgba(201,168,76,0.12); animation-duration: 30s; }
+.ring-2 { width: 78%; height: 78%; border-color: rgba(201,168,76,0.18); animation-duration: 22s; animation-direction: reverse; }
+.ring-3 { width: 56%; height: 56%; border-color: rgba(201,168,76,0.28); animation-duration: 16s; }
+.ring-4 { width: 34%; height: 34%; border-color: rgba(201,168,76,0.5); animation-duration: 10s; animation-direction: reverse; }
+.ring-dot {
+  position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+  width: 8px; height: 8px; background: var(--gold); border-radius: 50%;
+  box-shadow: 0 0 12px var(--gold);
+}
+.ring-center {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-style: italic;
+  color: var(--gold); text-align: center; line-height: 1.3;
+  white-space: nowrap;
+}
+
+@keyframes rotateSlow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* ===================== INTELLIGENCE WHEEL ===================== */
+#intelligence {
+  background: var(--navy);
+  padding: 160px 60px;
+}
+.intel-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+}
+.wheel-container {
+  position: relative; width: 100%; max-width: 520px;
+}
+.wheel-svg-wrap {
+  width: 100%; position: relative;
+}
+
+.intel-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.intel-card {
+  padding: 20px;
+  background: var(--glass);
+  border: 1px solid rgba(201,168,76,0.1);
+  transition: all 0.3s; cursor: none;
+  position: relative; overflow: hidden;
+}
+.intel-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transform: scaleX(0); transition: transform 0.3s;
+}
+.intel-card:hover { border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.05); transform: translateY(-2px); }
+.intel-card:hover::after { transform: scaleX(1); }
+.intel-emoji { font-size: 22px; margin-bottom: 8px; display: block; }
+.intel-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 700;
+  color: var(--gold); letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.intel-card-sub {
+  font-size: 11px; color: var(--silver); letter-spacing: 0.05em;
+}
+
+/* ===================== WHY DIFFERENT ===================== */
+#why-different {
+  background: linear-gradient(160deg, var(--navy-mid) 0%, var(--navy) 100%);
+}
+.diff-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  background: rgba(255,255,255,0.03);
+  margin-top: 60px;
+}
+.diff-item {
+  padding: 48px 36px;
+  background: var(--navy);
+  transition: background 0.3s;
+}
+.diff-item:hover { background: var(--navy-mid); }
+.diff-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 60px; font-weight: 300;
+  color: rgba(201,168,76,0.08);
+  line-height: 1; display: block; margin-bottom: 20px;
+}
+.diff-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--white); margin-bottom: 12px;
+}
+.diff-body { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.5); font-weight: 300; }
+
+/* ===================== FUTURE SKILLS ===================== */
+#future-skills {
+  background: var(--navy-mid);
+  overflow: hidden;
+}
+.skills-marquee {
+  overflow: hidden; margin: 60px 0;
+  border-top: 1px solid rgba(201,168,76,0.1);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  padding: 20px 0;
+}
+.marquee-track {
+  display: flex; gap: 60px; width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+}
+.marquee-item {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; font-style: italic;
+  color: rgba(255,255,255,0.3); white-space: nowrap;
+  display: flex; align-items: center; gap: 20px;
+}
+.marquee-item span { color: var(--gold); font-style: normal; font-size: 8px; }
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.skills-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+}
+.skill-row {
+  display: flex; align-items: center; gap: 20px; padding: 24px;
+  border: 1px solid rgba(201,168,76,0.08);
+  transition: all 0.3s; cursor: none;
+}
+.skill-row:hover { border-color: rgba(201,168,76,0.25); background: rgba(201,168,76,0.03); }
+.skill-bar-wrap { flex: 1; }
+.skill-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 600;
+  color: var(--white); letter-spacing: 0.08em; margin-bottom: 8px;
+}
+.skill-bar {
+  height: 2px; background: rgba(255,255,255,0.07);
+  position: relative; overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  position: absolute; left: 0; top: 0;
+  transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: barLoad 2s ease forwards;
+}
+.skill-pct {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300; color: var(--gold);
+  min-width: 60px; text-align: right;
+}
+
+/* ===================== TESTIMONIALS ===================== */
+#testimonials {
+  background: var(--navy);
+}
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  margin-top: 60px;
+}
+.testi-card {
+  padding: 40px 32px;
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative; transition: all 0.3s;
+}
+.testi-card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-4px); }
+.testi-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px; line-height: 0.8;
+  color: rgba(201,168,76,0.12); display: block;
+  margin-bottom: 12px;
+}
+.testi-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; line-height: 1.75; font-weight: 300;
+  color: rgba(255,255,255,0.7); font-style: italic;
+  margin-bottom: 28px;
+}
+.testi-author { display: flex; align-items: center; gap: 14px; }
+.testi-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  border: 1px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; color: var(--gold);
+}
+.testi-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 700; color: var(--white);
+}
+.testi-role { font-size: 11px; color: var(--silver); margin-top: 2px; }
+.stars { color: var(--gold); font-size: 12px; margin-bottom: 20px; letter-spacing: 2px; }
+
+/* ===================== TRUST ===================== */
+#trust {
+  background: var(--navy-mid);
+}
+.trust-numbers {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.1);
+  margin-bottom: 80px;
+}
+.trust-num-item {
+  padding: 48px 32px; text-align: center;
+  background: var(--navy-mid);
+}
+.trust-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px; font-weight: 300;
+  color: var(--gold); display: block; line-height: 1;
+}
+.trust-big-label {
+  font-size: 12px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--silver); margin-top: 8px;
+}
+
+/* ===================== CTA ===================== */
+#cta-final {
+  background: var(--navy);
+  position: relative; overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+}
+.cta-inner {
+  position: relative; z-index: 10;
+  text-align: center; max-width: 800px; margin: 0 auto;
+}
+.cta-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--white); margin-bottom: 24px;
+}
+.cta-title em { font-style: italic; color: var(--gold); }
+.cta-sub {
+  font-size: 17px; line-height: 1.7; font-weight: 300;
+  color: rgba(255,255,255,0.55); margin-bottom: 52px;
+}
+.cta-divider {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 40px auto;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: #02040F;
+  border-top: 1px solid rgba(201,168,76,0.1);
+  padding: 80px 60px 40px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+  margin-bottom: 60px;
+}
+.footer-brand .nav-logo { font-size: 26px; margin-bottom: 20px; display: block; }
+.footer-tagline { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.4); font-weight: 300; max-width: 280px; }
+.footer-col-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  font-size: 14px; color: rgba(255,255,255,0.4);
+  text-decoration: none; transition: color 0.3s; font-weight: 300;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 32px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
+.footer-gold-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-style: italic; color: var(--gold); opacity: 0.6;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  opacity: 0; transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* Divider ornament */
+.ornament {
+  display: flex; align-items: center; gap: 16px;
+  margin: 0 auto 60px; width: fit-content;
+}
+.ornament-line { width: 80px; height: 1px; background: rgba(201,168,76,0.2); }
+.ornament-diamond {
+  width: 8px; height: 8px;
+  background: var(--gold); transform: rotate(45deg);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .section-pad, .section-pad-lg { padding: 80px 24px; }
+  #intelligence { padding: 80px 24px; }
+  .about-grid, .spiral-grid, .intel-layout, .founder-inner { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .diff-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .trust-numbers { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 32px; }
+  .about-visual { height: 320px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .intel-cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <div class="nav-logo">MI<span>WAY</span> Books</div>
+  <ul class="nav-links">
+    <li><a href="#about">Philosophy</a></li>
+    <li><a href="#learning-system">System</a></li>
+    <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+  </ul>
+  <a href="#cta-final" class="nav-cta">Begin Journey</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">The Future of Human Learning</div>
+    <h1 class="hero-title display-font">
+      Not Just Learning.
+      <em>Becoming.</em>
+      <strong>Transforming.</strong>
+    </h1>
+    <p class="hero-sub">
+      MIWAY Books is a neuroscience-powered learning ecosystem designed to unlock every child's infinite potential — building thinkers, creators, innovators, and leaders for tomorrow's world.
+    </p>
+    <div class="hero-ctas">
+      <a href="#learning-system" class="btn-primary">Explore the System</a>
+      <a href="#about" class="btn-secondary">Our Philosophy</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num display-font">8</span>
+        <span class="stat-label">Learning Frameworks</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num display-font">10+</span>
+        <span class="stat-label">Intelligence Domains</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num display-font">21st</span>
+        <span class="stat-label">Century Skills</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num display-font">∞</span>
+        <span class="stat-label">Potential Unlocked</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span class="scroll-text">Discover</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual fade-up">
+        <div class="about-card about-card-main">
+          <div class="philosophy-word">Learn</div>
+          <div class="about-manifesto">
+            "Education is not the filling of a pail,<br>but the lighting of a fire."
+          </div>
+        </div>
+        <div class="about-card about-card-float">
+          <div class="about-pill">Mission</div>
+          <p style="font-size:13px;color:var(--silver);line-height:1.6;">Transforming children into confident, creative, and future-ready human beings.</p>
+        </div>
+      </div>
+
+      <div class="fade-up" style="transition-delay:0.2s">
+        <div class="section-label">Our Philosophy</div>
+        <h2 class="section-title" style="margin-bottom:24px;">
+          Learning Reimagined
+          <em style="display:block;">for a New World</em>
+        </h2>
+        <p class="section-body" style="margin-bottom:28px;">
+          MIWAY Books was born from a singular conviction: that every child carries within them an extraordinary potential waiting to be ignited — not with rote memorization, but with purposeful, joyful, whole-brain learning.
+        </p>
+        <p class="section-body" style="margin-bottom:40px;">
+          We don't teach subjects. We cultivate thinkers. We don't fill minds. We illuminate them. Our methodology weaves together the world's most powerful educational frameworks into one seamless, transformative experience.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 20px;border:1px solid rgba(201,168,76,0.12);background:rgba(201,168,76,0.03);">
+            <span style="color:var(--gold);font-size:18px;">◆</span>
+            <span style="font-size:14px;color:rgba(255,255,255,0.65);font-weight:300;">Neuroscience-backed learning architecture</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 20px;border:1px solid rgba(201,168,76,0.12);background:rgba(201,168,76,0.03);">
+            <span style="color:var(--gold);font-size:18px;">◆</span>
+            <span style="font-size:14px;color:rgba(255,255,255,0.65);font-weight:300;">Holistic intelligence development across 10 dimensions</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 20px;border:1px solid rgba(201,168,76,0.12);background:rgba(201,168,76,0.03);">
+            <span style="color:var(--gold);font-size:18px;">◆</span>
+            <span style="font-size:14px;color:rgba(255,255,255,0.65);font-weight:300;">Real-world application beyond the classroom</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUNDER MESSAGE ===== -->
+<section id="founder" class="section-pad-lg">
+  <div class="container">
+    <div class="section-label fade-up">A Message from Our Founder</div>
+    <div class="founder-inner" style="margin-top:60px;">
+      <div class="founder-portrait fade-up">
+        <div class="founder-portrait-frame">
+          <span class="founder-initials">MW</span>
+          <div class="founder-badge">
+            <div class="founder-name">Founder, MIWAY Books</div>
+            <div class="founder-title-small">Visionary Educator · Learning Architect</div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:0.2s;">
+        <span class="founder-quote-mark">"</span>
+        <p class="founder-message">
+          I built MIWAY Books because I believed deeply that <strong>every child is born a genius</strong> — and that the world's greatest tragedy is a brilliant mind that was never shown how to shine.
+          <br><br>
+          I have seen classrooms where curiosity was quietly crushed. I have watched gifted children be labelled "average" simply because the system measured only one kind of intelligence. <strong>I refused to accept that.</strong>
+          <br><br>
+          MIWAY Books is my answer — a complete learning ecosystem built on love, science, and the unwavering belief that when children are taught <strong>how to think, not just what to think</strong>, they become unstoppable.
+          <br><br>
+          This is not just a book series. It is a movement. A promise. A new beginning for every learner who opens these pages.
+        </p>
+        <div class="founder-signature">
+          <div class="founder-sig-line"></div>
+          <span class="founder-sig-name">Founder, MIWAY Books</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEARNING SYSTEM ===== -->
+<section id="learning-system" class="section-pad">
+  <div class="container">
+    <div class="system-intro fade-up">
+      <div class="section-label">The MIWAY System</div>
+      <h2 class="section-title" style="margin-bottom:20px;">
+        Eight Pillars of
+        <em>Extraordinary Learning</em>
+      </h2>
+      <p class="section-body" style="margin:0 auto;">
+        Every framework in MIWAY Books was chosen deliberately — each one proven by science, refined by practice, and designed to activate a deeper dimension of human potential.
+      </p>
+    </div>
+
+    <div class="pillars-grid fade-up" style="transition-delay:0.3s;">
+
+      <div class="pillar-card">
+        <span class="pillar-number">01</span>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="20" cy="20" r="16"/>
+            <path d="M20 8v24M8 20h24"/>
+            <circle cx="20" cy="20" r="6"/>
+          </svg>
+        </div>
+        <div class="pillar-name">Bloom's Taxonomy</div>
+        <div class="pillar-desc">A six-level cognitive journey — from remembering to creating — that builds mastery step by purposeful step.</div>
+        <div class="pillar-glow"></div>
+      </div>
+
+      <div class="pillar-card">
+        <span class="pillar-number">02</span>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 4C11.2 4 4 11.2 4 20s7.2 16 16 16 16-7.2 16-16S28.8 4 20 4z"/>
+            <path d="M20 4c0 8.8-8.8 16-8.8 16S20 36 20 36c0-8.8 8.8-16 8.8-16S20 4 20 4z"/>
+          </svg>
+        </div>
+        <div class="pillar-name">Whole Brain Learning</div>
+        <div class="pillar-desc">Activating both hemispheres simultaneously — blending logic with creativity, analysis with intuition.</div>
+        <div class="pillar-glow"></div>
+      </div>
+
+      <div class="pillar-card">
+        <span class="pillar-number">03</span>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8 36c0-12 4-20 12-28M12 36c0-8 4-14 8-20M32 4c0 12-4 20-12 28"/>
+          </svg>
+        </div>
+        <div class="pillar-name">Spiral Learning</div>
+        <div class="pillar-desc">Returning to core concepts with ever-increasing depth — transforming understanding into unshakeable mastery.</div>
+        <div class="pillar-glow"></div>
+      </div>
+
+      <div class="pillar-card">
+        <span class="pillar-number">04</span>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="6" y="6" width="12" height="12" rx="1"/>
+            <rect x="22" y="6" width="12" height="12" rx="1"/>
+            <rect x="6" y="22" width="12" height="12" rx="1"/>
+            <rect x="22" y="22" width="12" height="12" rx="1"/>
+            <path d="M18 12h4M12 18v4M28 18v4M18 28h4"/>
+          </svg>
+        </div>
+        <div class="pillar-name">Integrated Learning</div>
+        <div class="pillar-desc">Dissolving the walls between subjects — weaving science, art, math and language into unified understanding.</div>
+        <div class="pillar-glow"></div>
+      </div>
+
+      <div class="pillar-card">
+        <span class="pillar-number">05</span>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 8a8 8 0 0 1 8 8v2a8 8 0 0 1-16 0v-2a8 8 0 0 1 8-8z"/>
+            <path d="M8 34c0-6.6 5.4-12 12-12s12 5.4 12 12"/>
+          </svg>
+        </div>
+        <div class="pillar-name">Sensory Learning</div>
+        <div class="pillar-desc">Engaging all five senses to forge memories that last not days, but a lifetime of applied wisdom.</div>
+        <div class="pillar-glow"></div>
+      </div>
+
+      <div class="pillar-card">
+        <span class="pillar-number">06</span>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 6l2.8 8.6H32l-7.4 5.4 2.8 8.6L20 23.2l-7.4 5.4 2.8-8.6L8 14.6h9.2L20 6z"/>
+          </svg>
+        </div>
+        <div class="pillar-name">Power Learning</div>
+        <div class="pillar-desc">15+ proven memory and thinking techniques — from Mind Palace to SQ3R — making every student a learning genius.</div>
+        <div class="pillar-glow"></div>
+      </div>
+
+      <div class="pillar-card">
+        <span class="pillar-number">07</span>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="20" cy="20" r="4"/>
+            <circle cx="8" cy="12" r="3"/><circle cx="32" cy="12" r="3"/>
+            <circle cx="8" cy="28" r="3"/><circle cx="32" cy="28" r="3"/>
+            <circle cx="20" cy="6" r="3"/><circle cx="20" cy="34" r="3"/>
+            <path d="M20 10v6M20 24v6M11 14l6 4M23 22l6 4M29 14l-6 4M17 22l-6 4"/>
+          </svg>
+        </div>
+        <div class="pillar-name">Multiple Intelligence</div>
+        <div class="pillar-desc">Honouring all 10 forms of human intelligence — from linguistic to financial to spiritual — so every child shines.</div>
+        <div class="pillar-glow"></div>
+      </div>
+
+      <div class="pillar-card">
+        <span class="pillar-number">08</span>
+        <div class="pillar-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="6" y="20" width="6" height="14" rx="1"/>
+            <rect x="17" y="12" width="6" height="22" rx="1"/>
+            <rect x="28" y="6" width="6" height="28" rx="1"/>
+            <path d="M8 16l8-6 9 4 8-8"/>
+          </svg>
+        </div>
+        <div class="pillar-name">21st Century Skills</div>
+        <div class="pillar-desc">Creativity, critical thinking, communication, collaboration, and digital literacy for a world yet to be imagined.</div>
+        <div class="pillar-glow"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SPIRAL LEARNING DEEP DIVE ===== -->
+<section id="spiral" class="section-pad">
+  <div class="container">
+    <div class="spiral-grid">
+      <div class="fade-up">
+        <div class="section-label">Spiral Learning</div>
+        <h2 class="section-title" style="margin-bottom:24px;">
+          Knowledge Grows
+          <em>in Circles</em>
+        </h2>
+        <p class="section-body" style="margin-bottom:24px;">
+          True mastery is never linear. MIWAY's Spiral Learning architecture revisits core concepts at progressively deeper levels — each encounter building on the last, creating knowledge that compounds with time.
+        </p>
+        <p class="section-body" style="margin-bottom:40px;">
+          Progressive lessons build on foundations. Cumulative assessments reinforce previous knowledge. Recursive projects revisit core ideas with fresh eyes. Learning doesn't just accumulate — it multiplies.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="padding:20px;border:1px solid rgba(201,168,76,0.12);">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);font-weight:300;">Layer 1</div>
+            <div style="font-size:12px;color:var(--silver);margin-top:4px;text-transform:uppercase;letter-spacing:0.1em;">Foundation</div>
+          </div>
+          <div style="padding:20px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.03);">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);font-weight:300;">Layer 3</div>
+            <div style="font-size:12px;color:var(--silver);margin-top:4px;text-transform:uppercase;letter-spacing:0.1em;">Integration</div>
+          </div>
+          <div style="padding:20px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.03);">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);font-weight:300;">Layer 2</div>
+            <div style="font-size:12px;color:var(--silver);margin-top:4px;text-transform:uppercase;letter-spacing:0.1em;">Deepening</div>
+          </div>
+          <div style="padding:20px;border:1px solid rgba(201,168,76,0.35);background:rgba(201,168,76,0.06);">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);font-weight:300;">Layer 4</div>
+            <div style="font-size:12px;color:var(--silver);margin-top:4px;text-transform:uppercase;letter-spacing:0.1em;">Mastery</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spiral-visual fade-up" style="transition-delay:0.2s;">
+        <div class="spiral-rings">
+          <div class="ring ring-1"><div class="ring-dot"></div></div>
+          <div class="ring ring-2"><div class="ring-dot"></div></div>
+          <div class="ring ring-3"><div class="ring-dot"></div></div>
+          <div class="ring ring-4"><div class="ring-dot"></div></div>
+          <div class="ring-center">
+            Mastery<br>Core
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTELLIGENCE WHEEL ===== -->
+<section id="intelligence">
+  <div class="container">
+    <div class="system-intro fade-up">
+      <div class="section-label" style="justify-content:center;">Multiple Intelligence</div>
+      <h2 class="section-title" style="margin-bottom:20px;">
+        Every Child is
+        <em>Brilliantly Different</em>
+      </h2>
+      <p class="section-body" style="margin:0 auto 60px;">
+        MIWAY honours all ten dimensions of human intelligence — because genius doesn't live in just one room of the mind.
+      </p>
+    </div>
+
+    <div class="intel-layout">
+      <div class="wheel-container fade-up">
+        <svg viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <defs>
+            <radialGradient id="wheelGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#0F1E47"/>
+              <stop offset="100%" stop-color="#050A1F"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Outer circle -->
+          <circle cx="260" cy="260" r="240" fill="none" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+          <circle cx="260" cy="260" r="185" fill="none" stroke="rgba(201,168,76,0.07)" stroke-width="1"/>
+          <circle cx="260" cy="260" r="100" fill="url(#wheelGrad)" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+
+          <!-- Spokes (10 segments) -->
+          <g stroke="rgba(201,168,76,0.12)" stroke-width="1">
+            <line x1="260" y1="20" x2="260" y2="500"/>
+            <line x1="20" y1="260" x2="500" y2="260"/>
+            <line x1="83" y1="83" x2="437" y2="437"/>
+            <line x1="437" y1="83" x2="83" y2="437"/>
+            <line x1="57" y1="185" x2="463" y2="335"/>
+            <line x1="57" y1="335" x2="463" y2="185"/>
+            <line x1="185" y1="57" x2="335" y2="463"/>
+            <line x1="335" y1="57" x2="185" y2="463"/>
+            <line x1="40" y1="220" x2="480" y2="300"/>
+            <line x1="40" y1="300" x2="480" y2="220"/>
+          </g>
+
+          <!-- Intelligence nodes with gold dots -->
+          <g>
+            <!-- Word Smart -->
+            <circle cx="260" cy="28" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="260" y="24" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">WORD</text>
+            <text x="260" y="36" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+
+            <!-- Logic Smart -->
+            <circle cx="457" cy="130" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="457" y="126" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">LOGIC</text>
+            <text x="457" y="138" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+
+            <!-- Money Smart -->
+            <circle cx="492" cy="260" r="28" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5"/>
+            <text x="492" y="256" text-anchor="middle" fill="#E8C96A" font-family="Syne" font-size="9" font-weight="700">MONEY</text>
+            <text x="492" y="268" text-anchor="middle" fill="#E8C96A" font-family="Syne" font-size="9" font-weight="700">SMART</text>
+
+            <!-- Life Smart -->
+            <circle cx="457" cy="390" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="457" y="386" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">LIFE</text>
+            <text x="457" y="398" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+
+            <!-- Body Smart -->
+            <circle cx="335" cy="468" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="335" y="464" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">BODY</text>
+            <text x="335" y="476" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+
+            <!-- Nature Smart -->
+            <circle cx="185" cy="468" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="185" y="464" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">NATURE</text>
+            <text x="185" y="476" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+
+            <!-- Self Smart -->
+            <circle cx="63" cy="390" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="63" y="386" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SELF</text>
+            <text x="63" y="398" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+
+            <!-- People Smart -->
+            <circle cx="28" cy="260" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="28" y="256" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">PEOPLE</text>
+            <text x="28" y="268" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+
+            <!-- Music Smart -->
+            <circle cx="63" cy="130" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="63" y="126" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">MUSIC</text>
+            <text x="63" y="138" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+
+            <!-- Picture Smart -->
+            <circle cx="185" cy="52" r="28" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="185" y="48" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">PICTURE</text>
+            <text x="185" y="60" text-anchor="middle" fill="#C9A84C" font-family="Syne" font-size="9" font-weight="600">SMART</text>
+          </g>
+
+          <!-- Center -->
+          <circle cx="260" cy="260" r="70" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.25)" stroke-width="1.5"/>
+          <text x="260" y="252" text-anchor="middle" fill="#C9A84C" font-family="Cormorant Garamond" font-size="13" font-style="italic">Every Child</text>
+          <text x="260" y="272" text-anchor="middle" fill="white" font-family="Syne" font-size="11" font-weight="700" letter-spacing="2">IS GENIUS</text>
+        </svg>
+      </div>
+
+      <div class="fade-up" style="transition-delay:0.2s;">
+        <div class="section-label">The Intelligence Wheel</div>
+        <h2 class="section-title" style="margin-bottom:24px;font-size:clamp(32px,4vw,52px);">
+          Ten Dimensions of
+          <em>Human Genius</em>
+        </h2>
+        <p class="section-body" style="margin-bottom:32px;">
+          Howard Gardner showed us that intelligence is not a single score on a single test. MIWAY Books builds on this truth — and adds Financial and Spiritual Intelligence to create the most complete learning model available.
+        </p>
+        <div class="intel-cards">
+          <div class="intel-card"><span class="intel-emoji">📖</span><div class="intel-card-name">Word Smart</div><div class="intel-card-sub">Linguistic Intelligence</div></div>
+          <div class="intel-card"><span class="intel-emoji">🧮</span><div class="intel-card-name">Logic Smart</div><div class="intel-card-sub">Logical–Mathematical</div></div>
+          <div class="intel-card" style="border-color:rgba(201,168,76,0.25);background:rgba(201,168,76,0.04);"><span class="intel-emoji">💰</span><div class="intel-card-name" style="color:var(--gold-light);">Money Smart</div><div class="intel-card-sub">Financial Intelligence</div></div>
+          <div class="intel-card" style="border-color:rgba(201,168,76,0.25);background:rgba(201,168,76,0.04);"><span class="intel-emoji">✨</span><div class="intel-card-name" style="color:var(--gold-light);">Life Smart</div><div class="intel-card-sub">Spiritual Intelligence</div></div>
+          <div class="intel-card"><span class="intel-emoji">🌿</span><div class="intel-card-name">Nature Smart</div><div class="intel-card-sub">Naturalistic</div></div>
+          <div class="intel-card"><span class="intel-emoji">🎨</span><div class="intel-card-name">Picture Smart</div><div class="intel-card-sub">Spatial Intelligence</div></div>
+          <div class="intel-card"><span class="intel-emoji">🎵</span><div class="intel-card-name">Music Smart</div><div class="intel-card-sub">Musical Intelligence</div></div>
+          <div class="intel-card"><span class="intel-emoji">🤝</span><div class="intel-card-name">People Smart</div><div class="intel-card-sub">Interpersonal</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY DIFFERENT ===== -->
+<section id="why-different" class="section-pad">
+  <div class="container">
+    <div class="fade-up" style="max-width:600px;">
+      <div class="section-label">Why MIWAY is Different</div>
+      <h2 class="section-title" style="margin-bottom:16px;">
+        The World Has
+        <em>Enough Textbooks.</em>
+      </h2>
+      <p class="section-body">MIWAY Books doesn't add to the noise. It changes the entire conversation about what learning can be.</p>
+    </div>
+    <div class="diff-grid fade-up" style="transition-delay:0.2s;">
+      <div class="diff-item">
+        <span class="diff-num">01</span>
+        <div class="diff-title">Scientifically Grounded</div>
+        <p class="diff-body">Every methodology — Bloom's, whole-brain activation, spiral curriculum — is backed by decades of neuroscience and educational research. We don't follow trends. We follow truth.</p>
+      </div>
+      <div class="diff-item">
+        <span class="diff-num">02</span>
+        <div class="diff-title">Holistically Human</div>
+        <p class="diff-body">We develop the whole child — intellectual, emotional, social, financial, and spiritual. Because a child is not a test score. They are an entire universe waiting to unfold.</p>
+      </div>
+      <div class="diff-item">
+        <span class="diff-num">03</span>
+        <div class="diff-title">Joyfully Effective</div>
+        <p class="diff-body">Learning should feel like discovery, not duty. MIWAY uses storytelling, sensory play, creative projects, and movement to make every lesson memorable and every child eager to return.</p>
+      </div>
+      <div class="diff-item">
+        <span class="diff-num">04</span>
+        <div class="diff-title">Future-Oriented</div>
+        <p class="diff-body">We prepare students for careers that don't yet exist, solving problems that haven't yet been named, using technologies yet to be invented. Critical thinking is our core curriculum.</p>
+      </div>
+      <div class="diff-item">
+        <span class="diff-num">05</span>
+        <div class="diff-title">Character-Led</div>
+        <p class="diff-body">Inspired by Stephen Covey's Seven Habits, MIWAY builds leaders of character — proactive, empathetic, collaborative, purpose-driven humans who leave the world better than they found it.</p>
+      </div>
+      <div class="diff-item">
+        <span class="diff-num">06</span>
+        <div class="diff-title">Measurably Transformative</div>
+        <p class="diff-body">Parents and teachers see the change — in confidence, curiosity, and capability. MIWAY creates visible growth, not just in grades, but in how children think, speak, and show up in the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FUTURE SKILLS ===== -->
+<section id="future-skills" class="section-pad">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;max-width:600px;margin:0 auto 20px;">
+      <div class="section-label" style="justify-content:center;"><div style="width:32px;height:1px;background:var(--gold);"></div> Future Skills</div>
+      <h2 class="section-title" style="margin-bottom:16px;">
+        Preparing Them for
+        <em>Worlds We Haven't Seen</em>
+      </h2>
+      <p class="section-body" style="margin:0 auto;">The future belongs to those who can think, adapt, create, and connect. MIWAY systematically builds every essential skill.</p>
+    </div>
+
+    <div class="skills-marquee fade-up" style="transition-delay:0.2s;">
+      <div class="marquee-track">
+        <div class="marquee-item">Critical Thinking <span>◆</span></div>
+        <div class="marquee-item">Creative Reasoning <span>◆</span></div>
+        <div class="marquee-item">Digital Fluency <span>◆</span></div>
+        <div class="marquee-item">Emotional Intelligence <span>◆</span></div>
+        <div class="marquee-item">Financial Literacy <span>◆</span></div>
+        <div class="marquee-item">Global Citizenship <span>◆</span></div>
+        <div class="marquee-item">Innovation Mindset <span>◆</span></div>
+        <div class="marquee-item">Leadership <span>◆</span></div>
+        <div class="marquee-item">Critical Thinking <span>◆</span></div>
+        <div class="marquee-item">Creative Reasoning <span>◆</span></div>
+        <div class="marquee-item">Digital Fluency <span>◆</span></div>
+        <div class="marquee-item">Emotional Intelligence <span>◆</span></div>
+        <div class="marquee-item">Financial Literacy <span>◆</span></div>
+        <div class="marquee-item">Global Citizenship <span>◆</span></div>
+        <div class="marquee-item">Innovation Mindset <span>◆</span></div>
+        <div class="marquee-item">Leadership <span>◆</span></div>
+      </div>
+    </div>
+
+    <div class="skills-grid fade-up" style="transition-delay:0.3s;max-width:900px;margin:0 auto;">
+      <div class="skill-row">
+        <div class="skill-bar-wrap">
+          <div class="skill-label">Critical Thinking</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%;"></div></div>
+        </div>
+        <div class="skill-pct display-font">95</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-bar-wrap">
+          <div class="skill-label">Creative Innovation</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:92%;"></div></div>
+        </div>
+        <div class="skill-pct display-font">92</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-bar-wrap">
+          <div class="skill-label">Emotional Intelligence</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%;"></div></div>
+        </div>
+        <div class="skill-pct display-font">90</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-bar-wrap">
+          <div class="skill-label">Collaboration & Leadership</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%;"></div></div>
+        </div>
+        <div class="skill-pct display-font">88</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-bar-wrap">
+          <div class="skill-label">Financial Intelligence</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%;"></div></div>
+        </div>
+        <div class="skill-pct display-font">85</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-bar-wrap">
+          <div class="skill-label">Digital Fluency</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:87%;"></div></div>
+        </div>
+        <div class="skill-pct display-font">87</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST ===== -->
+<section id="trust" class="section-pad">
+  <div class="container">
+    <div class="trust-numbers fade-up">
+      <div class="trust-num-item">
+        <span class="trust-big display-font">8+</span>
+        <span class="trust-big-label">Learning Frameworks</span>
+      </div>
+      <div class="trust-num-item">
+        <span class="trust-big display-font">10</span>
+        <span class="trust-big-label">Intelligence Domains</span>
+      </div>
+      <div class="trust-num-item">
+        <span class="trust-big display-font">15+</span>
+        <span class="trust-big-label">Power Techniques</span>
+      </div>
+      <div class="trust-num-item">
+        <span class="trust-big display-font">7</span>
+        <span class="trust-big-label">Covey Habits Embedded</span>
+      </div>
+    </div>
+
+    <div class="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">Parent Trust</div>
+      <h2 class="section-title" style="margin-bottom:20px;">
+        When Parents Choose
+        <em>MIWAY,</em> They Choose Certainty
+      </h2>
+      <p class="section-body" style="margin:0 auto;">
+        Not just a book. An investment in your child's entire future — built on science, tested in classrooms, and proven in lives transformed.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px;" class="fade-up" style="transition-delay:0.2s;">
+      <div style="padding:36px 28px;border:1px solid rgba(201,168,76,0.1);text-align:center;">
+        <div style="width:56px;height:56px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:22px;">🧠</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:10px;">Neuroscience-Backed</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7;font-weight:300;">Every method is grounded in how the human brain actually learns, retains, and applies knowledge.</p>
+      </div>
+      <div style="padding:36px 28px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.03);text-align:center;">
+        <div style="width:56px;height:56px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:22px;">❤️</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:10px;">Crafted with Love</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7;font-weight:300;">Built by educators who believe every child deserves to experience the joy of truly understanding something.</p>
+      </div>
+      <div style="padding:36px 28px;border:1px solid rgba(201,168,76,0.1);text-align:center;">
+        <div style="width:56px;height:56px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:22px;">🌍</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:10px;">Globally Relevant</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7;font-weight:300;">Designed for the international education market — timeless enough for today, visionary enough for tomorrow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials" class="section-pad">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;max-width:500px;margin:0 auto 60px;">
+      <div class="section-label" style="justify-content:center;">Transformations</div>
+      <h2 class="section-title">Voices of
+        <em>Changed Lives</em>
+      </h2>
+    </div>
+    <div class="testi-grid fade-up" style="transition-delay:0.2s;">
+      <div class="testi-card">
+        <span class="testi-quote display-font">"</span>
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p class="testi-text">My daughter used to dread reading. After MIWAY Books, she's writing her own stories. It's not just a curriculum change — it's a complete transformation of how she sees herself as a learner.</p>
+        <div class="testi-author">
+          <div class="testi-avatar display-font">A</div>
+          <div>
+            <div class="testi-name">Ananya Krishnamurthy</div>
+            <div class="testi-role">Parent · Grade 4 Student</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" style="border-color:rgba(201,168,76,0.15);">
+        <span class="testi-quote display-font">"</span>
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p class="testi-text">As a school principal, I've reviewed hundreds of curriculum frameworks. MIWAY is the first I've seen that genuinely integrates neuroscience, character education, and 21st century skills into a coherent whole.</p>
+        <div class="testi-author">
+          <div class="testi-avatar display-font">R</div>
+          <div>
+            <div class="testi-name">Dr. Rahul Mehta</div>
+            <div class="testi-role">Principal · International School</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <span class="testi-quote display-font">"</span>
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p class="testi-text">The Mind Palace and Story Method techniques changed everything for my son who struggled with memory. He now teaches these techniques to his classmates. MIWAY gave him confidence I haven't seen before.</p>
+        <div class="testi-author">
+          <div class="testi-avatar display-font">S</div>
+          <div>
+            <div class="testi-name">Sunita Varghese</div>
+            <div class="testi-role">Parent · Grade 6 Student</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section id="cta-final" class="section-pad-lg">
+  <div class="cta-bg"></div>
+  <div class="container">
+    <div class="cta-inner fade-up">
+      <div class="section-label" style="justify-content:center;">Begin the Journey</div>
+      <h2 class="cta-title display-font">
+        Your Child Is
+        <em>Already Extraordinary.</em>
+        <span style="display:block;font-size:0.7em;color:rgba(255,255,255,0.6);font-style:normal;margin-top:12px;">We just help them prove it.</span>
+      </h2>
+      <div class="cta-divider"></div>
+      <p class="cta-sub">
+        Join the growing community of parents, educators, and schools who are choosing not just a better curriculum — but a better future. MIWAY Books: where every child's story begins with possibility.
+      </p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <a href="#" class="btn-primary">Get MIWAY Books</a>
+        <a href="#" class="btn-secondary">Partner with Us</a>
+      </div>
+      <p style="margin-top:36px;font-size:13px;color:rgba(255,255,255,0.25);letter-spacing:0.05em;">
+        Available for Schools · Homeschoolers · Parents · Educators
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="nav-logo heading-font">MI<span>WAY</span> Books</span>
+        <p class="footer-tagline">A neuroscience-powered learning ecosystem designed to transform every child into a confident, creative, and future-ready human being.</p>
+        <div style="margin-top:24px;display:flex;gap:16px;">
+          <a href="#" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:var(--silver);text-decoration:none;font-size:14px;transition:all 0.3s;">in</a>
+          <a href="#" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:var(--silver);text-decoration:none;font-size:14px;transition:all 0.3s;">ig</a>
+          <a href="#" style="width:36px;height:36px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:var(--silver);text-decoration:none;font-size:14px;transition:all 0.3s;">yt</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Our System</div>
+        <ul class="footer-links">
+          <li><a href="#">Bloom's Taxonomy</a></li>
+          <li><a href="#">Whole Brain Learning</a></li>
+          <li><a href="#">Spiral Learning</a></li>
+          <li><a href="#">Power Learning</a></li>
+          <li><a href="#">Multiple Intelligence</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">For You</div>
+        <ul class="footer-links">
+          <li><a href="#">Parents</a></li>
+          <li><a href="#">Schools</a></li>
+          <li><a href="#">Educators</a></li>
+          <li><a href="#">Homeschoolers</a></li>
+          <li><a href="#">Distributors</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About MIWAY</a></li>
+          <li><a href="#">Founder's Vision</a></li>
+          <li><a href="#">Research & Science</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 MIWAY Books. All rights reserved.</span>
+      <span class="footer-gold-line display-font">Every child is born a genius.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .pillar-card, .intel-card, .skill-row, .testi-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = '60px'; ring.style.height = '60px';
+    ring.style.borderColor = 'rgba(201,168,76,0.6)';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '36px'; ring.style.height = '36px';
+    ring.style.borderColor = 'rgba(201,168,76,0.5)';
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Parallax on hero
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const hero = document.querySelector('.hero-content');
+  if (hero) hero.style.transform = `translateY(${scrolled * 0.25}px)`;
+  const orbs = document.querySelectorAll('.orb');
+  orbs.forEach((o, i) => {
+    o.style.transform = `translateY(${scrolled * (0.1 + i * 0.05)}px)`;
+  });
+});
+
+// Nav scroll state
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 80) {
+    nav.style.background = 'rgba(5,10,31,0.96)';
+    nav.style.borderBottom = '1px solid rgba(201,168,76,0.08)';
+  } else {
+    nav.style.background = 'linear-gradient(180deg,rgba(5,10,31,0.95) 0%,transparent 100%)';
+    nav.style.borderBottom = 'none';
+  }
+});
+</script>
+</body>
+</html>

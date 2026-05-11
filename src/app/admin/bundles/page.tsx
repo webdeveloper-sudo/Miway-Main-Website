@@ -3,7 +3,9 @@ import Link from 'next/link';
 import { Edit, Plus } from 'lucide-react';
 import { DeleteBundleButton } from './DeleteButton';
 
-export default async function BundlesAdminPage({ searchParams }: { searchParams: { success?: string } }) {
+export default async function BundlesAdminPage({ searchParams }: { searchParams: Promise<{ success?: string }> }) {
+  const resolvedSearchParams = await searchParams;
+  const success = resolvedSearchParams.success;
  const bundles = await prisma.bundle.findMany({
  orderBy: { createdAt: 'desc' },
  include: { _count: { select: { books: true } } }
@@ -11,7 +13,7 @@ export default async function BundlesAdminPage({ searchParams }: { searchParams:
 
  return (
  <div>
- {searchParams?.success && (
+ {success && (
  <div className="mb-6 p-4 bg-green-50/80 border border-green-200 text-green-700 rounded-lg flex items-center justify-between animate-in fade-in slide-in-from-top-4">
  <div className="flex items-center gap-3">
  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-green-600">

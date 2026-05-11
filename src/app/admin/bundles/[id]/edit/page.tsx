@@ -5,16 +5,17 @@ import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { notFound } from 'next/navigation';
 
-export default async function EditBundlePage({ params }: { params: { id: string } }) {
+export default async function EditBundlePage({ params }: { params: Promise<{ id: string }> }) {
+ const { id } = await params;
  const bundle = await prisma.bundle.findUnique({
- where: { id: params.id }
+ where: { id }
  });
 
  if (!bundle) {
  return notFound();
  }
 
- const updateAction = updateBundle.bind(null, params.id);
+ const updateAction = updateBundle.bind(null, id);
 
  const subjectsString = JSON.parse(bundle.subjects).join(', ');
  const featuresString = JSON.parse(bundle.features).join('\n');

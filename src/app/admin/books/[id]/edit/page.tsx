@@ -5,9 +5,10 @@ import { ArrowLeft, Box } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export default async function EditBookPage({ params }: { params: { id: string } }) {
+export default async function EditBookPage({ params }: { params: Promise<{ id: string }> }) {
+ const { id } = await params;
  const book = await prisma.book.findUnique({
- where: { id: params.id }
+ where: { id }
  });
 
  if (!book) {
@@ -18,7 +19,7 @@ export default async function EditBookPage({ params }: { params: { id: string } 
  orderBy: { title: 'asc' }
  });
 
- const updateAction = updateBook.bind(null, params.id);
+ const updateAction = updateBook.bind(null, id);
 
  return (
  <div className="max-w-4xl mx-auto pb-20">

@@ -27,7 +27,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body>
+            <body className="antialiased selection:bg-accent/30 selection:text-primary">
+                {/* Global Noise Texture */}
+                <div className="noise-overlay" />
+                
                 <Navbar />
                 <main>{children}</main>
                 <Footer />
