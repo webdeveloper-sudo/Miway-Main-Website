@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className="antialiased selection:bg-accent/30 selection:text-primary">
+            <body suppressHydrationWarning className="antialiased selection:bg-accent/30 selection:text-primary">
                 {/* Global Noise Texture */}
                 <div className="noise-overlay" />
                 

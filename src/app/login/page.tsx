@@ -4,12 +4,18 @@ import Button from '@/components/ui/Button';
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { authenticate } from '@/lib/actions';
+import BannerAndBreadCrumb from '@/components/BannerAndBreadCrumb';
 
 export default function LoginPage() {
     const [errorMessage, dispatch] = useActionState(authenticate, undefined);
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-slate-900 overflow-hidden relative">
+        <div className="min-h-screen bg-slate-900 overflow-hidden relative flex flex-col">
+            <BannerAndBreadCrumb 
+                title="Admin <span class='text-accent'>Login.</span>"
+                subtitle="Restricted access for MIWAY authorized personnel only."
+            />
+            <div className="flex-grow flex items-center justify-center relative py-20">
             {/* Cinematic Background */}
             <div className="absolute inset-0 opacity-20 mesh-bg-primary animate-pulse-slow" />
             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay" />
@@ -64,6 +70,7 @@ export default function LoginPage() {
                         </div>
                     )}
                 </form>
+            </div>
             </div>
         </div>
     );

@@ -473,40 +473,6 @@ export default function HomeClient({ content }: HomeClientProps) {
         </div>
       </section>
 
-      {/* 8. Final Institutional Invitation */}
-
-      <hr />
-      <section className="py-24 relative overflow-hidden bg-white">
-        <div className="container-premium relative z-10">
-          <FadeIn className="flex flex-col items-center text-center">
-            <span className="text-[12px] font-semibold uppercase tracking-[0.3em] text-muted mb-4">
-              The Architecture of Intelligence
-            </span>
-
-            <div className="inline-flex items-center gap-3">
-              <div className="w-24 opacity-[0.9] bg-accent h-px" />
-
-              <h2 className="text-[15vw] md:text-[12rem] font-bold text-primary tracking-[0.15em] leading-none mb-4 select-none opacity-[0.2]">
-                MIWAY
-              </h2>
-              <div className="w-24 opacity-[0.9] bg-accent h-px" />
-            </div>
-
-            <Link href="/contact">
-              <Button
-                size="md"
-                className="bg-transparent text-gray-800 border-gray-400 border rounded-full px-16 py-8 text-xl font-bold hover:bg-gray-800 hover:text-white transition-all duration-500 group shadow-none"
-              >
-                Initiate Evolution
-                <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
-              </Button>
-            </Link>
-          </FadeIn>
-        </div>
-
-        {/* Subtle Bottom Branding Background */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-      </section>
     </main>
   );
 }

@@ -1,11 +1,15 @@
 import { FadeIn } from '@/components/ui/FadeIn';
+import BannerAndBreadCrumb from '@/components/BannerAndBreadCrumb';
 
 export default function PrivacyPage() {
     return (
-        <div className="min-h-screen bg-white pt-40 pb-20">
-            <div className="container max-w-4xl">
+        <div className="min-h-screen bg-white">
+            <BannerAndBreadCrumb 
+                title="Privacy <span class='text-accent'>Policy.</span>"
+                subtitle="Institutional data protection and privacy standards at MIWAY."
+            />
+            <div className="container max-w-4xl pt-24 pb-20">
                 <FadeIn>
-                    <h1 className="text-6xl font-black text-slate-900 mb-12 tracking-tighter font-serif italic">Privacy Policy.</h1>
                     <div className="prose prose-slate prose-xl max-w-none font-medium text-slate-600 leading-relaxed space-y-12">
                         <section>
                             <h2 className="text-2xl font-black text-slate-900 uppercase tracking-widest mb-6">1. Information Collection</h2>

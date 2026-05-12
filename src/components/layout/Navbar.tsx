@@ -41,7 +41,11 @@ export default function Navbar() {
 
     return (
         <>
-            <header className={`${styles.header} ${isScrolled ? styles.scrolled : 'bg-transparent pt-8'}`}>
+            <header className={`${styles.header} ${
+                isScrolled || (pathname !== "/" && pathname !== "/home") 
+                    ? styles.scrolled 
+                    : 'bg-transparent pt-8'
+            }`}>
                 <div className={`container-premium ${styles.navContainer}`}>
                     <Link href="/" className="flex items-center gap-2 group">
                         <img
@@ -57,7 +61,11 @@ export default function Navbar() {
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className={`text-[12px] font-semibold transition-all tracking-[0.2em] uppercase ${isScrolled ? "text-gray-800" : "text-white"}`}
+                                className={`text-[12px] font-semibold transition-all tracking-[0.2em] uppercase ${
+                                    isScrolled 
+                                        ? "text-gray-800" 
+                                        : (pathname === "/" || pathname === "/home" ? "text-white/90" : "text-gray-800")
+                                }`}
                             >
                                 {item.name}
                             </Link>

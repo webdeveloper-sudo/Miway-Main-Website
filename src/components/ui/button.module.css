@@ -18,7 +18,7 @@
 }
 
 .primary {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    background: #EB232C;
     color: white;
     box-shadow: 0 10px 30px var(--primary-glow);
 }
