@@ -33,6 +33,7 @@ export default function Navbar() {
     }, [isMobileMenuOpen]);
 
     const navItems = [
+        { name: 'Home', href: '/' },
         { name: 'About', href: '/about' },
         { name: 'Philosophy', href: '/philosophy' },
         { name: 'Curriculum', href: '/bundles' },

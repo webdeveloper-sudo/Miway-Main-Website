@@ -6,6 +6,7 @@ import Image from "next/image";
 import { BrainCircuit, BrainIcon, Infinity, Waypoints } from "lucide-react";
 import Link from "next/link";
 import Button from "../ui/Button";
+import { FadeIn } from "../ui/FadeIn";
 
 const GeniusSpiral = () => {
   return (
@@ -15,7 +16,7 @@ const GeniusSpiral = () => {
         <div className="relative w-full aspect-square max-w-[600px] mx-auto">
           {/* Main Image with Layered Shadows */}
           <motion.div
-            className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl z-20"
+            className="absolute inset-0  overflow-hidden shadow-2xl z-20"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -153,7 +154,7 @@ const GeniusSpiral = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-primary/10 bg-primary/5 mb-6">
+          {/* <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-primary/10 bg-primary/5 mb-6">
             <BrainIcon className="w-4 h-4 text-accent font-medium animate-pulse" />
             <span className="text-[12px] font-semibold uppercase tracking-[0.3em] text-primary">
               Neural Evolution
@@ -166,7 +167,21 @@ const GeniusSpiral = () => {
               {" "}
               Latent Genius.
             </span>
-          </h2>
+          </h2> */}
+          <div className=" text-left">
+          <FadeIn>
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="w-10 h-px bg-accent" />
+              <span className="text-[12px] font-semibold uppercase tracking-[0.3em]">
+                Our Core Conviction
+              </span>
+              <div className="w-10 h-px bg-accent" />
+            </div>
+            <h3 className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-8">
+              Every Child Is a <span className=" text-accent"> Genius.</span>
+            </h3>
+          </FadeIn>
+        </div>
 
           <p className="text-md text-muted font-medium font-serif max-w-2xl mx-auto mb-8">
             Our pedagogical architecture is built on the scientific conviction

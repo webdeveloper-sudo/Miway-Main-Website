@@ -15,6 +15,8 @@ export interface BundleDef {
     descDefault: string;
     subjects: string[];
     color: string;
+    color_start?: string;
+    color_end?: string;
     accent: string;
     bg_accent: string;
     icon: string;
@@ -30,7 +32,9 @@ export const bundles: BundleDef[] = [
         focusDefault: 'Sensory Mastery',
         descDefault: 'Early childhood ecosystem focusing on sensory development, motor skill refinement, and joyful discovery.',
         subjects: ['Phonetics', 'Number Play', 'Creative Arts', 'Sensory Logic', 'Motor Skills'],
-        color: 'from-[#f9b233] to-[#ed1c24]',
+        color: 'var(--brand-gold)',
+        color_start: '#F3B041',
+        color_end: '#F7C676',
         accent: 'yellow',
         bg_accent: 'bg-[#f9b233]',
         icon: 'Rocket',
@@ -49,7 +53,9 @@ export const bundles: BundleDef[] = [
         focusDefault: 'Foundation for Success',
         descDefault: 'Integrated multi-volume workbooks and visual memory mapping tools designed for neuro-cognitive development.',
         subjects: ['English', 'Mathematics', 'EVS', 'French'],
-        color: 'from-[#0088cc] to-[#76bc21]',
+        color: 'var(--brand-purple-deep)',
+        color_start: '#694684',
+        color_end: '#8F799E',
         accent: 'blue',
         bg_accent: 'bg-[#0088cc]',
         icon: 'Sparkles',
@@ -68,7 +74,9 @@ export const bundles: BundleDef[] = [
         focusDefault: 'Deep Conceptual Mastery',
         descDefault: 'Advanced science and logic modules with case-study methods for critical analysis and systemic thinking.',
         subjects: ['Core English', 'Advanced Maths', 'Integrated Science', 'Social Science'],
-        color: 'from-[#662d91] to-[#0088cc]',
+        color: 'var(--brand-blue)',
+        color_start: '#66A0CC',
+        color_end: '#8EB6D9',
         accent: 'purple',
         bg_accent: 'bg-[#662d91]',
         icon: 'Target',

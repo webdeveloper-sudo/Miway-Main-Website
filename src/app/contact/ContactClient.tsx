@@ -186,7 +186,7 @@ export default function ContactClient({
             {/* 2. Strategic Intake (Form) */}
             <div className="lg:col-span-6">
               <FadeIn direction="left">
-                <div className="glass-card p-10 md:p-16 rounded-[1rem] bg-white shadow-premium border border-primary/5 relative overflow-hidden">
+                <div className="glass-card p-10 md:p-16 bg-white shadow-premium border border-primary/5 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary" />
 
                   <div className="relative z-10">
