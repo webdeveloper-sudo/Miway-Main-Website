@@ -9,7 +9,7 @@ interface FounderMessageProps {
   content?: Record<string, string>;
 }
 
-const FounderMessage = ({ content }: FounderMessageProps) => {
+const FounderMessage = ({ content = {} }: FounderMessageProps) => {
   const getLocalContent = (key: string, fallback: string = "") => {
     return content?.[key] || fallback;
   };
@@ -23,45 +23,37 @@ const FounderMessage = ({ content }: FounderMessageProps) => {
                 <div className="inline-flex items-center gap-3 mb-6">
                   <div className="w-10 h-px bg-accent" />
                   <span className="text-[12px] font-semibold uppercase tracking-[0.3em]">
-                    Academic Leadership
+                    {getLocalContent("founder_tag", "Academic Leadership")}
                   </span>
                   <div className="w-10 h-px bg-accent" />
                 </div>
-                <h3 className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-6">
-                  Architecting <br />
-                  <span className=" text-accent"> Neural Pathways.</span>
-                </h3>
+                <h3 
+                  className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-6"
+                  dangerouslySetInnerHTML={{
+                    __html: getLocalContent("founder_title", 'Architecting <br /><span class=" text-accent"> Neural Pathways.</span>')
+                  }}
+                />
               </div>
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto mb-4">
-                &quot;I built MIWAY Teaching Aids Pvt. Ltd., because I believed deeply that every
-                child is born a genius and that the world's greatest tragedy is
-                a brilliant mind that was never shown how to shine.
+                {getLocalContent("founder_quote_1", "&quot;I built MIWAY Teaching Aids Pvt. Ltd., because I believed deeply that every child is born a genius and that the world's greatest tragedy is a brilliant mind that was never shown how to shine.")}
               </p>
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto mb-4">
-                I have seen classrooms where curiosity was quietly
-                crushed. I have watched gifted children be labelled "average"
-                simply because the system measured only one kind of
-                intelligence. I refused to accept that.
+                {getLocalContent("founder_quote_2", "I have seen classrooms where curiosity was quietly crushed. I have watched gifted children be labelled \"average\" simply because the system measured only one kind of intelligence. I refused to accept that.")}
               </p>
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto mb-4">
-                MIWAY Teaching Aids Pvt. Ltd., is my answer - a complete learning ecosystem
-                built on love, science, and the unwavering belief that when
-                children are taught how to think, not just what to think, they
-                become unstoppable.
+                {getLocalContent("founder_quote_3", "MIWAY Teaching Aids Pvt. Ltd., is my answer - a complete learning ecosystem built on love, science, and the unwavering belief that when children are taught how to think, not just what to think, they become unstoppable.")}
               </p>
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto mb-12">
-                It is a movement. A
-                promise. A new beginning for every learner who opens these
-                pages. &quot;
+                {getLocalContent("founder_quote_4", "It is a movement. A promise. A new beginning for every learner who opens these pages. &quot;")}
               </p>
               <div className="space-y-12 mb-16">
                 <div className="flex gap-8 items-center border-l-2 border-accent/20 pl-8">
                   <div>
                     <h4 className="text-xl font-bold text-primary mb-1 tracking-tight">
-                      Dr. J. Arawindhan
+                      {getLocalContent("founder_name", "Dr. J. Arawindhan")}
                     </h4>
                     <p className="text-sm font-semibold uppercase tracking-widest text-muted">
-                      Chief Mentor & Visionary
+                      {getLocalContent("founder_role", "Chief Mentor & Visionary")}
                     </p>
                   </div>
                 </div>
@@ -71,7 +63,7 @@ const FounderMessage = ({ content }: FounderMessageProps) => {
                   size="md"
                   className="rounded-full px-12 py-6 bg-primary text-white shadow-premium"
                 >
-                  Discover Our Legacy
+                  {getLocalContent("founder_cta", "Discover Our Legacy")}
                 </Button>
               </Link>
             </FadeIn>
@@ -79,7 +71,7 @@ const FounderMessage = ({ content }: FounderMessageProps) => {
             <FadeIn direction="left" className="relative">
               <div className="aspect-[4/5] bg-accent overflow-hidden shadow-premium relative group">
                 <Image
-                  src={getLocalContent("home_about_image", "/Dr.-J.arawindhan.webp")}
+                  src={getLocalContent("founder_image", "/Dr.-J.arawindhan.webp")}
                   alt="Dr. J. Arawindhan"
                   fill
                   className="object-cover group-hover:scale-105 shadow-sm transition-transform duration-1000"
@@ -87,7 +79,7 @@ const FounderMessage = ({ content }: FounderMessageProps) => {
                 />
               </div>
 
-              {/* Floating 3D Badge with Full Depth & Glitter Effect - Positioned outside overflow-hidden */}
+              {/* Floating 3D Badge */}
               <motion.div
                 className="absolute -bottom-16 -left-16 z-30"
                 style={{ perspective: "1200px" }}
@@ -151,7 +143,7 @@ const FounderMessage = ({ content }: FounderMessageProps) => {
                         </span>
                       </div>
                       <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/90 px-6 leading-tight">
-                        Potential Activation Commitment
+                        {getLocalContent("genius_activation_commitment", "Potential Activation Commitment")}
                       </p>
                     </div>
                   </div>

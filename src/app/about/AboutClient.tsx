@@ -34,8 +34,12 @@ export default function AboutClient({ content }: AboutClientProps) {
     null,
   );
 
+  const getContent = (key: string, fallback: string = "") => {
+    return content[key] || fallback;
+  };
+
   const brochureImages = Array.from({ length: 12 }, (_, i) => ({
-    image: `/brochure/page-${(i + 1).toString().padStart(2, "0")}.jpg`,
+    image: getContent(`about_brochure_image_${i + 1}`, `/brochure/page-${(i + 1).toString().padStart(2, "0")}.jpg`),
     imgTitle: `Institutional Manifesto - Page ${(i + 1).toString().padStart(2, "0")}`,
   }));
 
@@ -57,19 +61,18 @@ export default function AboutClient({ content }: AboutClientProps) {
     <div className="min-h-screen bg-slate-50">
       <BannerAndBreadCrumb
         title={
-          content["about_hero_title"] ||
-          'Institutional <br /> <span class="text-accent">Legacy.</span>'
+          getContent("about_hero_title", 'Institutional <br /> <span class="text-accent">Legacy.</span>')
         }
         subtitle={
-          content["about_hero_desc"] ||
-          "MIWAY Teaching Aids Pvt. Ltd. is an innovative educational publisher dedicated to creating engaging, neuroscience-based learning ecosystems."
+          getContent("about_hero_desc", "MIWAY Teaching Aids Pvt. Ltd. is an innovative educational publisher dedicated to creating engaging, neuroscience-based learning ecosystems.")
         }
+        img={getContent("about_hero_background", "/images/45115730_bnn2.jpg")}
       />
 
       {/* 2. Pedagogy & Authority */}
       <section className="section-padding bg-background relative overflow-hidden">
         <div className="container-premium">
-          <OurPhilosophy />
+          <OurPhilosophy content={content} />
         </div>
       </section>
 
@@ -86,30 +89,28 @@ export default function AboutClient({ content }: AboutClientProps) {
       <div className="w-10 h-px bg-accent" />
 
       <span className="text-[12px] font-semibold uppercase tracking-[0.3em]">
-        What We Stand For
+        {getContent("about_beliefs_tag", "What We Stand For")}
       </span>
 
       <div className="w-10 h-px bg-accent" />
     </div>
 
-    <h3 className="text-4xl md:text-6xl font-bold text-primary tracking-tight leading-[1.05]">
-      Six Beliefs That
-      <span className="text-accent">
-        {" "}
-        Define Everything We Do.
-      </span>
-    </h3>
+    <h3 
+      className="text-4xl md:text-6xl font-bold text-primary tracking-tight leading-[1.05]"
+      dangerouslySetInnerHTML={{
+        __html: getContent("about_beliefs_title", 'Six Beliefs That <span class="text-accent"> Define Everything We Do.</span>')
+      }}
+    />
   </div>
 
   <p className="text-xl text-muted font-medium font-serif max-w-xl md:text-right leading-[1.9]">
-    These are not brand values on a wall. They are the engineering
-    principles behind every book we create.
+    {getContent("about_beliefs_desc", "These are not brand values on a wall. They are the engineering principles behind every book we create.")}
   </p>
 </div>
             </FadeIn>
           </div>
 
-          <SixBeliefs />
+          <SixBeliefs content={content} />
         </div>
       </section>
 
@@ -117,7 +118,7 @@ export default function AboutClient({ content }: AboutClientProps) {
       <section
         className="py-10 relative overflow-hidden bg-slate-50"
         style={{
-          backgroundImage: "url('/missionvisionbg.png')",
+          backgroundImage: `url('${getContent("about_mandate_bg", "/missionvisionbg.png")}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -129,13 +130,16 @@ export default function AboutClient({ content }: AboutClientProps) {
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="w-10 h-px bg-accent" />
                 <span className="text-[12px] font-semibold uppercase tracking-[0.3em] text-primary">
-                  Directives
+                  {getContent("about_mandate_tag", "Directives")}
                 </span>
                 <div className="w-10 h-px bg-accent" />
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold text-primary tracking-tight font-serif">
-                Institutional <span className="text-accent">Mandate.</span>
-              </h2>
+              <h2 
+                className="text-4xl md:text-6xl font-bold text-primary tracking-tight font-serif"
+                dangerouslySetInnerHTML={{
+                  __html: getContent("about_mandate_title", 'Institutional <span class="text-accent">Mandate.</span>')
+                }}
+              />
             </FadeIn>
           </div>
 
@@ -205,8 +209,7 @@ export default function AboutClient({ content }: AboutClientProps) {
                 </h3>
 
                 <p className="text-lg text-muted font-medium font-serif leading-[1.9] opacity-90">
-                  {content["about_mission_text"] ||
-                    "To transform education through innovative, neuroscience-based tools that spark creativity, inspire critical thinking, and nurture personal growth."}
+                  {getContent("about_mission_text", "To transform education through innovative, neuroscience-based tools that spark creativity, inspire critical thinking, and nurture personal growth.")}
                 </p>
 
                 <div className="mt-auto pt-10">
@@ -284,8 +287,7 @@ export default function AboutClient({ content }: AboutClientProps) {
                 </h3>
 
                 <p className="text-lg text-muted font-medium font-serif leading-[1.9] opacity-90">
-                  {content["about_vision_text"] ||
-                    "To redefine the learning experience by creating dynamic, neuroscience-driven educational resources that unlock creativity and sharpen critical thinking."}
+                  {getContent("about_vision_text", "To redefine the learning experience by creating dynamic, neuroscience-driven educational resources that unlock creativity and sharpen critical thinking.")}
                 </p>
 
                 <div className="mt-auto pt-10">
@@ -299,11 +301,11 @@ export default function AboutClient({ content }: AboutClientProps) {
 
       {/* 4. Founder Profile - Enhanced UI */}
 
-      <FounderMessage />
+      <FounderMessage content={content} />
       {/* 3. Every Child Is Genius - Immersive Storytelling */}
       <section className="section-padding bg-background relative overflow-hidden">
         <div className="container-premium">
-          <GeniusSpiral />
+          <GeniusSpiral content={content} />
         </div>
       </section>
 
@@ -316,17 +318,19 @@ export default function AboutClient({ content }: AboutClientProps) {
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="w-10 h-px bg-accent" />
                 <span className="text-[12px] font-semibold uppercase tracking-[0.3em]">
-                  Academic Blueprint
+                  {getContent("about_brochure_tag", "Academic Blueprint")}
                 </span>
                 <div className="w-10 h-px bg-accent" />
               </div>
-              <h3 className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-6">
-                Digital <span className="text-accent">Manifesto.</span>
-              </h3>
+              <h3 
+                className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-6"
+                dangerouslySetInnerHTML={{
+                  __html: getContent("about_brochure_title", 'Digital <span class="text-accent">Manifesto.</span>')
+                }}
+              />
 
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto">
-                Explore the complete pedagogical architecture through the
-                official MIWAY digital resources.
+                {getContent("about_brochure_desc", "Explore the complete pedagogical architecture through the official MIWAY digital resources.")}
               </p>
             </FadeIn>
           </div>

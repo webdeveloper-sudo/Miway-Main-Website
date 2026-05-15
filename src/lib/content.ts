@@ -16,26 +16,37 @@ export async function getContent(key: string, fallback: string = ''): Promise<st
 }
 
 /**
- * Get all content for a page by prefix
+ * Get all content for a page by prefix or multiple prefixes
  */
-export async function getPageContent(prefix: string): Promise<Record<string, string>> {
-    try {
-        const contents = await prisma.siteContent.findMany({
-            where: {
-                key: {
-                    startsWith: prefix
-                }
-            }
-        });
+export async function getPageContent(
+  prefixes: string | string[],
+): Promise<Record<string, string>> {
+  try {
+    const prefixList = Array.isArray(prefixes) ? prefixes : [prefixes];
+    const contents = await prisma.siteContent.findMany({
+      where: {
+        OR: prefixList.map((p) => ({
+          key: {
+            startsWith: p,
+          },
+        })),
+      },
+    });
 
-        return contents.reduce((acc, item) => {
-            acc[item.key] = item.content;
-            return acc;
-        }, {} as Record<string, string>);
-    } catch (error) {
-        console.error(`Error fetching page content for prefix: ${prefix}`, error);
-        return {};
-    }
+    return contents.reduce(
+      (acc, item) => {
+        acc[item.key] = item.content;
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
+  } catch (error) {
+    console.error(
+      `Error fetching page content for prefixes: ${prefixes}`,
+      error,
+    );
+    return {};
+  }
 }
 
 /**

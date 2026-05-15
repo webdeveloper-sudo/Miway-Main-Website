@@ -22,13 +22,45 @@ export default async function BundleDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const content = await getPageContent("bundles_");
+  const content = await getPageContent("bundle_");
+
+  const getContent = (key: string, fallback: string = "") => {
+    return content[key] || fallback;
+  };
 
   const needs = [
-    { title: 'Neural Textbooks', desc: 'Neuroscience-backed layouts for maximum retention.', icon: BookOpen },
-    { title: 'Digital Modules', desc: 'Interactive content accessible on all modern devices.', icon: BrainCircuit },
-    { title: 'Practice Manuals', desc: 'Hands-on exercises to solidify core concepts.', icon: Package },
-    { title: 'Teacher Guides', desc: 'Comprehensive instructions for effective deployment.', icon: Infinity }
+    {
+      title: getContent("bundle_need1_title", "Neural Textbooks"),
+      desc: getContent(
+        "bundle_need1_desc",
+        "Neuroscience-backed layouts for maximum retention.",
+      ),
+      icon: BookOpen,
+    },
+    {
+      title: getContent("bundle_need2_title", "Digital Modules"),
+      desc: getContent(
+        "bundle_need2_desc",
+        "Interactive content accessible on all modern devices.",
+      ),
+      icon: BrainCircuit,
+    },
+    {
+      title: getContent("bundle_need3_title", "Practice Manuals"),
+      desc: getContent(
+        "bundle_need3_desc",
+        "Hands-on exercises to solidify core concepts.",
+      ),
+      icon: Package,
+    },
+    {
+      title: getContent("bundle_need4_title", "Teacher Guides"),
+      desc: getContent(
+        "bundle_need4_desc",
+        "Comprehensive instructions for effective deployment.",
+      ),
+      icon: Infinity,
+    },
   ];
 
   // Resolve dynamic content or fallbacks
@@ -39,7 +71,7 @@ export default async function BundleDetailPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <BannerAndBreadCrumb title={title} subtitle={desc} />
+      <BannerAndBreadCrumb title={title} subtitle={desc} img={getContent("bundle_hero_background", "/images/45115730_bnn2.jpg")} />
 
       {/* 3. Every Child Is Genius - Immersive Storytelling */}
       <section className="section-padding bg-background relative overflow-hidden">
@@ -48,13 +80,19 @@ export default async function BundleDetailPage({ params }: PageProps) {
             <div className="inline-flex items-center gap-3 mb-6">
               <div className="w-10 h-px bg-accent" />
               <span className="text-[12px] font-semibold uppercase tracking-[0.3em]">
-                {bundle.gradeDefault}
+                {getContent("bundle_why_choose_tag", bundle.gradeDefault)}
               </span>
               <div className="w-10 h-px bg-accent" />
             </div>
-            <h3 className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-12 md:mb-13">
-               Why Choose <span className=" text-accent"> {bundle.titleDefault}</span>
-            </h3>
+            <h3
+              className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-12 md:mb-13"
+              dangerouslySetInnerHTML={{
+                __html: getContent(
+                  "bundle_why_choose_title",
+                  `Why Choose <span class=" text-accent"> ${bundle.titleDefault}</span>`,
+                ).replace("{bundle_title}", bundle.titleDefault),
+              }}
+            />
           </FadeIn>
         </div>
         <div className="container-premium">
@@ -63,18 +101,16 @@ export default async function BundleDetailPage({ params }: PageProps) {
             <div className="flex-1 relative order-2 lg:order-1">
               <div className="relative w-full aspect-square max-w-[600px] mx-auto">
                 {/* Main Image with Layered Shadows */}
-                <FadeIn direction="none" className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl z-20">
-                  <Image
-                      src={heroImage}
-                        alt={title}
-                    fill
-                    className="object-cover"
-                  />
+                <FadeIn
+                  direction="none"
+                  className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl z-20"
+                >
+                  <Image src={heroImage} alt={title} fill className="object-cover" />
                   {/* Overlay Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
                 </FadeIn>
 
-                {/* Decorative Rings - Using CSS for seamless loop without breaking layout */}
+                {/* Decorative Rings */}
                 <style>
                   {`
               @keyframes spin-slow {
@@ -105,9 +141,6 @@ export default async function BundleDetailPage({ params }: PageProps) {
                 >
                   {/* Outer Thick 3D Ring */}
                   <div className="relative w-52 h-52 flex items-center justify-center">
-                    {/* Back Shadow Circle */}
-                    {/* <div className="absolute inset-0 rounded-full bg-white blur-2xl scale-110" /> */}
-
                     {/* Thick Border Ring */}
                     <div
                       className="
@@ -175,54 +208,55 @@ export default async function BundleDetailPage({ params }: PageProps) {
                         </h3>
 
                         <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/90 px-6 leading-relaxed">
-                          Potential Activation Commitment
+                          {getContent(
+                            "genius_activation_commitment",
+                            "Potential Activation Commitment",
+                          )}
                         </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
             {/* Content Side */}
             <div className="flex-1 order-1 lg:order-2 items-start">
               <FadeIn direction="right">
-                {/* <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-primary/10 bg-primary/5 mb-6">
-                  <BrainIcon className="w-4 h-4 text-accent font-medium animate-pulse" />
-                  <span className="text-[12px] font-semibold uppercase tracking-[0.3em] text-primary">
-                    Neural Evolution
-                  </span>
-                </div> */}
-
-                {/* <h2 className="text-3xl md:text-5xl font-bold mb-4 leading-[0.9] tracking-tighter">
-                  Every Child is a
-                  <span className="font-serif  font-medium gradient-text">
-                    {" "}
-                    Latent Genius.
-                  </span>
-                </h2> */}
-
                 <p className="text-md text-muted font-medium font-serif max-w-2xl mx-auto mb-8">
-                  Our curriculum is engineered for high-engagement classrooms,
-                  providing a holistic framework for cognitive and character
-                  development.
+                  {getContent(
+                    "bundle_why_choose_desc",
+                    "Our curriculum is engineered for high-engagement classrooms, providing a holistic framework for cognitive and character development.",
+                  )}
                 </p>
 
                 <div className="space-y-6">
                   {[
                     {
-                      title: "Personalized Trajectories",
-                      desc: "Adaptive learning paths for unique neural patterns.",
+                      title: getContent(
+                        "genius_point1_title",
+                        "Personalized Trajectories",
+                      ),
+                      desc: getContent(
+                        "genius_point1_desc",
+                        "Adaptive learning paths for unique neural patterns.",
+                      ),
                       icon: <Waypoints className="w-5 h-5 " />,
                     },
                     {
-                      title: "Neuro-Spatial Mastery",
-                      desc: "Leveraging spatial intelligence for complex conceptualization.",
+                      title: getContent("genius_point2_title", "Neuro-Spatial Mastery"),
+                      desc: getContent(
+                        "genius_point2_desc",
+                        "Leveraging spatial intelligence for complex conceptualization.",
+                      ),
                       icon: <BrainCircuit className="w-5 h-5" />,
                     },
                     {
-                      title: "Continuous Iteration",
-                      desc: "The spiral approach ensures no core concept is ever lost.",
+                      title: getContent("genius_point3_title", "Continuous Iteration"),
+                      desc: getContent(
+                        "genius_point3_desc",
+                        "The spiral approach ensures no core concept is ever lost.",
+                      ),
                       icon: <Infinity className="w-5 h-5" />,
                     },
                   ].map((item, i) => (
@@ -248,27 +282,17 @@ export default async function BundleDetailPage({ params }: PageProps) {
                       size="md"
                       className="rounded-full  bg-primary text-white text-lg font-bold"
                     >
-                      Explore Framework
+                      {getContent("genius_cta", "Explore Framework")}
                     </Button>
                   </Link>
                 </div>
-
-                {/* <Link href="/contact">
-            <Button
-              size="sm"
-              className="bg-primary text-white rounded-full px-8 py-4 mt-10 shadow-premium hover:bg-primary-hover transition-all text-[10px] font-black uppercase tracking-[0.2em]"
-            >
-              Partner With Us
-            </Button>
-          </Link> */}
               </FadeIn>
             </div>
           </div>
         </div>
       </section>
 
-     
-    {/* 4. Eight Pillars of Extraordinary Learning */}
+      {/* 4. Eight Pillars of Extraordinary Learning */}
       <section className="section-padding bg-background-alt relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
         <div className="container-premium">
@@ -277,61 +301,63 @@ export default async function BundleDetailPage({ params }: PageProps) {
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="w-10 h-px bg-accent" />
                 <span className="text-[12px] font-semibold uppercase tracking-[0.3em]">
-                  Inside the Box
+                  {getContent("bundle_ecosystem_tag", "Inside the Box")}
                 </span>
                 <div className="w-10 h-px bg-accent" />
               </div>
-              <h3 className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-6">
-                Complete Learning 
-                <span className=" text-accent"> Ecosystem.</span>
-              </h3>
+              <h3
+                className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-6"
+                dangerouslySetInnerHTML={{
+                  __html: getContent(
+                    "bundle_ecosystem_title",
+                    'Complete Learning <span class=" text-accent"> Ecosystem.</span>',
+                  ),
+                }}
+              />
 
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto">
-                              Everything a student needs to master the curriculum.
-
+                {getContent(
+                  "bundle_ecosystem_desc",
+                  "Everything a student needs to master the curriculum.",
+                )}
               </p>
             </FadeIn>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {needs.map((need, i) => (
-                  <FadeIn
-                    key={i}
-                    delay={i * 0.1}
-                    className="group relative h-full"
-                  >
-                    {/* Subtle Background Glow */}
-                    <div className="absolute -inset-2 rounded-[2.5rem] opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-500 bg-accent" />
-                    
-                    <div className="relative glass-card p-10 h-full flex flex-col hover:border-primary/20 transition-colors overflow-hidden">
-                      {/* Watermark Icon */}
-                      <need.icon 
-                        className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity" 
-                        size={180} 
-                      />
-                      
-                      <div className="w-16 h-16 rounded-full border text-accent bg-primary flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500">
-                        <need.icon size={32} />
-                      </div>
-                      
-                      <h3 className="text-2xl font-serif font-bold text-primary mb-4">
-                        {need.title}
-                      </h3>
-                      
-                      <p className="text-[16px] text-muted font-medium font-serif leading-relaxed">
-                        {need.desc}
-                      </p>
-                      
-                      <div className="mt-auto pt-8">
-                        <div className="h-1 w-0 bg-accent group-hover:w-full transition-all duration-700 rounded-full" />
-                      </div>
-                    </div>
-                  </FadeIn>
-                ))}
-              </div>
+            {needs.map((need, i) => (
+              <FadeIn key={i} delay={i * 0.1} className="group relative h-full">
+                {/* Subtle Background Glow */}
+                <div className="absolute -inset-2 rounded-[2.5rem] opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-500 bg-accent" />
+
+                <div className="relative glass-card p-10 h-full flex flex-col hover:border-primary/20 transition-colors overflow-hidden">
+                  {/* Watermark Icon */}
+                  <need.icon
+                    className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity"
+                    size={180}
+                  />
+
+                  <div className="w-16 h-16 rounded-full border text-accent bg-primary flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                    <need.icon size={32} />
+                  </div>
+
+                  <h3 className="text-2xl font-serif font-bold text-primary mb-4">
+                    {need.title}
+                  </h3>
+
+                  <p className="text-[16px] text-muted font-medium font-serif leading-relaxed">
+                    {need.desc}
+                  </p>
+
+                  <div className="mt-auto pt-8">
+                    <div className="h-1 w-0 bg-accent group-hover:w-full transition-all duration-700 rounded-full" />
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
-    
     </div>
   );
 }

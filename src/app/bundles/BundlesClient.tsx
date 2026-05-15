@@ -53,6 +53,7 @@ export default function BundlesClient({
           content["bundles_hero_desc"] ||
           "Engineered for high-engagement schools. Complete ecosystems designed for the modern classroom."
         }
+        img={content["bundles_hero_background"] || "/images/45115730_bnn2.jpg"}
       />
 
       {/* Product Grid */}

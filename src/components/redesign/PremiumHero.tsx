@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import Image from "next/image";
 
-const heroImages = [
+const FALLBACK_HERO_IMAGES = [
   "/images/hero/hero-1.png",
   "/images/hero/hero-2.png",
   "/images/hero/hero-3.png",
@@ -13,15 +13,27 @@ const heroImages = [
   "/images/hero/hero-5.png",
 ];
 
-const PremiumHero = () => {
+interface PremiumHeroProps {
+  content?: Record<string, string>;
+}
+
+const PremiumHero = ({ content = {} }: PremiumHeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const getContent = (key: string, fallback: string = "") => {
+    return content[key] || fallback;
+  };
+
+  const dynamicHeroImages = FALLBACK_HERO_IMAGES.map((fallback, i) => 
+    getContent(`home_hero_image_${i + 1}`, fallback)
+  );
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+      setCurrentSlide((prev) => (prev + 1) % dynamicHeroImages.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [dynamicHeroImages.length]);
 
   return (
     <section className="relative min-h-[95vh] flex items-center pt-32 pb-20 overflow-hidden bg-background">
@@ -37,7 +49,7 @@ const PremiumHero = () => {
             className="absolute inset-0 w-full h-full"
           >
             <Image
-              src={heroImages[currentSlide]}
+              src={dynamicHeroImages[currentSlide]}
               alt={`Slide ${currentSlide}`}
               fill
               className="object-cover"
@@ -72,20 +84,25 @@ const PremiumHero = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 bg-primary/5 rounded-full mb-8 border border-primary/10 backdrop-blur-md">
               <Sparkles size={14} className="text-accent" />
               <span className="text-white/90 font-semibold text-[12px] uppercase tracking-[0.3em]">
-                The Future of Human Learning
+                {getContent("home_hero_tag", "The Future of Human Learning")}
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[0.9] tracking-tight text-white">
-              Not Just Learning.
-              <br />
-              <span className="font-serif font-medium text-accent">
-                Becoming. Transforming.
-              </span>
-            </h1>
+            <h1
+              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[0.9] tracking-tight text-white"
+              dangerouslySetInnerHTML={{
+                __html: getContent(
+                  "home_hero_title",
+                  'Not Just Learning.<br /><span class="font-serif font-medium text-accent">Becoming. Transforming.</span>',
+                ),
+              }}
+            />
 
             <p className="text-xl text-white font-medium font-serif max-w-2xl mx-auto mb-6">
-             MIWAY Teaching Aids Pvt. Ltd., is a neuroscience-powered learning ecosystem designed to unlock every child's infinite potential — building thinkers, creators, innovators, and leaders for tomorrow's world.
+              {getContent(
+                "home_hero_desc",
+                "MIWAY Teaching Aids Pvt. Ltd., is a neuroscience-powered learning ecosystem designed to unlock every child's infinite potential — building thinkers, creators, innovators, and leaders for tomorrow's world.",
+              )}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-8 items-center justify-center">
@@ -94,7 +111,7 @@ const PremiumHero = () => {
                   size="md"
                   className="bg-primary text-white hover:bg-primary-hover px-10 py-5 rounded-full text-xl font-bold shadow-premium group"
                 >
-                  Explore Methodology
+                  {getContent("home_hero_cta", "Explore Methodology")}
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>

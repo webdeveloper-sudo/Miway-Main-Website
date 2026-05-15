@@ -81,17 +81,92 @@ const dimensions = [
   },
 ];
 
-const TenDimensions = () => {
+interface TenDimensionsProps {
+  content?: Record<string, string>;
+}
+
+const TenDimensions = ({ content = {} }: TenDimensionsProps) => {
+  const getContent = (key: string, fallback: string = "") => {
+    return content[key] || fallback;
+  };
+
+  const dimensions = [
+    {
+      name: getContent("dim1_name", "Word Smart"),
+      sub: getContent("dim1_sub", "Linguistic Intelligence"),
+      icon: <BookText className="w-5 h-5" />,
+      color: "var(--accent)",
+    },
+    {
+      name: getContent("dim2_name", "Logic Smart"),
+      sub: getContent("dim2_sub", "Logical-Mathematical"),
+      icon: <Binary className="w-5 h-5" />,
+      color: "var(--accent)",
+    },
+    {
+      name: getContent("dim3_name", "Money Smart"),
+      sub: getContent("dim3_sub", "Financial Intelligence"),
+      icon: <Coins className="w-5 h-5" />,
+      color: "var(--brand-gold)",
+    },
+    {
+      name: getContent("dim4_name", "Life Smart"),
+      sub: getContent("dim4_sub", "Spiritual Intelligence"),
+      icon: <Sparkles className="w-5 h-5" />,
+      color: "var(--brand-gold)",
+    },
+    {
+      name: getContent("dim5_name", "Body Smart"),
+      sub: getContent("dim5_sub", "Kinesthetic"),
+      icon: <Activity className="w-5 h-5" />,
+      color: "var(--accent)",
+    },
+    {
+      name: getContent("dim6_name", "Nature Smart"),
+      sub: getContent("dim6_sub", "Naturalistic"),
+      icon: <Leaf className="w-5 h-5" />,
+      color: "var(--accent)",
+    },
+    {
+      name: getContent("dim7_name", "Picture Smart"),
+      sub: getContent("dim7_sub", "Spatial Intelligence"),
+      icon: <ImageIcon className="w-5 h-5" />,
+      color: "var(--accent)",
+    },
+    {
+      name: getContent("dim8_name", "Music Smart"),
+      sub: getContent("dim8_sub", "Musical Intelligence"),
+      icon: <Music className="w-5 h-5" />,
+      color: "var(--accent)",
+    },
+    {
+      name: getContent("dim9_name", "People Smart"),
+      sub: getContent("dim9_sub", "Interpersonal"),
+      icon: <Users2 className="w-5 h-5" />,
+      color: "var(--accent)",
+    },
+    {
+      name: getContent("dim10_name", "Self Smart"),
+      sub: getContent("dim10_sub", "Intrapersonal"),
+      icon: <UserCircle2 className="w-5 h-5" />,
+      color: "var(--accent)",
+    },
+  ];
+
   const leftDimensions = dimensions.slice(0, 5);
   const rightDimensions = dimensions.slice(5, 10);
 
   return (
-    <section className="section-padding bg-white relative overflow-hidden" id="intelligence">
+    <section
+      className="section-padding bg-white relative overflow-hidden"
+      id="intelligence"
+    >
       <div className="absolute inset-0 opacity-5">
         <div
           className="absolute top-0 left-0 w-full h-full"
           style={{
-            backgroundImage: "radial-gradient(circle at 2px 2px, #1f2937 1px, transparent 0)",
+            backgroundImage:
+              "radial-gradient(circle at 2px 2px, #1f2937 1px, transparent 0)",
             backgroundSize: "40px 40px",
           }}
         />
@@ -103,14 +178,19 @@ const TenDimensions = () => {
             <div className="inline-flex items-center gap-3 mb-6">
               <div className="w-10 h-px bg-accent" />
               <span className="text-[12px] font-semibold uppercase tracking-[0.3em] text-muted">
-                The Intelligence Wheel
+                {getContent("dim_tag", "The Intelligence Wheel")}
               </span>
               <div className="w-10 h-px bg-accent" />
             </div>
-            <h3 className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-6">
-              Ten Dimensions of
-              <span className=" text-accent"> Human Genius.</span>
-            </h3>
+            <h3
+              className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-6"
+              dangerouslySetInnerHTML={{
+                __html: getContent(
+                  "dim_title",
+                  'Ten Dimensions of <span class=" text-accent"> Human Genius.</span>',
+                ),
+              }}
+            />
           </FadeIn>
         </div>
 
@@ -121,7 +201,6 @@ const TenDimensions = () => {
               <FadeIn key={i} delay={i * 0.1} direction="right">
                 <div className="p-5 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-gray-100 transition-all duration-500 group">
                   <div className="flex items-center justify-end gap-4">
-                    
                     <div>
                       <div className="text-sm font-bold uppercase tracking-wider font-heading text-gray-800">
                         {dim.name}
@@ -174,8 +253,12 @@ const TenDimensions = () => {
                       key={i}
                       x1="260"
                       y1="260"
-                      x2={260 + 240 * Math.cos(((i * 36 - 90) * Math.PI) / 180)}
-                      y2={260 + 240 * Math.sin(((i * 36 - 90) * Math.PI) / 180)}
+                      x2={
+                        260 + 240 * Math.cos(((i * 36 - 90) * Math.PI) / 180)
+                      }
+                      y2={
+                        260 + 240 * Math.sin(((i * 36 - 90) * Math.PI) / 180)
+                      }
                     />
                   ))}
                 </g>
@@ -282,7 +365,7 @@ const TenDimensions = () => {
               size="md"
               className="rounded-full bg-accent text-white px-10 py-6 text-xl font-bold shadow-gold hover:scale-105 transition-transform"
             >
-              Discover the Full Spectrum
+              {getContent("dim_cta", "Discover the Full Spectrum")}
             </Button>
           </Link>
         </div>

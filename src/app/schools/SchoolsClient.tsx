@@ -18,6 +18,7 @@ export default function SchoolsClient({ content }: SchoolsClientProps) {
             <BannerAndBreadCrumb 
                 title={content['schools_hero_title'] || 'Elite School <br /> <span class="text-accent">Network.</span>'}
                 subtitle={content['schools_hero_desc'] || 'Join India\'s most progressive educational institutions. We partner with leaders who aim for global academic superiority.'}
+                img={content['schools_hero_background'] || '/images/45115730_bnn2.jpg'}
             />
 
             {/* Support Grid */}

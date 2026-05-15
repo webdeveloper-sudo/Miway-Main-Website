@@ -8,7 +8,15 @@ import Link from "next/link";
 import Button from "../ui/Button";
 import { FadeIn } from "../ui/FadeIn";
 
-const GeniusSpiral = () => {
+interface GeniusSpiralProps {
+  content?: Record<string, string>;
+}
+
+const GeniusSpiral = ({ content = {} }: GeniusSpiralProps) => {
+  const getContent = (key: string, fallback: string = "") => {
+    return content[key] || fallback;
+  };
+
   return (
     <div className="relative flex flex-col lg:flex-row items-center gap-16 md:gap-24">
       {/* Visual Side */}
@@ -23,7 +31,7 @@ const GeniusSpiral = () => {
             transition={{ duration: 1 }}
           >
             <Image
-              src="/visionary-success.jpg"
+              src={getContent("genius_main_image", "/visionary-success.jpg")}
               alt="Every Child Is Genius"
               fill
               className="object-cover"
@@ -32,7 +40,7 @@ const GeniusSpiral = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
           </motion.div>
 
-          {/* Decorative Rings - Using CSS for seamless loop without breaking layout */}
+          {/* Decorative Rings */}
           <style>
             {`
               @keyframes spin-slow {
@@ -51,12 +59,8 @@ const GeniusSpiral = () => {
               }
             `}
           </style>
-          <div
-            className="absolute -inset-10 border-2 border-dashed border-accent/20 rounded-[5rem] -z-10 animate-spin-slow"
-          />
-          <div
-            className="absolute -inset-20 border border-primary/10 rounded-[6rem] -z-20 animate-spin-slow-reverse"
-          />
+          <div className="absolute -inset-10 border-2 border-dashed border-accent/20 rounded-[5rem] -z-10 animate-spin-slow" />
+          <div className="absolute -inset-20 border border-primary/10 rounded-[6rem] -z-20 animate-spin-slow-reverse" />
 
           {/* Floating Badge */}
           <motion.div
@@ -67,9 +71,6 @@ const GeniusSpiral = () => {
           >
             {/* Outer Thick 3D Ring */}
             <div className="relative w-52 h-52 flex items-center justify-center">
-              {/* Back Shadow Circle */}
-              {/* <div className="absolute inset-0 rounded-full bg-white blur-2xl scale-110" /> */}
-
               {/* Thick Border Ring */}
               <div
                 className="
@@ -137,7 +138,10 @@ const GeniusSpiral = () => {
                   </h3>
 
                   <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/90 px-6 leading-relaxed">
-                    Potential Activation Commitment
+                    {getContent(
+                      "genius_activation_commitment",
+                      "Potential Activation Commitment",
+                    )}
                   </p>
                 </div>
               </div>
@@ -154,56 +158,61 @@ const GeniusSpiral = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8 }}
         >
-          {/* <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-primary/10 bg-primary/5 mb-6">
-            <BrainIcon className="w-4 h-4 text-accent font-medium animate-pulse" />
-            <span className="text-[12px] font-semibold uppercase tracking-[0.3em] text-primary">
-              Neural Evolution
-            </span>
+          <div className=" text-left">
+            <FadeIn>
+              <div className="inline-flex items-center gap-3 mb-6">
+                <div className="w-10 h-px bg-accent" />
+                <span className="text-[12px] font-semibold uppercase tracking-[0.3em]">
+                  {getContent("genius_tag", "Our Core Conviction")}
+                </span>
+                <div className="w-10 h-px bg-accent" />
+              </div>
+              <h3
+                className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-8"
+                dangerouslySetInnerHTML={{
+                  __html: getContent(
+                    "genius_title",
+                    'Every Child Is a <span class=" text-accent"> Genius.</span>',
+                  ),
+                }}
+              />
+            </FadeIn>
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 leading-[0.9] tracking-tighter">
-            Every Child is a
-            <span className="font-serif  font-medium gradient-text">
-              {" "}
-              Latent Genius.
-            </span>
-          </h2> */}
-          <div className=" text-left">
-          <FadeIn>
-            <div className="inline-flex items-center gap-3 mb-6">
-              <div className="w-10 h-px bg-accent" />
-              <span className="text-[12px] font-semibold uppercase tracking-[0.3em]">
-                Our Core Conviction
-              </span>
-              <div className="w-10 h-px bg-accent" />
-            </div>
-            <h3 className="text-4xl md:text-6xl font-bold text-primary tracking-tight mb-6 md:mb-8">
-              Every Child Is a <span className=" text-accent"> Genius.</span>
-            </h3>
-          </FadeIn>
-        </div>
-
           <p className="text-md text-muted font-medium font-serif max-w-2xl mx-auto mb-8">
-            Our pedagogical architecture is built on the scientific conviction
-            that cognitive excellence is not inherited, but engineered through
-            structured curiosity and sensory immersion.
+            {getContent(
+              "genius_desc",
+              "Our pedagogical architecture is built on the scientific conviction that cognitive excellence is not inherited, but engineered through structured curiosity and sensory immersion.",
+            )}
           </p>
 
           <div className="space-y-6">
             {[
               {
-                title: "Personalized Trajectories",
-                desc: "Adaptive learning paths for unique neural patterns.",
+                title: getContent(
+                  "genius_point1_title",
+                  "Personalized Trajectories",
+                ),
+                desc: getContent(
+                  "genius_point1_desc",
+                  "Adaptive learning paths for unique neural patterns.",
+                ),
                 icon: <Waypoints className="w-5 h-5 " />,
               },
               {
-                title: "Neuro-Spatial Mastery",
-                desc: "Leveraging spatial intelligence for complex conceptualization.",
+                title: getContent("genius_point2_title", "Neuro-Spatial Mastery"),
+                desc: getContent(
+                  "genius_point2_desc",
+                  "Leveraging spatial intelligence for complex conceptualization.",
+                ),
                 icon: <BrainCircuit className="w-5 h-5" />,
               },
               {
-                title: "Continuous Iteration",
-                desc: "The spiral approach ensures no core concept is ever lost.",
+                title: getContent("genius_point3_title", "Continuous Iteration"),
+                desc: getContent(
+                  "genius_point3_desc",
+                  "The spiral approach ensures no core concept is ever lost.",
+                ),
                 icon: <Infinity className="w-5 h-5" />,
               },
             ].map((item, i) => (
@@ -229,19 +238,10 @@ const GeniusSpiral = () => {
                 size="md"
                 className="rounded-full  bg-primary text-white text-lg font-bold"
               >
-                Explore Framework
+                {getContent("genius_cta", "Explore Framework")}
               </Button>
             </Link>
           </div>
-
-          {/* <Link href="/contact">
-            <Button
-              size="sm"
-              className="bg-primary text-white rounded-full px-8 py-4 mt-10 shadow-premium hover:bg-primary-hover transition-all text-[10px] font-black uppercase tracking-[0.2em]"
-            >
-              Partner With Us
-            </Button>
-          </Link> */}
         </motion.div>
       </div>
     </div>

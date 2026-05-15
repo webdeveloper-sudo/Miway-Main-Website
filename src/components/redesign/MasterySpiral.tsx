@@ -9,29 +9,37 @@ import {
   Gem,
 } from "lucide-react";
 
-const MasterySpiral = () => {
+interface MasterySpiralProps {
+  content?: Record<string, string>;
+}
+
+const MasterySpiral = ({ content = {} }: MasterySpiralProps) => {
+  const getContent = (key: string, fallback: string = "") => {
+    return content[key] || fallback;
+  };
+
   const levels = [
     {
-      title: "Foundation",
-      desc: "Core concepts and sensory understanding.",
+      title: getContent("mastery_level1_title", "Foundation"),
+      desc: getContent("mastery_level1_desc", "Core concepts and sensory understanding."),
       color: "var(--brand-blue)",
       icon: <Layers3 className="w-4 h-4" />,
     },
     {
-      title: "Deepening",
-      desc: "Expanding neural pathways through repetition.",
+      title: getContent("mastery_level2_title", "Deepening"),
+      desc: getContent("mastery_level2_desc", "Expanding neural pathways through repetition."),
       color: "var(--brand-rose)",
       icon: <BrainCircuit className="w-4 h-4" />,
     },
     {
-      title: "Integration",
-      desc: "Connecting interdisciplinary knowledge systems.",
+      title: getContent("mastery_level3_title", "Integration"),
+      desc: getContent("mastery_level3_desc", "Connecting interdisciplinary knowledge systems."),
       color: "var(--brand-purple-muted)",
       icon: <Workflow className="w-4 h-4" />,
     },
     {
-      title: "Mastery",
-      desc: "Achieving confident independent learning.",
+      title: getContent("mastery_level4_title", "Mastery"),
+      desc: getContent("mastery_level4_desc", "Achieving confident independent learning."),
       color: "var(--brand-gold)",
       icon: <Gem className="w-4 h-4" />,
     },
@@ -39,7 +47,6 @@ const MasterySpiral = () => {
 
   return (
     <div className="relative w-full max-w-2xl mx-auto aspect-square flex items-center justify-center p-8">
-
       {/* Background Rings */}
       {levels.map((level, i) => (
         <motion.div
@@ -77,8 +84,6 @@ const MasterySpiral = () => {
             className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full shadow-lg flex items-center justify-center text-white"
             style={{ backgroundColor: level.color }}
           >
-            
-
             <div
               className="absolute inset-0 rounded-full animate-ping opacity-30"
               style={{ backgroundColor: level.color }}
@@ -127,7 +132,6 @@ const MasterySpiral = () => {
               }}
             >
               <div className="glass-card p-3 rounded-xl min-w-[130px] text-center backdrop-blur-xl border border-white/10">
-
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-2 text-white"
                   style={{ backgroundColor: level.color }}

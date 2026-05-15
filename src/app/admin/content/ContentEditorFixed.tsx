@@ -37,28 +37,190 @@ export default function ContentEditorFixed({
   const [searchTerm, setSearchTerm] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Group content by prefix (Page) and then by section
-  const groupedContent = content.reduce(
-    (acc, item) => {
-      const parts = item.key.split("_");
-      const pagePrefix = parts[0];
-      const pageLabel =
-        pagePrefix.charAt(0).toUpperCase() + pagePrefix.slice(1);
+  const TABS = [
+    "Home",
+    "About",
+    "Philosophy",
+    "Curriculam",
+    "Contact",
+    "Partner schools",
+    "Media Center",
+  ];
 
-      const sectionPrefix = parts.length > 1 ? parts[1] : "general";
-      const sectionLabel =
-        sectionPrefix.charAt(0).toUpperCase() + sectionPrefix.slice(1);
+  const MAPPING: Record<string, Array<{ name: string; prefixes: string[] }>> = {
+    Home: [
+      { name: "Premium Hero", prefixes: ["home_hero_"] },
+      { name: "Stats", prefixes: ["home_stats_"] },
+      { name: "Our Philosophy", prefixes: ["phil_"] },
+      { name: "Ten Dimensions (General)", prefixes: ["dim_"] },
+      { name: "Ten Dimension 1", prefixes: ["dim1_"] },
+      { name: "Ten Dimension 2", prefixes: ["dim2_"] },
+      { name: "Ten Dimension 3", prefixes: ["dim3_"] },
+      { name: "Ten Dimension 4", prefixes: ["dim4_"] },
+      { name: "Ten Dimension 5", prefixes: ["dim5_"] },
+      { name: "Ten Dimension 6", prefixes: ["dim6_"] },
+      { name: "Ten Dimension 7", prefixes: ["dim7_"] },
+      { name: "Ten Dimension 8", prefixes: ["dim8_"] },
+      { name: "Ten Dimension 9", prefixes: ["dim9_"] },
+      { name: "Ten Dimension 10", prefixes: ["dim10_"] },
+      { name: "Our Conviction Center", prefixes: ["genius_"] },
+      { name: "Eight Pillars", prefixes: ["pillar"] },
+      { name: "Curriculam Portfolio", prefixes: ["portfolio_"] },
+      { name: "Academic Leadership", prefixes: ["founder_"] },
+      { name: "Testimonial Sections", prefixes: ["testimonial"] },
+      { name: "Mastery Spiral", prefixes: ["mastery_", "home_mastery_"] },
+      { name: "Parent Trust", prefixes: ["reason", "home_parent_trust_"] },
+      { name: "Visual Assets", prefixes: ["home_hero_image", "phil_main", "genius_main", "founder_image"] },
+    ],
+    About: [
+      { name: "Hero Section", prefixes: ["about_hero_"] },
+      { name: "Our Philosophy", prefixes: ["phil_"] },
+      { name: "Six Beliefs", prefixes: ["about_belief"] },
+      {
+        name: "Mission and Vision",
+        prefixes: ["about_mandate", "about_mission", "about_vision"],
+      },
+      { name: "Academic Leadership", prefixes: ["founder_"] },
+      { name: "Brochure Section", prefixes: ["about_brochure"] },
+      { name: "Visual Assets", prefixes: ["about_hero_background", "about_mandate_bg", "about_brochure_image", "founder_image"] },
+    ],
+    Philosophy: [
+      { name: "Hero Section", prefixes: ["philosophy_hero"] },
+      { name: "Pedagogical Framework", prefixes: ["philosophy_pillars"] },
+      { name: "Eight Pillars", prefixes: ["pillar"] },
+      { name: "Visual Assets", prefixes: ["philosophy_hero_background"] },
+    ],
+    Curriculam: [
+      { name: "Hero Section", prefixes: ["bundles_hero_", "bundle_hero_"] },
+      { name: "Pre-Primary Portfolio", prefixes: ["bundles_item_1_"] },
+      { name: "Primary Portfolio", prefixes: ["bundles_item_2_"] },
+      { name: "Middle School Portfolio", prefixes: ["bundles_item_3_"] },
+      { name: "Detailed Ecosystem", prefixes: ["bundle_"] },
+      { name: "Visual Assets", prefixes: ["bundles_hero_background", "bundle_hero_background"] },
+    ],
+    Contact: [
+      { name: "Hero Section", prefixes: ["contact_hero_"] },
+      { name: "Direct Access Info", prefixes: ["contact_info_"] },
+      { name: "Visual Assets", prefixes: ["contact_hero_background"] },
+    ],
+    "Partner schools": [
+      { name: "Hero Section", prefixes: ["schools_hero_"] },
+      { name: "MIWAY Standards", prefixes: ["schools_standard_"] },
+      { name: "Visual Assets", prefixes: ["schools_hero_background"] },
+    ],
+    "Media Center": [
+      { name: "Global Banners", prefixes: ["about_hero_background", "philosophy_hero_background", "bundles_hero_background", "schools_hero_background", "bundle_hero_background", "about_mandate_bg"] },
+      { name: "Home Gallery", prefixes: ["home_hero_image"] },
+      { name: "Section Visuals", prefixes: ["phil_main", "genius_main", "founder_image"] },
+      { name: "Brochure Manifesto", prefixes: ["about_brochure_image"] },
+      { name: "Avatars", prefixes: ["testimonial", "user_"] },
+    ],
+  };
 
-      if (!acc[pageLabel]) {
-        acc[pageLabel] = {};
-      }
-      if (!acc[pageLabel][sectionLabel]) {
-        acc[pageLabel][sectionLabel] = [];
-      }
-      acc[pageLabel][sectionLabel].push(item);
-      return acc;
-    },
-    {} as Record<string, Record<string, typeof content>>,
+  // Group content based on the structured mapping
+  const getStructuredContent = () => {
+    const structured: Record<string, Record<string, typeof content>> = {};
+
+    TABS.forEach((tab) => {
+      structured[tab] = {};
+      const sections = MAPPING[tab] || [];
+
+      sections.forEach((section) => {
+        const matchingItems = content.filter((item) =>
+          section.prefixes.some((p) => item.key.startsWith(p)),
+        );
+        if (matchingItems.length > 0) {
+          // Advanced Priority-based sort: Tag > Title > Desc > Point1_Title > Point1_Desc > ...
+          structured[tab][section.name] = matchingItems.sort((a, b) => {
+            const getPriority = (key: string) => {
+              const lowerKey = key.toLowerCase();
+              
+              // 1. Tags always first
+              if (lowerKey.includes("_tag")) return 0;
+              
+              // 2. Main Section Title/Desc (not numbered or specific to a portfolio category)
+              const isSpecific = /pre_primary|primary|middle|\d+/.test(lowerKey);
+              if (!isSpecific) {
+                if (lowerKey.includes("_title")) return 1;
+                if (lowerKey.includes("_desc")) return 2;
+              }
+
+              // 3. Portfolio Categories (Pre-Primary > Primary > Middle)
+              if (lowerKey.includes("pre_primary")) {
+                const base = 100;
+                if (lowerKey.includes("_title")) return base + 1;
+                if (lowerKey.includes("_grade")) return base + 2;
+                if (lowerKey.includes("_sub") || lowerKey.includes("_focus")) return base + 3;
+                if (lowerKey.includes("_desc")) return base + 4;
+                return base + 10;
+              }
+              if (lowerKey.includes("primary") && !lowerKey.includes("pre_primary")) {
+                const base = 200;
+                if (lowerKey.includes("_title")) return base + 1;
+                if (lowerKey.includes("_grade")) return base + 2;
+                if (lowerKey.includes("_sub") || lowerKey.includes("_focus")) return base + 3;
+                if (lowerKey.includes("_desc")) return base + 4;
+                return base + 10;
+              }
+              if (lowerKey.includes("middle")) {
+                const base = 300;
+                if (lowerKey.includes("_title")) return base + 1;
+                if (lowerKey.includes("_grade")) return base + 2;
+                if (lowerKey.includes("_sub") || lowerKey.includes("_focus")) return base + 3;
+                if (lowerKey.includes("_desc")) return base + 4;
+                return base + 10;
+              }
+              
+              // 4. Numbered items (points, beliefs, pillars, testimonials)
+              // 4. Images and backgrounds last in their section
+              if (lowerKey.includes("_image") || lowerKey.includes("_img") || lowerKey.includes("_bg") || lowerKey.includes("_background")) return 1000;
+
+              // 5. Numbered items (points, beliefs, pillars, testimonials)
+              const numMatch = lowerKey.match(/(\d+)/);
+              if (numMatch) {
+                const num = parseInt(numMatch[1]);
+                const basePrio = 500 + num * 10;
+                
+                if (lowerKey.includes("_title") || lowerKey.includes("_name")) return basePrio + 1;
+                if (lowerKey.includes("_desc") || lowerKey.includes("_text") || lowerKey.includes("_role")) return basePrio + 2;
+                if (lowerKey.includes("_sub") || lowerKey.includes("_grade")) return basePrio + 3;
+                return basePrio + 5;
+              }
+              
+              return 2000; // Others last
+            };
+
+            const prioA = getPriority(a.key);
+            const prioB = getPriority(b.key);
+
+            if (prioA !== prioB) return prioA - prioB;
+            return a.key.localeCompare(b.key);
+          });
+        }
+      });
+    });
+
+    // Add "Uncategorized" for any keys that didn't match anything
+    const allMappedKeys = new Set(
+      Object.values(MAPPING)
+        .flat()
+        .flatMap((s) => s.prefixes),
+    );
+    const uncategorized = content.filter(
+      (item) => !Array.from(allMappedKeys).some((p) => item.key.startsWith(p)),
+    );
+
+    if (uncategorized.length > 0) {
+      if (!structured["Misc"]) structured["Misc"] = {};
+      structured["Misc"]["Uncategorized"] = uncategorized;
+    }
+
+    return structured;
+  };
+
+  const groupedContent = getStructuredContent();
+  const availableTabs = Object.keys(groupedContent).filter(
+    (tab) => Object.keys(groupedContent[tab]).length > 0,
   );
 
   const handleEdit = (key: string, currentValue: string) => {
@@ -157,7 +319,7 @@ export default function ContentEditorFixed({
 
   // Set initial selected page (default to first one)
   const [selectedPage, setSelectedPage] = useState<string>(
-    Object.keys(groupedContent)[0] || "",
+    availableTabs.includes("Home") ? "Home" : (availableTabs[0] || ""),
   );
 
   return (
@@ -165,7 +327,7 @@ export default function ContentEditorFixed({
       {/* Fixed Search and Filters Bar */}
       <div className="bg-white/80 backdrop-blur-xl p-4 border-b border-gray-200 fixed z-50 top-0 left-[280px] right-0 shadow-sm flex flex-col md:flex-row items-center gap-4 px-10">
         <div className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent pointer-events-none" />
-
+ 
         <div className="relative flex-1 w-full z-10">
           <Search
             className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"
@@ -180,19 +342,36 @@ export default function ContentEditorFixed({
           />
         </div>
         <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 z-10 no-scrollbar">
-          {Object.keys(groupedContent).map((page) => (
+          {TABS.map((page) => {
+             const hasContent = groupedContent[page] && Object.keys(groupedContent[page]).length > 0;
+             if (!hasContent) return null;
+             
+             return (
+              <button
+                key={page}
+                onClick={() => setSelectedPage(page)}
+                className={`px-5 py-2.5 rounded-lg text-sm font-black uppercase tracking-widest transition-all whitespace-nowrap ${
+                  selectedPage === page
+                    ? "bg-primary text-white border border-primary shadow-[0_0_15px_-5px_var(--primary-light)]"
+                    : "bg-slate-100 border border-gray-200 text-gray-500 hover:bg-slate-200 hover:text-gray-800"
+                }`}
+              >
+                {page}
+              </button>
+             );
+          })}
+          {groupedContent["Misc"] && (
             <button
-              key={page}
-              onClick={() => setSelectedPage(page)}
+              onClick={() => setSelectedPage("Misc")}
               className={`px-5 py-2.5 rounded-lg text-sm font-black uppercase tracking-widest transition-all whitespace-nowrap ${
-                selectedPage === page
+                selectedPage === "Misc"
                   ? "bg-primary text-white border border-primary shadow-[0_0_15px_-5px_var(--primary-light)]"
                   : "bg-slate-100 border border-gray-200 text-gray-500 hover:bg-slate-200 hover:text-gray-800"
               }`}
             >
-              {page}
+              Others
             </button>
-          ))}
+          )}
         </div>
       </div>
 
@@ -245,7 +424,7 @@ export default function ContentEditorFixed({
                       <div className="w-2 h-2 rounded-full bg-primary" />
                       {section} Section
                     </h3>
-                    <div className="grid gap-6 pl-4 border-l-2 border-gray-100">
+                    <div className="grid gap-6 grid-cols-1 md:grid-cols-3 pl-4 border-l-2 border-gray-100">
                       {filteredItems.map((item) => {
                         const isImg = isImageContent(item);
 

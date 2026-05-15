@@ -1,14 +1,13 @@
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
-import BannerAndBreadCrumb from '@/components/BannerAndBreadCrumb';
 
 export default function NotFound() {
     return (
         <div className="min-h-screen bg-slate-900 relative overflow-hidden flex flex-col">
-            <BannerAndBreadCrumb 
+            {/* <BannerAndBreadCrumb 
                 title="Signal <span class='text-accent'>Lost.</span>"
                 subtitle="The requested coordinate exists beyond our mapped curriculum."
-            />
+            /> */}
             <div className="flex-grow flex items-center justify-center relative py-20">
                 {/* Cinematic Background */}
                 <div className="absolute inset-0 opacity-20 mesh-bg-primary" />

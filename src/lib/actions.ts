@@ -16,7 +16,7 @@ export async function authenticate(
             ...Object.fromEntries(formData),
         });
         revalidatePath('/admin');
-        redirect('/admin');
+        redirect('/admin/content');
     } catch (error: any) {
         if (error.digest?.startsWith('NEXT_REDIRECT')) {
             throw error;
@@ -254,22 +254,13 @@ export async function uploadImage(formData: FormData) {
 
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
+        const base64Image = `data:${file.type};base64,${buffer.toString('base64')}`;
 
-        // Upload to Cloudinary
-        const uploadResponse = await new Promise((resolve, reject) => {
-            cloudinary.uploader.upload_stream(
-                {
-                    folder: 'miway_uploads',
-                    resource_type: 'auto',
-                },
-                (error, result) => {
-                    if (error) reject(error);
-                    else resolve(result);
-                }
-            ).end(buffer);
+        // Upload to Cloudinary using base64
+        const result = await cloudinary.uploader.upload(base64Image, {
+            folder: 'miway_uploads',
+            resource_type: 'auto',
         });
-
-        const result = uploadResponse as any;
 
         return {
             success: true,

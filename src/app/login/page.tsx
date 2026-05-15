@@ -4,17 +4,16 @@ import Button from '@/components/ui/Button';
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { authenticate } from '@/lib/actions';
-import BannerAndBreadCrumb from '@/components/BannerAndBreadCrumb';
 
 export default function LoginPage() {
     const [errorMessage, dispatch] = useActionState(authenticate, undefined);
 
     return (
         <div className="min-h-screen bg-slate-900 overflow-hidden relative flex flex-col">
-            <BannerAndBreadCrumb 
+            {/* <BannerAndBreadCrumb 
                 title="Admin <span class='text-accent'>Login.</span>"
                 subtitle="Restricted access for MIWAY authorized personnel only."
-            />
+            /> */}
             <div className="flex-grow flex items-center justify-center relative py-20">
             {/* Cinematic Background */}
             <div className="absolute inset-0 opacity-20 mesh-bg-primary animate-pulse-slow" />
@@ -34,7 +33,7 @@ export default function LoginPage() {
                             type="email"
                             name="email"
                             className="w-full bg-slate-900/50 border border-white/5 rounded-3xl px-6 py-4 text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-600 font-medium text-lg"
-                            placeholder="officer@miway.in"
+                            placeholder="email"
                             required
                         />
                     </div>
