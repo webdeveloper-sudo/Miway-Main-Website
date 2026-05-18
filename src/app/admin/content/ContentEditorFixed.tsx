@@ -49,7 +49,8 @@ export default function ContentEditorFixed({
 
   const MAPPING: Record<string, Array<{ name: string; prefixes: string[] }>> = {
     Home: [
-      { name: "Premium Hero", prefixes: ["home_hero_"] },
+      { name: "Premium Hero Text", prefixes: ["home_hero_tag", "home_hero_title", "home_hero_desc"] },
+      { name: "Premium Hero Slides", prefixes: ["home_hero_image_"] },
       { name: "Stats", prefixes: ["home_stats_"] },
       { name: "Our Philosophy", prefixes: ["phil_"] },
       { name: "Ten Dimensions (General)", prefixes: ["dim_"] },
@@ -70,7 +71,7 @@ export default function ContentEditorFixed({
       { name: "Testimonial Sections", prefixes: ["testimonial"] },
       { name: "Mastery Spiral", prefixes: ["mastery_", "home_mastery_"] },
       { name: "Parent Trust", prefixes: ["reason", "home_parent_trust_"] },
-      { name: "Visual Assets", prefixes: ["home_hero_image", "phil_main", "genius_main", "founder_image"] },
+      { name: "Visual Assets", prefixes: ["home_hero_image_", "phil_main", "genius_main", "founder_image"] },
     ],
     About: [
       { name: "Hero Section", prefixes: ["about_hero_"] },
@@ -110,7 +111,7 @@ export default function ContentEditorFixed({
     ],
     "Media Center": [
       { name: "Global Banners", prefixes: ["about_hero_background", "philosophy_hero_background", "bundles_hero_background", "schools_hero_background", "bundle_hero_background", "about_mandate_bg"] },
-      { name: "Home Gallery", prefixes: ["home_hero_image"] },
+      { name: "Home Gallery", prefixes: ["home_hero_image_"] },
       { name: "Section Visuals", prefixes: ["phil_main", "genius_main", "founder_image"] },
       { name: "Brochure Manifesto", prefixes: ["about_brochure_image"] },
       { name: "Avatars", prefixes: ["testimonial", "user_"] },

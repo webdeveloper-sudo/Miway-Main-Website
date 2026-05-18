@@ -200,7 +200,7 @@ const TenDimensions = ({ content = {} }: TenDimensionsProps) => {
             {leftDimensions.map((dim, i) => (
               <FadeIn key={i} delay={i * 0.1} direction="right">
                 <div className="p-5 rounded-2xl border border-gray-100 bg-gray-50/50 hover:bg-gray-100 transition-all duration-500 group">
-                  <div className="flex items-center justify-end gap-4">
+                  <div className="flex items-center justify-start lg:justify-end flex-row-reverse lg:flex-row gap-4 text-left lg:text-right">
                     <div>
                       <div className="text-sm font-bold uppercase tracking-wider font-heading text-gray-800">
                         {dim.name}

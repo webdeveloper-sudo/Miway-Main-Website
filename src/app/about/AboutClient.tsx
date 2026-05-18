@@ -64,7 +64,7 @@ export default function AboutClient({ content }: AboutClientProps) {
           getContent("about_hero_title", 'Institutional <br /> <span class="text-accent">Legacy.</span>')
         }
         subtitle={
-          getContent("about_hero_desc", "MIWAY Teaching Aids Pvt. Ltd. is an innovative educational publisher dedicated to creating engaging, neuroscience-based learning ecosystems.")
+          getContent("about_hero_desc", "MIWAY is an innovative educational publisher dedicated to creating engaging, neuroscience-based learning ecosystems.")
         }
         img={getContent("about_hero_background", "/images/45115730_bnn2.jpg")}
       />

@@ -5,27 +5,28 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import BannerAndBreadCrumb from "@/components/BannerAndBreadCrumb";
 import Link from "next/link";
 import {
-  ShieldCheck,
-  Lock,
-  Eye,
   FileText,
+  Key,
+  ShieldAlert,
+  Coins,
+  Scale,
+  MessageSquare,
   HelpCircle,
-  Building,
-  UserCheck,
   Mail,
   ArrowRight,
+  Sparkles,
 } from "lucide-react";
 
-export default function PrivacyPage() {
-  const [activeSection, setActiveSection] = useState("intro");
+export default function TermsPage() {
+  const [activeSection, setActiveSection] = useState("agreement");
 
   const sections = [
-    { id: "intro", title: "1. Scope & Introduction", icon: FileText },
-    { id: "collection", title: "2. Information We Collect", icon: Eye },
-    { id: "usage", title: "3. How We Use Information", icon: UserCheck },
-    { id: "security", title: "4. Security & Architecture", icon: Lock },
-    { id: "cookies", title: "5. Tracking & Session Data", icon: ShieldCheck },
-    { id: "compliance", title: "6. DPO & Legal Compliance", icon: Building },
+    { id: "agreement", title: "1. Agreement & Parties", icon: FileText },
+    { id: "license", title: "2. Intellectual Property", icon: Key },
+    { id: "conduct", title: "3. Institutional Conduct", icon: ShieldAlert },
+    { id: "commercial", title: "4. Licensing & Fees", icon: Coins },
+    { id: "liability", title: "5. Liability & Warranty", icon: Scale },
+    { id: "disputes", title: "6. Disputes & Jurisdiction", icon: MessageSquare },
   ];
 
   const handleScrollTo = (id: string) => {
@@ -48,8 +49,8 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       <BannerAndBreadCrumb
-        title="Privacy <span class='text-accent'>Policy.</span>"
-        subtitle="Institutional data protection and privacy standards at MIWAY Teaching Aids."
+        title="Terms of <span class='text-accent'>Service.</span>"
+        subtitle="Operational parameters and legal frameworks for partner institutions."
         img="/images/45115730_bnn2.jpg"
       />
 
@@ -62,10 +63,10 @@ export default function PrivacyPage() {
               <div className="glass-card p-8 rounded bg-white border border-primary/5 shadow-premium space-y-6">
                 <div className="pb-4 border-b border-slate-100">
                   <span className="text-[10px] font-bold text-accent uppercase tracking-widest block mb-1">
-                    MIWAY Legal framework
+                    MIWAY Corporate guidelines
                   </span>
                   <h3 className="text-xl font-bold text-primary tracking-tight">
-                    Document Sections
+                    Legal Framework
                   </h3>
                 </div>
 
@@ -97,10 +98,10 @@ export default function PrivacyPage() {
                     <HelpCircle className="text-accent shrink-0 mt-0.5" size={20} />
                     <div>
                       <h4 className="text-sm font-bold text-primary mb-1">
-                        Need Clarification?
+                        Corporate Liaison
                       </h4>
                       <p className="text-xs text-muted leading-relaxed font-serif mb-3">
-                        Contact our dedicated Data Protection Officer for any queries.
+                        Connect with our administrative division for licensing questions.
                       </p>
                       <a
                         href="mailto:info@miway.in"
@@ -116,14 +117,14 @@ export default function PrivacyPage() {
             </FadeIn>
           </div>
 
-          {/* ── RIGHT: DETAILED POLICY CONTENT ─────────────────────────────── */}
+          {/* ── RIGHT: DETAILED TERMS CONTENT ───────────────────────────────── */}
           <div className="lg:col-span-8 space-y-16">
             <FadeIn>
               <div className="prose prose-slate max-w-none space-y-16">
                 
-                {/* 1. Scope & Introduction */}
+                {/* 1. Agreement & Parties */}
                 <section
-                  id="intro"
+                  id="agreement"
                   className="glass-card p-10 md:p-12 rounded bg-white border border-primary/5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
@@ -132,173 +133,161 @@ export default function PrivacyPage() {
                       <FileText size={20} />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-black text-primary uppercase tracking-wider my-0">
-                      1. Scope & Introduction
+                      1. Agreement & Parties
                     </h2>
                   </div>
 
                   <div className="text-slate-600 font-serif leading-relaxed text-lg space-y-4">
                     <p>
-                      At <strong>MIWAY Teaching Aids Pvt. Ltd.</strong> ("MIWAY", "we", "our"), we are dedicated to protecting the privacy, security, and integrity of the data shared with us by partner educational institutions, administrators, educators, parents, and students.
+                      Welcome to the official platform of <strong>MIWAY Teaching Aids Pvt. Ltd.</strong> ("MIWAY", "we", "us", "our"). These Terms of Service ("Terms") constitute a legally binding agreement between MIWAY and your subscribing educational institution ("Partner Institution", "Subscribed School", "you").
                     </p>
                     <p>
-                      This Privacy Policy outlines how we collect, store, utilize, and protect your information under our advanced curriculum platforms, textbooks, cognitive diagnostic engines, and neural-spatial framework deployments.
+                      By partnering with us, procuring our curricula, utilizing our textbooks, cognitive aids, diagnostic frameworks, or digital admin portals, you explicitly agree to compile and execute all pedagogical standards defined within this agreement.
                     </p>
                     <div className="p-5 rounded bg-amber-50/50 border border-amber-200 text-amber-900 text-sm font-sans flex items-start gap-4 my-6">
-                      <span className="font-bold text-amber-700 uppercase tracking-widest shrink-0 mt-0.5 bg-amber-100 px-2 py-0.5 rounded text-[10px]">
-                        TL;DR Summary
-                      </span>
+                      <Sparkles className="text-accent shrink-0 mt-0.5" size={20} />
                       <p className="margin-0 font-medium">
-                        We prioritize minimal data collection and enforce strict pedagogical safety. We do not sell or monetize your institutional information.
+                        Engagement with MIWAY requires adherence to premium pedagogical standards, licensing compliance, and complete protection of our proprietary frameworks.
                       </p>
                     </div>
                   </div>
                 </section>
 
-                {/* 2. Information We Collect */}
+                {/* 2. Intellectual Property */}
                 <section
-                  id="collection"
+                  id="license"
                   className="glass-card p-10 md:p-12 rounded bg-white border border-primary/5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-10 h-10 rounded bg-primary/5 flex items-center justify-center text-primary">
-                      <Eye size={20} />
+                      <Key size={20} />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-black text-primary uppercase tracking-wider my-0">
-                      2. Information We Collect
+                      2. Intellectual Property
                     </h2>
                   </div>
 
                   <div className="text-slate-600 font-serif leading-relaxed text-lg space-y-6">
                     <p>
-                      We limit information collection strictly to data required to establish structural academic partnerships, facilitate curriculum distribution, and maintain educational diagnostics.
+                      All structural pedagogical frameworks, textbooks, cognitive diagnostic algorithms, neural-spatial models, and digital systems (collectively, the "MIWAY Ecosystem") are the sole, exclusive intellectual property of MIWAY Teaching Aids Pvt. Ltd.
                     </p>
                     
-                    <div className="grid md:grid-cols-2 gap-6 font-sans">
-                      <div className="p-6 rounded bg-slate-50 border border-slate-100">
-                        <span className="text-[10px] font-bold text-primary uppercase tracking-widest block mb-2">
-                          A. Institutional & Liaison Info
-                        </span>
-                        <p className="text-sm text-slate-600 leading-relaxed font-serif">
-                          School names, board affiliation details, regional metrics, primary contact names, official emails, and billing information for textbook licensing.
-                        </p>
-                      </div>
-                      <div className="p-6 rounded bg-slate-50 border border-slate-100">
-                        <span className="text-[10px] font-bold text-primary uppercase tracking-widest block mb-2">
-                          B. Pedagogical Performance
-                        </span>
-                        <p className="text-sm text-slate-600 leading-relaxed font-serif">
-                          Anonymized educational progress markers, school performance feedback, and aggregate diagnostics derived from our neural-spatial models.
-                        </p>
-                      </div>
+                    <div className="p-6 rounded bg-slate-50 border border-slate-100 font-sans space-y-3">
+                      <span className="text-[10px] font-bold text-accent uppercase tracking-widest block">
+                        License Scope & Restrictions:
+                      </span>
+                      <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600 font-serif">
+                        <li><strong>Authorized Use:</strong> You are granted a limited, non-exclusive, non-transferable right to utilize MIWAY curricula in classrooms of certified partner branches.</li>
+                        <li><strong>Prohibitions:</strong> You may not digitize, photocopy, replicate, or commercially distribute MIWAY textbooks, teaching frameworks, or cognitive systems without our express written permission.</li>
+                        <li><strong>No Derivative Works:</strong> Rebranding or combining MIWAY methodologies under separate institutional trademarks is strictly prohibited.</li>
+                      </ul>
                     </div>
                   </div>
                 </section>
 
-                {/* 3. How We Use Information */}
+                {/* 3. Institutional Conduct */}
                 <section
-                  id="usage"
+                  id="conduct"
                   className="glass-card p-10 md:p-12 rounded bg-white border border-primary/5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-10 h-10 rounded bg-primary/5 flex items-center justify-center text-primary">
-                      <UserCheck size={20} />
+                      <ShieldAlert size={20} />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-black text-primary uppercase tracking-wider my-0">
-                      3. How We Use Information
+                      3. Institutional Conduct
                     </h2>
                   </div>
 
                   <div className="text-slate-600 font-serif leading-relaxed text-lg space-y-4">
                     <p>
-                      All collected parameters are channeled exclusively into enhancing the quality of your academic ecosystem and optimizing student learning journeys.
+                      Subscribing partner administrators and teachers must maintain the confidentiality of administrative credentials granted for our portals.
                     </p>
-                    <ul className="list-disc pl-6 space-y-2 text-base">
-                      <li><strong>Academic Consultation:</strong> To custom-engineer curricula specifically tailored to the cognitive distribution profiles of partner schools.</li>
-                      <li><strong>Logistic Coordination:</strong> Delivering tangible textbooks, teaching toolkits, and tactile aids directly to institutional locations.</li>
-                      <li><strong>Security & Authentication:</strong> Assuring verified administrator access to portal management.</li>
-                    </ul>
+                    <p>
+                      Furthermore, you agree to conduct all academic exercises using our proprietary tools with high professional integrity, respecting the emotional and neural development pacing of participating students.
+                    </p>
                   </div>
                 </section>
 
-                {/* 4. Security & Architecture */}
+                {/* 4. Licensing & Fees */}
                 <section
-                  id="security"
+                  id="commercial"
                   className="glass-card p-10 md:p-12 rounded bg-white border border-primary/5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-10 h-10 rounded bg-primary/5 flex items-center justify-center text-primary">
-                      <Lock size={20} />
+                      <Coins size={20} />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-black text-primary uppercase tracking-wider my-0">
-                      4. Security & Architecture
+                      4. Licensing & Fees
                     </h2>
                   </div>
 
                   <div className="text-slate-600 font-serif leading-relaxed text-lg space-y-4">
                     <p>
-                      We deploy best-in-class hosting infrastructure and secure database layers to ensure that all user and school data is strictly protected.
+                      Access to custom curriculum blueprints, diagnostic systems, and wholesale physical textbook orders are subject to the specific commercial licenses and invoices issued to your institution.
                     </p>
                     <p>
-                      Our tech stack leverages SSL/TLS encryption across all network transfers, Neon PostgreSQL instances protected by advanced authentication protocols, and secure serverless operations that process form-to-sheet mirroring via isolated pipelines.
+                      All invoices are payable in accordance with the specified schedules. Default on payments or unlicensed reproduction of resources can result in immediate termination of framework privileges and access.
                     </p>
                   </div>
                 </section>
 
-                {/* 5. Tracking & Session Data */}
+                {/* 5. Liability & Warranty */}
                 <section
-                  id="cookies"
+                  id="liability"
                   className="glass-card p-10 md:p-12 rounded bg-white border border-primary/5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-10 h-10 rounded bg-primary/5 flex items-center justify-center text-primary">
-                      <ShieldCheck size={20} />
+                      <Scale size={20} />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-black text-primary uppercase tracking-wider my-0">
-                      5. Tracking & Session Data
+                      5. Liability & Warranty
                     </h2>
                   </div>
 
                   <div className="text-slate-600 font-serif leading-relaxed text-lg space-y-4">
                     <p>
-                      Our platforms prioritize privacy over surveillance. We utilize cookies solely for functional purposes, such as maintaining admin panel login sessions and ensuring smooth user interactions.
+                      While we offer state-of-the-art neuroscience-driven frameworks and high-fidelity physical books, the MIWAY Ecosystem is supplied to partner institutions on an "as is" and "as available" basis.
                     </p>
                     <p>
-                      No third-party tracking scripts, advertising SDKs, or predictive tracking cookies are integrated into our core educational experiences.
+                      Individual cognitive development relies heavily on localized classroom environments, instructional quality, and parental engagement. Therefore, MIWAY cannot offer absolute guarantees regarding standardized student performance metrics.
                     </p>
                   </div>
                 </section>
 
-                {/* 6. DPO & Legal Compliance */}
+                {/* 6. Disputes & Jurisdiction */}
                 <section
-                  id="compliance"
+                  id="disputes"
                   className="glass-card p-10 md:p-12 rounded bg-white border border-primary/5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-10 h-10 rounded bg-primary/5 flex items-center justify-center text-primary">
-                      <Building size={20} />
+                      <MessageSquare size={20} />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-black text-primary uppercase tracking-wider my-0">
-                      6. DPO & Legal Compliance
+                      6. Disputes & Jurisdiction
                     </h2>
                   </div>
 
                   <div className="text-slate-600 font-serif leading-relaxed text-lg space-y-4">
                     <p>
-                      MIWAY Teaching Aids Pvt. Ltd. is fully registered under the laws of Puducherry, India, and actively complies with the digital personal data protection mandates.
+                      These Terms and all operational contracts between MIWAY Teaching Aids Pvt. Ltd. and subscribing partners are governed in accordance with the laws of Puducherry and India.
                     </p>
                     <p>
-                      For any deletion requests, institutional audits, or questions regarding our information safeguards, please contact our Data Protection Officer:
+                      Any disputes arising out of these operations will be subject exclusively to the jurisdiction of the competent courts in Puducherry, India.
                     </p>
                     <div className="p-6 rounded bg-slate-50 border border-slate-100 flex items-center gap-4 font-sans mt-6">
                       <Mail className="text-accent" size={24} />
                       <div>
                         <h4 className="text-sm font-bold text-primary mb-1">
-                          Official Legal Mailbox
+                          Official Corporate Mailbox
                         </h4>
                         <a
                           href="mailto:info@miway.in"

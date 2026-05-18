@@ -67,7 +67,7 @@ const CurriculamPortfolio = ({ content = {} }: CurriculamPortfolioProps) => {
                 dangerouslySetInnerHTML={{
                   __html: getContent(
                     "portfolio_title",
-                    'The Curriculam <span class=" text-accent"> Portfolio.</span>',
+                    'The Curriculum <span class=" text-accent"> Portfolio.</span>',
                   ),
                 }}
               />
@@ -78,14 +78,14 @@ const CurriculamPortfolio = ({ content = {} }: CurriculamPortfolioProps) => {
                   size="md"
                   className="rounded-full px-8 py-3  bg-primary text-white text-lg font-bold"
                 >
-                  {getContent("portfolio_cta", "View Full Catalog")}
+                  Browse the Curriculum
                 </Button>
               </Link>
             </div>
           </div>
         </FadeIn>
 
-        <div className="grid lg:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {bundles.map((bundle, i) => (
             <FadeIn key={i} delay={0.2 * i}>
               <Link

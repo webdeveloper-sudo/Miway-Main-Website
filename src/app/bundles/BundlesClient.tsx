@@ -59,7 +59,7 @@ export default function BundlesClient({
       {/* Product Grid */}
       <section className="section-padding bg-background relative overflow-hidden">
         <div className="container-premium">
-          <div className="grid lg:grid-cols-3 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {bundles.map((bundle, index) => {
               // Normalize icon name from DB
               const normalizedIcon =

@@ -89,7 +89,7 @@ const PremiumHero = ({ content = {} }: PremiumHeroProps) => {
             </div>
 
             <h1
-              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[0.9] tracking-tight text-white"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[1.1] md:leading-[0.9] tracking-tight text-white"
               dangerouslySetInnerHTML={{
                 __html: getContent(
                   "home_hero_title",
@@ -101,7 +101,7 @@ const PremiumHero = ({ content = {} }: PremiumHeroProps) => {
             <p className="text-xl text-white font-medium font-serif max-w-2xl mx-auto mb-6">
               {getContent(
                 "home_hero_desc",
-                "MIWAY Teaching Aids Pvt. Ltd., is a neuroscience-powered learning ecosystem designed to unlock every child's infinite potential — building thinkers, creators, innovators, and leaders for tomorrow's world.",
+                "MIWAY is a neuroscience-powered learning ecosystem designed to unlock every child's infinite potential — building thinkers, creators, innovators, and leaders for tomorrow's world.",
               )}
             </p>
 
@@ -111,7 +111,7 @@ const PremiumHero = ({ content = {} }: PremiumHeroProps) => {
                   size="md"
                   className="bg-primary text-white hover:bg-primary-hover px-10 py-5 rounded-full text-xl font-bold shadow-premium group"
                 >
-                  {getContent("home_hero_cta", "Explore Methodology")}
+                  Explore the System
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>

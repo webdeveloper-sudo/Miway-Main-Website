@@ -50,7 +50,7 @@ export default function Footer() {
                 size="md"
                 className="bg-transparent text-gray-800 border-gray-400 border rounded-full px-16 py-8 text-xl font-bold hover:bg-gray-800 hover:text-white transition-all duration-500 group shadow-none"
               >
-                Initiate Evolution
+                Partner With Us
                 <ArrowRight className="ml-4 group-hover:translate-x-2 transition-transform" />
               </Button>
             </Link>
@@ -62,9 +62,9 @@ export default function Footer() {
       </section>
       <footer className="bg-background-alt pt-20 pb-12 relative overflow-hidden border-t border-primary/5">
       <div className="container-premium relative z-10">
-        <div className="grid lg:grid-cols-12 gap-16 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-12 lg:gap-16 mb-12">
           {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-4 space-y-6">
             <Link href="/" className="inline-block group">
               <img
                 src="/official-logo.png"
@@ -74,8 +74,7 @@ export default function Footer() {
             </Link>
             <p className="text-md text-muted font-medium font-serif max-w-sm">
               Redefining the educational landscape through diverse intelligence
-              and neuroscience-driven pedagogy. Redefining the educational
-              landscape through diverse
+              and neuroscience-driven pedagogy.
             </p>
             <div className="flex gap-4 pt-2">
               {[Linkedin, Twitter, Facebook].map((Icon, i) => (
@@ -91,7 +90,7 @@ export default function Footer() {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-2 lg:col-start-6">
+          <div className="col-span-1 lg:col-span-2 lg:col-start-6">
             <h4 className="text-[15px] font-black text-primary font-serif uppercase tracking-[0.1em] mb-6">
               Ecosystem
             </h4>
@@ -114,7 +113,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="col-span-1 lg:col-span-2">
             <h4 className="text-[15px] font-black text-primary font-serif uppercase tracking-[0.1em] mb-6">
               Corporate
             </h4>
@@ -138,7 +137,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Column */}
-          <div className="lg:col-span-3">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-3">
             <h4 className="text-[15px] font-black text-primary font-serif uppercase tracking-[0.1em] mb-6">
               Contact Us
             </h4>
@@ -189,22 +188,25 @@ export default function Footer() {
         <div className="pt-12 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-3">
             <span className="text-[12px] font-semibold uppercase tracking-[0.15em] text-muted mb-4">
-              © {new Date().getFullYear()} MIWAY Teaching Aids Pvt. Ltd.
+              © {new Date().getFullYear()} MIWAY Teaching Aids Pvt. Ltd. All Rights Reserved.
             </span>
             {/* <p className="text-[10px] font-bold text-muted uppercase tracking-widest">
                            
                         </p> */}
           </div>
           <div className="flex gap-8">
-            {["Privacy Policy", "Terms of Service"].map((link) => (
-              <Link
-                key={link}
-                href="/privacy"
-                className="text-[12px] font-semibold uppercase tracking-[0.15em] text-muted mb-4"
-              >
-                {link}
-              </Link>
-            ))}
+            <Link
+              href="/privacy"
+              className="text-[12px] font-semibold uppercase tracking-[0.15em] text-muted mb-4 hover:text-primary transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-[12px] font-semibold uppercase tracking-[0.15em] text-muted mb-4 hover:text-primary transition-colors"
+            >
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>

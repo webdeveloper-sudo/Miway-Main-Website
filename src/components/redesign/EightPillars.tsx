@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Star, Target, Lightbulb, Layers, Compass, Zap, Globe } from 'lucide-react';
+import { Brain, Star, Target, Lightbulb, Layers, Compass, Zap, Globe, Infinity, Sparkles } from 'lucide-react';
 
 interface EightPillarsProps {
   content?: Record<string, string>;
@@ -14,18 +14,58 @@ const EightPillars = ({ content = {} }: EightPillarsProps) => {
   };
 
   const pillars = [
-    { title: getContent("pillar1_title", "Spiral Learning"), icon: Target, desc: getContent("pillar1_desc", "Revisiting concepts with progressive complexity."), color: "var(--brand-purple-deep)" },
-    { title: getContent("pillar2_title", "7 Habits Integration"), icon: Star, desc: getContent("pillar2_desc", "Fostering proactivity and synergy."), color: "var(--brand-gold)" },
-    { title: getContent("pillar3_title", "Neural Integration"), icon: Brain, desc: getContent("pillar3_desc", "Engaging both analytical and creative minds."), color: "var(--brand-blue)" },
-    { title: getContent("pillar4_title", "Multiple Intelligences"), icon: Lightbulb, desc: getContent("pillar4_desc", "Engaging diverse cognitive capacities."), color: "var(--brand-rose)" },
-    { title: getContent("pillar5_title", "Bloom’s Taxonomy"), icon: Layers, desc: getContent("pillar5_desc", "Structured cognitive journey to mastery."), color: "var(--brand-purple-muted)" },
-    { title: getContent("pillar6_title", "Six Thinking Hats"), icon: Compass, desc: getContent("pillar6_desc", "Solving complex problems through perspectives."), color: "var(--brand-purple-deep)" },
-    { title: getContent("pillar7_title", "Whole Brain Mastery"), icon: Zap, desc: getContent("pillar7_desc", "Philosophical activation of brain regions."), color: "var(--brand-gold)" },
-    { title: getContent("pillar8_title", "21st Century Skills"), icon: Globe, desc: getContent("pillar8_desc", "Digital literacy and global collaboration."), color: "var(--brand-blue)" },
+    { 
+      title: getContent("pillar1_title", "Bloom's Taxonomy"), 
+      icon: Layers, 
+      desc: getContent("pillar1_desc", "A six-level cognitive journey, from remembering to creating, building mastery step by purposeful step."), 
+      color: "var(--brand-purple-deep)" 
+    },
+    { 
+      title: getContent("pillar2_title", "Whole Brain Learning"), 
+      icon: Brain, 
+      desc: getContent("pillar2_desc", "Activating both hemispheres simultaneously, blending logic with creativity and analysis with intuition."), 
+      color: "var(--brand-blue)" 
+    },
+    { 
+      title: getContent("pillar3_title", "Spiral Learning"), 
+      icon: Target, 
+      desc: getContent("pillar3_desc", "Returning to core concepts with ever-increasing depth, transforming understanding into unshakeable mastery."), 
+      color: "var(--brand-purple-deep)" 
+    },
+    { 
+      title: getContent("pillar4_title", "Integrated Learning"), 
+      icon: Infinity, 
+      desc: getContent("pillar4_desc", "Dissolving the walls between subjects, weaving science, art, mathematics, and language into one unified understanding."), 
+      color: "var(--brand-rose)" 
+    },
+    { 
+      title: getContent("pillar5_title", "Sensory Learning"), 
+      icon: Sparkles, 
+      desc: getContent("pillar5_desc", "Engaging all five senses to forge memories that last not days, but a lifetime of applied wisdom."), 
+      color: "var(--brand-gold)" 
+    },
+    { 
+      title: getContent("pillar6_title", "Power Learning"), 
+      icon: Zap, 
+      desc: getContent("pillar6_desc", "15+ proven memory and thinking techniques — from Mind Palace to SQ3R — making every student a confident learner."), 
+      color: "var(--brand-purple-muted)" 
+    },
+    { 
+      title: getContent("pillar7_title", "Multiple Intelligences"), 
+      icon: Lightbulb, 
+      desc: getContent("pillar7_desc", "Honouring all 10 forms of human intelligence, so every child discovers where they shine."), 
+      color: "var(--brand-gold)" 
+    },
+    { 
+      title: getContent("pillar8_title", "21st Century Skills"), 
+      icon: Globe, 
+      desc: getContent("pillar8_desc", "Creativity, critical thinking, communication, collaboration, and digital literacy for a world yet to be imagined."), 
+      color: "var(--brand-blue)" 
+    },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {pillars.map((pillar, i) => (
         <motion.div
           key={i}

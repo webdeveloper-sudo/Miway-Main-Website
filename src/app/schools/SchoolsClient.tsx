@@ -36,7 +36,7 @@ export default function SchoolsClient({ content }: SchoolsClientProps) {
                     </FadeIn>
                 </div>
                 <div className="container-premium">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {[
                             { id: 1, icon: Globe, title: content['schools_standard_1_title'] || 'Global Integration', desc: content['schools_standard_1_desc'] || 'Aligning your institution with world-class academic benchmarks.' },
                             { id: 2, icon: Sparkles, title: content['schools_standard_2_title'] || 'Curricular Mastery', desc: content['schools_standard_2_desc'] || 'Deployment of neuroscience-backed learning ecosystems.' },

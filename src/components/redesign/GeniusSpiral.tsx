@@ -63,8 +63,9 @@ const GeniusSpiral = ({ content = {} }: GeniusSpiralProps) => {
           <div className="absolute -inset-20 border border-primary/10 rounded-[6rem] -z-20 animate-spin-slow-reverse" />
 
           {/* Floating Badge */}
-          <motion.div
-            className="absolute -bottom-10 -right-10 z-30"
+         <div className="md:block hidden">
+           <motion.div
+            className="absolute bottom-0 right-0 lg:-bottom-10 lg:-right-10 z-30 scale-[0.68] sm:scale-90 lg:scale-100 origin-bottom-right transition-transform"
             style={{
               perspective: "1200px",
             }}
@@ -147,6 +148,7 @@ const GeniusSpiral = ({ content = {} }: GeniusSpiralProps) => {
               </div>
             </div>
           </motion.div>
+         </div>
         </div>
       </div>
 
@@ -238,7 +240,7 @@ const GeniusSpiral = ({ content = {} }: GeniusSpiralProps) => {
                 size="md"
                 className="rounded-full  bg-primary text-white text-lg font-bold"
               >
-                {getContent("genius_cta", "Explore Framework")}
+                See How It Works
               </Button>
             </Link>
           </div>

@@ -47,7 +47,7 @@ export default function HomeClient({ content }: HomeClientProps) {
       {/* 2. Precision Metrics Bar */}
       <section className="py-24 border-y border-primary/5 bg-background-alt relative">
         <div className="container-premium relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 divide-x divide-primary/5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:divide-x md:divide-primary/5">
             {[
               {
                 value: getContent("home_stats_schools_value", "50+"),
@@ -283,14 +283,14 @@ export default function HomeClient({ content }: HomeClientProps) {
                 />
               </div>
               <div className="py-10">
-                <Link href="/bundles">
+                {/* <Link href="/bundles">
                   <Button
                     size="md"
                     className="rounded-full px-8 py-3  bg-primary text-white text-lg font-bold"
                   >
                     {getContent("home_parent_trust_cta", "View Full Catalog")}
                   </Button>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </FadeIn>

@@ -6,7 +6,7 @@ import Footer from '@/components/layout/Footer';
 export const metadata: Metadata = {
   metadataBase: new URL("https://miway.in"),
   title: {
-    default: "MIWAY Teaching Aids Private Ltd., | Future of Education",
+    default: "MIWAY | Future of Education",
     template: "%s | MIWAY",
   },
 
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   ],
 
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 
   openGraph: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/logo.png",
+        url: "/favicon.png",
         width: 1200,
         height: 630,
         alt: "MIWAY Teaching Aids",

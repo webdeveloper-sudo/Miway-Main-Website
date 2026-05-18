@@ -5,7 +5,11 @@ export default function Loading() {
                 <div className="w-24 h-24 border-4 border-slate-100 rounded-full" />
                 <div className="w-24 h-24 border-4 border-primary border-t-transparent rounded-full animate-spin absolute inset-0" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
+                    <img
+                        src="/favicon.png"
+                        alt="MIWAY"
+                        className="h-14 w-auto object-contain transition-transform group-hover:scale-105"
+                    />
                 </div>
             </div>
             <div className="absolute bottom-12 left-0 right-0 text-center">

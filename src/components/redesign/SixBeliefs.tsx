@@ -53,7 +53,7 @@ const SixBeliefs = ({ content = {} }: SixBeliefsProps) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
       {beliefs.map((belief, i) => (
         <motion.div
           key={i}

@@ -18,7 +18,7 @@ const ParentChoose = ({ content = {} }: ParentChooseProps) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
       {reasons.map((reason, i) => (
         <motion.div
           key={i}

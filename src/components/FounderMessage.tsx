@@ -35,13 +35,13 @@ const FounderMessage = ({ content = {} }: FounderMessageProps) => {
                 />
               </div>
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto mb-4">
-                {getLocalContent("founder_quote_1", "&quot;I built MIWAY Teaching Aids Pvt. Ltd., because I believed deeply that every child is born a genius and that the world's greatest tragedy is a brilliant mind that was never shown how to shine.")}
+                {getLocalContent("founder_quote_1", "&quot;I built MIWAY because I believed deeply that every child is born a genius and that the world's greatest tragedy is a brilliant mind that was never shown how to shine.")}
               </p>
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto mb-4">
                 {getLocalContent("founder_quote_2", "I have seen classrooms where curiosity was quietly crushed. I have watched gifted children be labelled \"average\" simply because the system measured only one kind of intelligence. I refused to accept that.")}
               </p>
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto mb-4">
-                {getLocalContent("founder_quote_3", "MIWAY Teaching Aids Pvt. Ltd., is my answer - a complete learning ecosystem built on love, science, and the unwavering belief that when children are taught how to think, not just what to think, they become unstoppable.")}
+                {getLocalContent("founder_quote_3", "MIWAY is my answer - a complete learning ecosystem built on love, science, and the unwavering belief that when children are taught how to think, not just what to think, they become unstoppable.")}
               </p>
               <p className="text-xl text-muted font-medium font-serif max-w-2xl mx-auto mb-12">
                 {getLocalContent("founder_quote_4", "It is a movement. A promise. A new beginning for every learner who opens these pages. &quot;")}
@@ -49,23 +49,23 @@ const FounderMessage = ({ content = {} }: FounderMessageProps) => {
               <div className="space-y-12 mb-16">
                 <div className="flex gap-8 items-center border-l-2 border-accent/20 pl-8">
                   <div>
-                    <h4 className="text-xl font-bold text-primary mb-1 tracking-tight">
+                    <h4 className="text-5xl font-bold text-primary mb-4 tracking-tight">
                       {getLocalContent("founder_name", "Dr. J. Arawindhan")}
                     </h4>
-                    <p className="text-sm font-semibold uppercase tracking-widest text-muted">
+                    <p className="text-xs font-medium uppercase tracking-widest text-muted">
                       {getLocalContent("founder_role", "Chief Mentor & Visionary")}
                     </p>
                   </div>
                 </div>
               </div>
-              <Link href="/about">
+              {/* <Link href="/about">
                 <Button
                   size="md"
                   className="rounded-full px-12 py-6 bg-primary text-white shadow-premium"
                 >
                   {getLocalContent("founder_cta", "Discover Our Legacy")}
                 </Button>
-              </Link>
+              </Link> */}
             </FadeIn>
 
             <FadeIn direction="left" className="relative">
@@ -79,14 +79,17 @@ const FounderMessage = ({ content = {} }: FounderMessageProps) => {
                 />
               </div>
 
-              {/* Floating 3D Badge */}
+              {/* Floating Badge */}
+            <div className="md:block hidden">
               <motion.div
-                className="absolute -bottom-16 -left-16 z-30"
-                style={{ perspective: "1200px" }}
-                initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-              >
+              className="absolute bottom-0 left-0 lg:-bottom-16 lg:-left-16 z-30 scale-[0.68] sm:scale-90 lg:scale-100 origin-bottom-left transition-transform"
+              style={{
+                perspective: "1200px",
+              }}
+              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+            >
                 {/* Outer Thick 3D Ring */}
                 <div className="relative w-52 h-52 flex items-center justify-center">
                   <div
@@ -149,6 +152,7 @@ const FounderMessage = ({ content = {} }: FounderMessageProps) => {
                   </div>
                 </div>
               </motion.div>
+            </div>
             </FadeIn>
           </div>
         </div>

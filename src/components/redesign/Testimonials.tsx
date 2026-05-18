@@ -10,6 +10,7 @@ interface TestimonialsProps {
 
 const Testimonials = ({ content = {} }: TestimonialsProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsVisible, setItemsVisible] = useState(3);
 
   const getContent = (key: string, fallback: string = "") => {
     return content[key] || fallback;
@@ -72,7 +73,21 @@ const Testimonials = ({ content = {} }: TestimonialsProps) => {
     },
   ];
 
-  const itemsVisible = 3;
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsVisible(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsVisible(2);
+      } else {
+        setItemsVisible(3);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Limit index so we don't show empty space at the end
   const maxIndex = testimonials.length - itemsVisible;
 
@@ -97,7 +112,7 @@ const Testimonials = ({ content = {} }: TestimonialsProps) => {
       />
 
       <div className="container-premium relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-12 mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20">
           <FadeIn className="max-w-2xl">
             <div className="inline-flex items-center gap-3 mb-6">
               <div className="w-10 h-px bg-accent" />
@@ -146,7 +161,7 @@ const Testimonials = ({ content = {} }: TestimonialsProps) => {
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
           >
             {testimonials.map((testimonial, i) => (
-              <div key={i} className="flex-shrink-0 w-full md:w-1/3 px-4">
+              <div key={i} className="flex-shrink-0 px-4" style={{ width: `${100 / itemsVisible}%` }}>
                 <div className="glass-card p-10 h-full flex flex-col relative group hover:border-primary/20 transition-all duration-500 bg-white/5">
                   {/* Quote Icon */}
                   <div className="absolute top-8 right-8 text-primary/5 group-hover:text-accent/10 transition-colors duration-500">
