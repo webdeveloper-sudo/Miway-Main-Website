@@ -12,6 +12,8 @@ import {
   Facebook,
   Sparkles,
   ArrowRight,
+  Instagram,
+  Youtube,
 } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import Button from "../ui/Button";
@@ -76,17 +78,26 @@ export default function Footer() {
               Redefining the educational landscape through diverse intelligence
               and neuroscience-driven pedagogy.
             </p>
-            <div className="flex gap-4 pt-2">
-              {[Linkedin, Twitter, Facebook].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-background border border-primary/5 flex items-center justify-center text-muted hover:text-white hover:bg-primary transition-all shadow-sm"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
-            </div>
+             <div className="flex gap-4 items-center">
+                      {[
+                        { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61557677255519", label: "Facebook" },
+                        { icon: Instagram, href: "https://www.instagram.com/miway_offical/", label: "Instagram" },
+                        { icon: Linkedin, href: "https://www.linkedin.com/company/miway-teaching-aids-pvt-ltd", label: "LinkedIn" },
+                        { icon: Youtube, href: "https://www.youtube.com/channel/UCdzsTDqvVAAKdX01ldG_eNA", label: "Youtube" },
+                       
+                      ].map((item, i) => (
+                        <a
+                          key={i}
+                          href={item.href}
+                          aria-label={item.label}
+                          target="_blank"
+                          rel="noopenner"
+                          className="w-12 h-12 rounded-full bg-white/10 border border-gray-100 hover:border-accent flex items-center justify-center text-primary hover:text-primary hover:bg-accent transition-all duration-300 shadow-md hover:scale-110 active:scale-95"
+                        >
+                          <item.icon size={20} />
+                        </a>
+                      ))}
+                    </div>
           </div>
 
           {/* Links Columns */}
@@ -96,10 +107,10 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4">
               {[
+                { name: "Home", href: "/" },
+                { name: "About Us", href: "/about" },
                 { name: "Curriculum", href: "/bundles" },
-                { name: "Partner Schools", href: "/schools" },
-                { name: "Philosophy", href: "/philosophy" },
-                { name: "Manifesto", href: "/about" },
+                { name: "Our Philosophy", href: "/philosophy" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link
@@ -119,10 +130,11 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4">
               {[
-                { name: "About Us", href: "/about" },
+                { name: "Contact us", href: "/contact" },
                 { name: "Leadership", href: "/about" },
-                { name: "Careers", href: "/contact" },
-                { name: "Partners", href: "/publish" },
+                { name: "Partner Schools", href: "/schools" },
+                { name: "Parent Testimonials", href: "/testimonial" },
+                
               ].map((link) => (
                 <li key={link.name}>
                   <Link
@@ -149,7 +161,7 @@ export default function Footer() {
                     className="text-muted hover:bg-primary hover:text-white"
                   />
                 </div>
-                <div className="flex flex-col text-md text-muted font-medium font-serif max-w-sm pt-1">
+                <div className="flex flex-col text-[15px] text-muted font-medium font-sans leading-relaxed max-w-md whitespace-pre-line">
                   <span>+91 90252 24871</span>
                   <span>+91 93459 17094</span>
                 </div>
@@ -163,7 +175,7 @@ export default function Footer() {
                 </div>
                 <a
                   href="mailto:info@miway.in"
-                  className="text-md text-muted font-medium font-serif max-w-sm hover:text-primary transition-colors"
+                  className="text-[15px] text-muted font-medium font-sans leading-relaxed max-w-md whitespace-pre-line"
                 >
                   info@miway.in
                 </a>
@@ -175,7 +187,7 @@ export default function Footer() {
                     className="text-muted hover:bg-primary hover:text-white"
                   />
                 </div>
-                <span className="text-md text-muted font-medium font-serif max-w-sm pt-1">
+                <span className="text-[15px] text-muted font-medium font-sans  max-w-md whitespace-pre-line">
                   #88, Candappa Mudaliar St,
                   <br />
                   Puducherry - 605 001. India

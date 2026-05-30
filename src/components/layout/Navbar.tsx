@@ -35,7 +35,7 @@ export default function Navbar() {
     const navItems = [
         { name: 'Home', href: '/' },
         { name: 'About', href: '/about' },
-        { name: 'Philosophy', href: '/philosophy' },
+        { name: 'Our Philosophy', href: '/philosophy' },
         { name: 'Curriculum', href: '/bundles' },
         { name: 'Partner Schools', href: '/schools' },
     ];

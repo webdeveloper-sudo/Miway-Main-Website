@@ -5,12 +5,16 @@ import {
   Mail,
   MapPin,
   Globe,
-  Clock,
   CheckCircle2,
   MessageSquare,
   ShieldCheck,
   AlertCircle,
   Send,
+  Linkedin,
+  Twitter,
+  Facebook,
+  Instagram,
+  Youtube,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -194,9 +198,7 @@ export default function ContactClient({
                       title:
                         content["contact_info_1_title"] ||
                         "Executive Liaison",
-                      desc:
-                        content["contact_info_1_desc"] ||
-                        "partners@miway.edu",
+                      desc: "info@miway.in",
                       label: "Email",
                     },
                     {
@@ -204,9 +206,7 @@ export default function ContactClient({
                       title:
                         content["contact_info_2_title"] ||
                         "Direct Consultation",
-                      desc:
-                        content["contact_info_2_desc"] ||
-                        "+91 98765 43210",
+                      desc:"+91 90252 24871, +91 93459 17094",
                       label: "WhatsApp / Call",
                     },
                     {
@@ -250,22 +250,35 @@ export default function ContactClient({
                 </div>
 
                 <div className="mt-2 p-8 rounded bg-primary text-white relative overflow-hidden shadow-2xl">
-                  <div className="relative z-10 flex gap-6 items-center">
-                    <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-lg">
-                      <Clock
-                        size={24}
-                        className="text-primary"
-                      />
-                    </div>
-
+                  <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
                       <h4 className="text-xl font-bold text-white/90 mb-1 tracking-tight">
-                        Institutional Hours
+                        Follow Our Journey
                       </h4>
-
-                      <p className="text-white/80 font-medium text-sm">
-                        Mon - Fri: 09:00 - 18:00 IST
+                      <p className="text-white/70 text-sm font-medium">
+                        Connect with us across our social ecosystems.
                       </p>
+                    </div>
+
+                    <div className="flex gap-4 items-center">
+                      {[
+                        
+                        { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61557677255519", label: "Facebook" },
+                        { icon: Instagram, href: "https://www.instagram.com/miway_offical/", label: "Instagram" },
+                        { icon: Linkedin, href: "https://www.linkedin.com/company/miway-teaching-aids-pvt-ltd", label: "LinkedIn" },
+                        { icon: Youtube, href: "https://www.youtube.com/channel/UCdzsTDqvVAAKdX01ldG_eNA", label: "Twitter" },
+                      ].map((item, i) => (
+                        <a
+                          key={i}
+                          href={item.href}
+                          aria-label={item.label}
+                           target="_blank"
+                          rel="noopenner"
+                          className="w-12 h-12 rounded-full bg-white/10 border border-white/10 hover:border-accent flex items-center justify-center text-white hover:text-primary hover:bg-accent transition-all duration-300 shadow-md hover:scale-110 active:scale-95"
+                        >
+                          <item.icon size={20} />
+                        </a>
+                      ))}
                     </div>
                   </div>
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import FloatingButtons from '@/components/layout/FloatingButtons';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://miway.in"),
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     default: "MIWAY | Future of Education",
     template: "%s | MIWAY",
   },
-
+  
   description:
     "Neuroscience-based, learner-centric educational publishing. Redefining the learning experience through Whole Brain Learning and Multiple Intelligences.",
 
@@ -62,6 +63,7 @@ export default function RootLayout({
                 <Navbar />
                 <main>{children}</main>
                 <Footer />
+                <FloatingButtons />
             </body>
         </html>
     );

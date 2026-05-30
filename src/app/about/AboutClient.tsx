@@ -24,6 +24,7 @@ import OurPhilosophy from "@/components/redesign/OurPhilosophy";
 import GeniusSpiral from "@/components/redesign/GeniusSpiral";
 import { motion } from "framer-motion";
 import SixBeliefs from "@/components/redesign/SixBeliefs";
+import OurEnvironment from "@/components/OurEnvironment";
 
 interface AboutClientProps {
   content: Record<string, string>;
@@ -75,6 +76,8 @@ export default function AboutClient({ content }: AboutClientProps) {
           <OurPhilosophy content={content} />
         </div>
       </section>
+
+      <OurEnvironment/>
 
       {/* 4. Eight Pillars of Extraordinary Learning */}
       <section className="section-padding bg-background-alt relative">

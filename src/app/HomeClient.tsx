@@ -29,6 +29,7 @@ import CurriculamPortfolio from "@/components/CurriculamPortfolio";
 import ParentChoose from "@/components/redesign/ParentChoose";
 import Testimonials from "@/components/redesign/Testimonials";
 import OurPhilosophy from "@/components/redesign/OurPhilosophy";
+import OurEnvironment from "@/components/OurEnvironment";
 
 interface HomeClientProps {
   content: Record<string, string>;
@@ -255,6 +256,8 @@ export default function HomeClient({ content }: HomeClientProps) {
           </div>
         </div>
       </section>
+
+      <OurEnvironment/>
 
       {/* 8. Founder Authority Section */}
       <FounderMessage content={content} />

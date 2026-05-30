@@ -1,6 +1,8 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Star, Target, Lightbulb, Layers, Compass, Zap, Globe, Heart, Globe2 } from 'lucide-react';
+import { Brain,  Heart, Globe2 } from 'lucide-react';
 
 interface ParentChooseProps {
   content?: Record<string, string>;
