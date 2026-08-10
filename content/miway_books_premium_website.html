@@ -1,0 +1,505 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --navy:#050d1a;
+    --navy2:#0a1628;
+    --navy3:#0f2040;
+    --gold:#c9a84c;
+    --gold2:#e8c97a;
+    --gold3:#f5e4b0;
+    --white:#ffffff;
+    --white2:#f0f4ff;
+    --slate:#8899bb;
+    --slate2:#b0c0dd;
+  }
+  body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden}
+  
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:rgba(5,13,26,0.85);backdrop-filter:blur(20px);border-bottom:0.5px solid rgba(201,168,76,0.2);padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-size:1.2rem;font-weight:600;letter-spacing:0.12em;color:var(--gold2)}
+  .nav-links{display:flex;gap:2rem;font-size:0.78rem;letter-spacing:0.08em;color:var(--slate2)}
+  .nav-links a{color:inherit;text-decoration:none;transition:color 0.2s}
+  .nav-links a:hover{color:var(--gold2)}
+  .nav-cta{background:var(--gold);color:var(--navy);padding:0.5rem 1.25rem;border-radius:4px;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;cursor:pointer;border:none}
+  
+  /* HERO */
+  .hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+  .hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-55%);pointer-events:none}
+  .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;border:0.5px solid rgba(201,168,76,0.4);border-radius:100px;padding:0.35rem 1rem;font-size:0.7rem;letter-spacing:0.15em;color:var(--gold2);margin-bottom:2rem;text-transform:uppercase}
+  .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;max-width:800px;margin-bottom:1.5rem}
+  .hero h1 strong{font-weight:600;color:var(--gold2)}
+  .hero-sub{font-size:1rem;color:var(--slate2);max-width:520px;line-height:1.7;margin-bottom:3rem;font-weight:300}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+  .btn-primary{background:var(--gold);color:var(--navy);padding:0.85rem 2rem;border-radius:4px;font-size:0.8rem;font-weight:600;letter-spacing:0.1em;cursor:pointer;border:none;transition:all 0.2s}
+  .btn-primary:hover{background:var(--gold2)}
+  .btn-ghost{background:transparent;color:var(--white2);padding:0.85rem 2rem;border-radius:4px;font-size:0.8rem;font-weight:400;letter-spacing:0.08em;cursor:pointer;border:0.5px solid rgba(255,255,255,0.2);transition:all 0.2s}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold2)}
+  .hero-stats{display:flex;gap:3rem;margin-top:5rem;padding-top:2.5rem;border-top:0.5px solid rgba(255,255,255,0.08);flex-wrap:wrap;justify-content:center}
+  .stat-num{font-size:1.8rem;font-weight:600;color:var(--gold2)}
+  .stat-label{font-size:0.7rem;letter-spacing:0.12em;color:var(--slate);margin-top:0.2rem;text-transform:uppercase}
+  
+  /* SECTION BASE */
+  section{padding:6rem 2.5rem}
+  .section-tag{font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem}
+  .section-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.2rem}
+  .section-title strong{font-weight:600;color:var(--gold2)}
+  .section-sub{font-size:0.95rem;color:var(--slate2);line-height:1.75;max-width:560px}
+  .centered{text-align:center;align-items:center}
+  .centered .section-sub{margin:0 auto}
+  
+  /* ABOUT */
+  .about{background:var(--navy2)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+  .about-visual{position:relative;height:340px;border:0.5px solid rgba(201,168,76,0.2);border-radius:12px;background:var(--navy3);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .about-rings{position:relative;width:220px;height:220px}
+  .ring{position:absolute;border-radius:50%;border:0.5px solid rgba(201,168,76,0.3);animation:spin linear infinite}
+  .ring1{inset:0;animation-duration:20s}
+  .ring2{inset:20px;animation-duration:15s;animation-direction:reverse}
+  .ring3{inset:44px;animation-duration:10s}
+  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .ring-core{position:absolute;inset:72px;border-radius:50%;background:rgba(201,168,76,0.1);border:0.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold2);text-transform:uppercase}
+  .about-quote{font-size:1.35rem;font-weight:300;line-height:1.5;color:var(--white2);margin-bottom:1.5rem;font-style:italic}
+  .about-quote::before{content:'"';color:var(--gold);font-size:3rem;line-height:0;vertical-align:-1.2rem;margin-right:0.3rem}
+  
+  /* LEARNING SYSTEM */
+  .system{background:var(--navy)}
+  .system-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5px;margin-top:4rem;border:0.5px solid rgba(201,168,76,0.15);border-radius:12px;overflow:hidden}
+  .sys-card{background:var(--navy2);padding:2rem;transition:background 0.3s;cursor:pointer;position:relative;overflow:hidden}
+  .sys-card:hover{background:var(--navy3)}
+  .sys-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+  .sys-card:hover::after{transform:scaleX(1)}
+  .sys-num{font-size:0.65rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem}
+  .sys-title{font-size:1rem;font-weight:500;margin-bottom:0.7rem;color:var(--white2)}
+  .sys-desc{font-size:0.78rem;color:var(--slate2);line-height:1.65}
+  .sys-icon{font-size:1.5rem;margin-bottom:1rem;color:var(--gold2)}
+  
+  /* WHY MIWAY */
+  .why{background:var(--navy2)}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;max-width:900px;margin-left:auto;margin-right:auto}
+  .why-item{display:flex;gap:1rem;align-items:flex-start;padding:1.5rem;border:0.5px solid rgba(201,168,76,0.12);border-radius:8px;background:var(--navy)}
+  .why-icon{width:36px;height:36px;border-radius:6px;background:rgba(201,168,76,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold2);font-size:1rem}
+  .why-text h4{font-size:0.85rem;font-weight:500;color:var(--white2);margin-bottom:0.4rem}
+  .why-text p{font-size:0.75rem;color:var(--slate2);line-height:1.6}
+  
+  /* INTELLIGENCE WHEEL */
+  .intel{background:var(--navy);text-align:center}
+  .wheel-container{position:relative;width:560px;height:560px;margin:4rem auto 0;max-width:100%}
+  .wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:130px;height:130px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--navy);font-size:0.7rem;font-weight:600;letter-spacing:0.05em;line-height:1.3;z-index:10;box-shadow:0 0 60px rgba(201,168,76,0.3)}
+  .intel-item{position:absolute;width:100px;height:100px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0.5rem;cursor:pointer;transition:all 0.25s;border:0.5px solid rgba(201,168,76,0.25);background:var(--navy2)}
+  .intel-item:hover{background:var(--navy3);border-color:var(--gold);transform:scale(1.1)}
+  .intel-item .intel-icon{font-size:1.3rem;margin-bottom:0.3rem;color:var(--gold2)}
+  .intel-item .intel-label{font-size:0.56rem;letter-spacing:0.08em;color:var(--slate2);line-height:1.3}
+  .intel-connector{position:absolute;top:50%;left:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.2),transparent);transform-origin:left center;pointer-events:none}
+  
+  /* FUTURE SKILLS */
+  .future{background:var(--navy2)}
+  .skills-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin-top:3.5rem}
+  .skill-card{padding:2rem 1.5rem;border:0.5px solid rgba(201,168,76,0.12);border-radius:8px;background:var(--navy);text-align:center;transition:all 0.25s}
+  .skill-card:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-4px)}
+  .skill-icon{font-size:2rem;margin-bottom:1rem;color:var(--gold2)}
+  .skill-title{font-size:0.8rem;font-weight:500;color:var(--white2);margin-bottom:0.5rem}
+  .skill-desc{font-size:0.7rem;color:var(--slate);line-height:1.5}
+  
+  /* TRUST */
+  .trust{background:var(--navy)}
+  .trust-content{max-width:700px;margin:0 auto;text-align:center}
+  .trust-points{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;text-align:center}
+  .trust-num{font-size:2.5rem;font-weight:300;color:var(--gold2)}
+  .trust-label{font-size:0.72rem;color:var(--slate2);letter-spacing:0.08em;margin-top:0.3rem}
+  
+  /* TESTIMONIALS */
+  .testimonials{background:var(--navy2)}
+  .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3.5rem}
+  .testi-card{background:var(--navy);border:0.5px solid rgba(201,168,76,0.15);border-radius:12px;padding:2rem;position:relative}
+  .testi-quote{font-size:0.85rem;color:var(--white2);line-height:1.7;font-weight:300;margin-bottom:1.5rem;font-style:italic}
+  .testi-author{display:flex;align-items:center;gap:0.75rem}
+  .testi-avatar{width:36px;height:36px;border-radius:50%;background:rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:600;color:var(--gold2);flex-shrink:0}
+  .testi-name{font-size:0.78rem;font-weight:500;color:var(--gold2)}
+  .testi-role{font-size:0.68rem;color:var(--slate);margin-top:0.1rem}
+  .testi-stars{color:var(--gold);font-size:0.75rem;margin-bottom:1rem}
+  
+  /* CTA */
+  .cta-section{background:linear-gradient(135deg,var(--navy2),var(--navy3));text-align:center;padding:8rem 2.5rem;position:relative;overflow:hidden}
+  .cta-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .cta-section .section-title{font-size:clamp(2rem,4vw,3rem);max-width:700px;margin:0 auto 1.5rem}
+  .cta-section .section-sub{max-width:480px}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+  
+  /* FOOTER */
+  footer{background:var(--navy2);border-top:0.5px solid rgba(201,168,76,0.15);padding:3rem 2.5rem}
+  .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;max-width:1100px;margin:0 auto}
+  .footer-brand{font-size:1rem;font-weight:600;letter-spacing:0.1em;color:var(--gold2);margin-bottom:0.5rem}
+  .footer-tagline{font-size:0.72rem;color:var(--slate);max-width:220px;line-height:1.6}
+  .footer-links h5{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+  .footer-links ul{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+  .footer-links ul li a{font-size:0.75rem;color:var(--slate2);text-decoration:none}
+  .footer-bottom{border-top:0.5px solid rgba(255,255,255,0.05);margin-top:2.5rem;padding-top:1.5rem;text-align:center;font-size:0.7rem;color:var(--slate);max-width:1100px;margin-left:auto;margin-right:auto}
+  
+  /* DIVIDER */
+  .gold-line{width:40px;height:1.5px;background:var(--gold);margin:1.5rem 0}
+  .centered .gold-line{margin:1.5rem auto}
+  
+  /* RESPONSIVE */
+  @media(max-width:600px){
+    .about-grid,.why-grid{grid-template-columns:1fr}
+    .hero-stats{gap:1.5rem}
+    .trust-points{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .wheel-container{width:320px;height:320px}
+    .intel-item{width:64px;height:64px}
+    .intel-item .intel-icon{font-size:0.9rem}
+    .intel-item .intel-label{font-size:0.4rem}
+    .wheel-center{width:80px;height:80px;font-size:0.5rem}
+  }
+</style>
+
+<h2 class="sr-only">MIWAY Books — Premium Futuristic Education Brand Website</h2>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MIWAY BOOKS</div>
+  <div class="nav-links">
+    <a href="#">System</a>
+    <a href="#">Intelligence</a>
+    <a href="#">Future Skills</a>
+    <a href="#">Philosophy</a>
+  </div>
+  <button class="nav-cta">Begin Learning</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-badge"><span class="badge-dot"></span> Neuroscience-Backed Learning System</div>
+  <h1>Education Is Not <br>A Subject. <strong>It Is A<br>Transformation.</strong></h1>
+  <p class="hero-sub">MIWAY Books merges neuroscience, psychology, and 21st‑century pedagogy into one living, breathing learning ecosystem — built for tomorrow's world.</p>
+  <div class="hero-btns">
+    <button class="btn-primary">Discover the System</button>
+    <button class="btn-ghost">Watch Philosophy</button>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">8</div><div class="stat-label">Learning Sciences</div></div>
+    <div><div class="stat-num">10+</div><div class="stat-label">Intelligences Nurtured</div></div>
+    <div><div class="stat-num">21st</div><div class="stat-label">Century Ready</div></div>
+    <div><div class="stat-num">∞</div><div class="stat-label">Human Potential</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-tag">Our Philosophy</div>
+      <h2 class="section-title">We Don't Teach Children.<br><strong>We Awaken Them.</strong></h2>
+      <div class="gold-line"></div>
+      <p class="section-sub" style="margin-bottom:1.5rem">MIWAY Books was born from a single conviction — that every child is a universe of undiscovered intelligence. We built a learning system so advanced, so human, and so complete that it doesn't just educate minds. It sculpts futures.</p>
+      <p class="section-sub">Our framework draws from Bloom's Taxonomy, Howard Gardner's Multiple Intelligence Theory, whole-brain neuroscience, and the philosophy of Stephen Covey — woven into one seamless experience.</p>
+    </div>
+    <div class="about-visual">
+      <div class="about-rings">
+        <div class="ring ring1" style="width:220px;height:220px;top:0;left:0"></div>
+        <div class="ring ring2" style="width:180px;height:180px;top:20px;left:20px"></div>
+        <div class="ring ring3" style="width:136px;height:136px;top:42px;left:42px"></div>
+        <div class="ring-core">MIWAY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING SYSTEM -->
+<section class="system">
+  <div style="text-align:center;max-width:700px;margin:0 auto">
+    <div class="section-tag">The Architecture of Learning</div>
+    <h2 class="section-title">Eight Sciences.<br><strong>One Complete System.</strong></h2>
+    <div class="gold-line" style="margin:1.5rem auto"></div>
+    <p class="section-sub" style="margin:0 auto">Each pillar is a proven methodology. Together, they create an unbreakable learning foundation that transforms how children think, remember, and grow.</p>
+  </div>
+  <div class="system-grid" style="max-width:1100px;margin:4rem auto 0">
+    <div class="sys-card">
+      <div class="sys-num">01</div>
+      <div class="sys-icon"><i class="ti ti-pyramid" aria-hidden="true"></i></div>
+      <div class="sys-title">Bloom's Taxonomy</div>
+      <div class="sys-desc">A six-level journey from remembering to creating — building true cognitive mastery, not shallow memorisation.</div>
+    </div>
+    <div class="sys-card">
+      <div class="sys-num">02</div>
+      <div class="sys-icon"><i class="ti ti-brain" aria-hidden="true"></i></div>
+      <div class="sys-title">Whole Brain Learning</div>
+      <div class="sys-desc">Activating both hemispheres, logic and creativity, analysis and imagination — for deeper neural connections.</div>
+    </div>
+    <div class="sys-card">
+      <div class="sys-num">03</div>
+      <div class="sys-icon"><i class="ti ti-refresh" aria-hidden="true"></i></div>
+      <div class="sys-title">Spiral Learning</div>
+      <div class="sys-desc">Revisiting concepts at increasing depth so knowledge compounds over time, building mastery layer by layer.</div>
+    </div>
+    <div class="sys-card">
+      <div class="sys-num">04</div>
+      <div class="sys-icon"><i class="ti ti-circles-relation" aria-hidden="true"></i></div>
+      <div class="sys-title">Integrated Learning</div>
+      <div class="sys-desc">Cross-curricular connections that show children how science, art, maths, and language form one living world.</div>
+    </div>
+    <div class="sys-card">
+      <div class="sys-num">05</div>
+      <div class="sys-icon"><i class="ti ti-eye" aria-hidden="true"></i></div>
+      <div class="sys-title">Sensory Learning</div>
+      <div class="sys-desc">Multi-sensory engagement — visual, auditory, kinesthetic, tactile — activating more pathways for lasting recall.</div>
+    </div>
+    <div class="sys-card">
+      <div class="sys-num">06</div>
+      <div class="sys-icon"><i class="ti ti-bolt" aria-hidden="true"></i></div>
+      <div class="sys-title">Power Learning</div>
+      <div class="sys-desc">Mind maps, memory palaces, the SQ3R method, mnemonics — 15+ proven techniques for effortless retention.</div>
+    </div>
+    <div class="sys-card">
+      <div class="sys-num">07</div>
+      <div class="sys-icon"><i class="ti ti-sparkles" aria-hidden="true"></i></div>
+      <div class="sys-title">Multiple Intelligences</div>
+      <div class="sys-desc">Honouring all 10 dimensions of human intelligence — from linguistic to spiritual, financial to naturalistic.</div>
+    </div>
+    <div class="sys-card">
+      <div class="sys-num">08</div>
+      <div class="sys-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
+      <div class="sys-title">21st Century Skills</div>
+      <div class="sys-desc">Critical thinking, collaboration, digital fluency, creativity — the skills that define success in tomorrow's world.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY MIWAY -->
+<section class="why">
+  <div style="text-align:center;max-width:700px;margin:0 auto">
+    <div class="section-tag">Why Parents Choose Us</div>
+    <h2 class="section-title">Not Just Different.<br><strong>Categorically Superior.</strong></h2>
+    <div class="gold-line" style="margin:1.5rem auto"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon"><i class="ti ti-dna" aria-hidden="true"></i></div>
+      <div class="why-text"><h4>Neuroscience-Rooted Design</h4><p>Every activity, every page, every question is designed with how the brain actually learns — not how tradition says it should.</p></div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><i class="ti ti-infinity" aria-hidden="true"></i></div>
+      <div class="why-text"><h4>Lifelong, Not Exam-Long</h4><p>We build thinkers, not test-takers. Skills developed through MIWAY Books compound across every stage of life.</p></div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><i class="ti ti-user-star" aria-hidden="true"></i></div>
+      <div class="why-text"><h4>Every Child Is Seen</h4><p>Ten intelligence types means no child is "average." Every learner finds their strength and is celebrated for it.</p></div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+      <div class="why-text"><h4>Character, Not Just Content</h4><p>Covey's Seven Habits and Spiritual Intelligence ensure children grow into empathetic, principled human beings.</p></div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><i class="ti ti-coin" aria-hidden="true"></i></div>
+      <div class="why-text"><h4>Financial Intelligence Built In</h4><p>Real-world money wisdom, entrepreneurship, and value-based decision-making — rare in any curriculum.</p></div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon"><i class="ti ti-telescope" aria-hidden="true"></i></div>
+      <div class="why-text"><h4>Future-Proof by Design</h4><p>Built for a world of AI, automation, and rapid change — developing adaptability, creativity, and resilience.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTELLIGENCE WHEEL -->
+<section class="intel">
+  <div class="section-tag">Multiple Intelligences</div>
+  <h2 class="section-title">Every Child Is <strong>Brilliant.</strong><br>In Their Own Language.</h2>
+  <div class="gold-line" style="margin:1.5rem auto"></div>
+  <p class="section-sub" style="margin:0 auto;max-width:520px">We honour all 10 dimensions of human intelligence. Because genius wears many faces.</p>
+  <div class="wheel-container" id="wheel">
+    <div class="wheel-center">MIWAY<br>Intelligence<br>Wheel</div>
+  </div>
+  <div id="intel-info" style="margin-top:1.5rem;min-height:48px;font-size:0.85rem;color:var(--slate2);max-width:420px;margin-left:auto;margin-right:auto;line-height:1.6"></div>
+</section>
+
+<!-- FUTURE SKILLS -->
+<section class="future">
+  <div style="text-align:center;max-width:700px;margin:0 auto">
+    <div class="section-tag">Future Readiness</div>
+    <h2 class="section-title">Built for a World<br><strong>That Doesn't Exist Yet.</strong></h2>
+    <div class="gold-line" style="margin:1.5rem auto"></div>
+    <p class="section-sub" style="margin:0 auto">The jobs of tomorrow need more than knowledge. They need imagination, resilience, collaboration, and character.</p>
+  </div>
+  <div class="skills-row" style="max-width:1100px;margin:3.5rem auto 0">
+    <div class="skill-card">
+      <div class="skill-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+      <div class="skill-title">Critical Thinking</div>
+      <div class="skill-desc">Analyse, question, and solve with depth and precision</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="ti ti-palette" aria-hidden="true"></i></div>
+      <div class="skill-title">Creative Innovation</div>
+      <div class="skill-desc">Imagine what others cannot, then build it</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+      <div class="skill-title">Collaboration</div>
+      <div class="skill-desc">Lead teams, navigate conflict, create together</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+      <div class="skill-title">Communication</div>
+      <div class="skill-desc">Speak, write, and listen with clarity and empathy</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="ti ti-device-laptop" aria-hidden="true"></i></div>
+      <div class="skill-title">Digital Fluency</div>
+      <div class="skill-desc">Navigate technology responsibly and skillfully</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+      <div class="skill-title">Financial Wisdom</div>
+      <div class="skill-desc">Budget, invest, and build real-world financial confidence</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" style="background:var(--navy3)">
+  <div class="trust-content">
+    <div class="section-tag" style="text-align:center">The MIWAY Promise</div>
+    <h2 class="section-title" style="text-align:center">When Education Is This Complete,<br><strong>Trust Is Natural.</strong></h2>
+    <div class="gold-line" style="margin:1.5rem auto"></div>
+    <p class="section-sub" style="margin:0 auto">Every MIWAY Book is a promise to parents: that their child will emerge sharper, deeper, kinder, and more capable of shaping their own future.</p>
+  </div>
+  <div class="trust-points">
+    <div><div class="trust-num">10</div><div class="trust-label">Intelligences Nurtured</div></div>
+    <div><div class="trust-num">15+</div><div class="trust-label">Memory Techniques</div></div>
+    <div><div class="trust-num">7</div><div class="trust-label">Life-Changing Habits</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div style="text-align:center">
+    <div class="section-tag">Parent Voices</div>
+    <h2 class="section-title">The Proof Is in the<br><strong>Children Who Grew.</strong></h2>
+    <div class="gold-line" style="margin:1.5rem auto"></div>
+  </div>
+  <div class="testi-grid" style="max-width:1000px;margin:3.5rem auto 0">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">My daughter used to dread reading. After six months with MIWAY Books, she writes stories, debates ideas, and teaches her friends. I cannot explain the transformation — I can only witness it.</p>
+      <div class="testi-author"><div class="testi-avatar">PR</div><div><div class="testi-name">Priya Raghunathan</div><div class="testi-role">Parent, Chennai</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">As an educator, I have seen many curricula. MIWAY Books is the first time I have seen neuroscience, character education, and 21st-century skills genuinely integrated — not just listed on a cover.</p>
+      <div class="testi-author"><div class="testi-avatar">SM</div><div><div class="testi-name">Sunita Menon</div><div class="testi-role">School Principal, Bangalore</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">My son now manages his pocket money, plans his week, and talks to me about empathy. These are not school skills. These are life skills. MIWAY delivered what no school could alone.</p>
+      <div class="testi-author"><div class="testi-avatar">AK</div><div><div class="testi-name">Arun Kumar</div><div class="testi-role">Parent, Hyderabad</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-tag" style="text-align:center">Begin the Journey</div>
+  <h2 class="section-title" style="text-align:center">Your Child's Future<br><strong>Starts With One Book.</strong></h2>
+  <div class="gold-line" style="margin:1.5rem auto"></div>
+  <p class="section-sub" style="margin:0 auto;text-align:center">Don't give your child an education. Give them a transformation. Give them MIWAY.</p>
+  <div class="cta-btns">
+    <button class="btn-primary" style="padding:1rem 2.5rem;font-size:0.85rem">Explore the Collection</button>
+    <button class="btn-ghost" style="padding:1rem 2.5rem;font-size:0.85rem">Talk to an Educator</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">MIWAY BOOKS</div>
+      <p class="footer-tagline">Transforming learners into thinkers, creators, and leaders — one book at a time.</p>
+    </div>
+    <div class="footer-links">
+      <h5>Learning System</h5>
+      <ul>
+        <li><a href="#">Bloom's Taxonomy</a></li>
+        <li><a href="#">Whole Brain Learning</a></li>
+        <li><a href="#">Spiral Learning</a></li>
+        <li><a href="#">Power Learning</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Intelligence</h5>
+      <ul>
+        <li><a href="#">Multiple Intelligences</a></li>
+        <li><a href="#">Financial Intelligence</a></li>
+        <li><a href="#">Spiritual Intelligence</a></li>
+        <li><a href="#">21st Century Skills</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">Our Philosophy</a></li>
+        <li><a href="#">For Schools</a></li>
+        <li><a href="#">For Parents</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 MIWAY Books. All rights reserved. &nbsp;·&nbsp; Transforming Education. Transforming Lives.</div>
+</footer>
+
+<script>
+const intelligences = [
+  {icon:'ti-book',label:'Word\nSmart',desc:'Linguistic Intelligence — reading, writing, storytelling, vocabulary mastery'},
+  {icon:'ti-calculator',label:'Logic\nSmart',desc:'Logical-Mathematical Intelligence — reasoning, patterns, problem-solving'},
+  {icon:'ti-coin',label:'Money\nSmart',desc:'Financial Intelligence — budgeting, saving, entrepreneurship, real-world decisions'},
+  {icon:'ti-heart',label:'Life\nSmart',desc:'Spiritual Intelligence — purpose, empathy, values, mindfulness, inner balance'},
+  {icon:'ti-leaf',label:'Nature\nSmart',desc:'Naturalistic Intelligence — environment, observation, the living world'},
+  {icon:'ti-eye',label:'Picture\nSmart',desc:'Spatial Intelligence — visual thinking, design, imagination, creativity'},
+  {icon:'ti-run',label:'Body\nSmart',desc:'Bodily-Kinesthetic Intelligence — movement, experiments, drama, hands-on'},
+  {icon:'ti-music',label:'Music\nSmart',desc:'Musical Intelligence — rhythm, melody, sound, pattern-based memory'},
+  {icon:'ti-users',label:'People\nSmart',desc:'Interpersonal Intelligence — teamwork, leadership, communication, empathy'},
+  {icon:'ti-mood-smile',label:'Self\nSmart',desc:'Intrapersonal Intelligence — self-awareness, reflection, goals, growth'}
+];
+
+const wheel = document.getElementById('wheel');
+const infoBox = document.getElementById('intel-info');
+const ww = wheel.offsetWidth || 560;
+const cx = ww/2, cy = ww/2;
+const radius = ww * 0.38;
+const itemSize = Math.max(64, ww * 0.18);
+
+intelligences.forEach((intel,i) => {
+  const angle = (i / intelligences.length) * 2 * Math.PI - Math.PI/2;
+  const x = cx + radius * Math.cos(angle) - itemSize/2;
+  const y = cy + radius * Math.sin(angle) - itemSize/2;
+  
+  const div = document.createElement('div');
+  div.className = 'intel-item';
+  div.style.left = x + 'px';
+  div.style.top = y + 'px';
+  div.style.width = itemSize + 'px';
+  div.style.height = itemSize + 'px';
+  
+  const lines = intel.label.split('\n');
+  div.innerHTML = `<i class="ti ${intel.icon} intel-icon" aria-hidden="true"></i><span class="intel-label">${lines.join('<br>')}</span>`;
+  
+  div.addEventListener('mouseenter', () => {
+    infoBox.textContent = intel.desc;
+    div.style.borderColor = 'var(--gold)';
+    div.style.background = 'var(--navy3)';
+  });
+  div.addEventListener('mouseleave', () => {
+    infoBox.textContent = '';
+    div.style.borderColor = 'rgba(201,168,76,0.25)';
+    div.style.background = 'var(--navy2)';
+  });
+  
+  wheel.appendChild(div);
+});
+</script>

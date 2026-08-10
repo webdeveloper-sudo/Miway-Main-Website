@@ -1,0 +1,281 @@
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#050d1a;--navy2:#0a1628;--navy3:#0f2040;--navy4:#162347;
+  --gold:#c9a84c;--gold2:#e8c97a;--gold3:#f5e4b0;
+  --white:#ffffff;--white2:#eef2ff;--slate:#8899bb;--slate2:#b0c0dd;
+}
+body{background:var(--navy);color:var(--white);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden}
+
+/* ABOUT HERO STRIP */
+.ab-hero{
+  background:var(--navy2);
+  border-bottom:0.5px solid rgba(201,168,76,0.15);
+  padding:5rem 3rem 0;
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end
+}
+.ab-tag{font-size:0.62rem;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem}
+.ab-tag::before{content:'';width:24px;height:1px;background:var(--gold)}
+.ab-h1{font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.1;letter-spacing:-0.025em;color:var(--white)}
+.ab-h1 em{font-style:normal;font-weight:600;color:var(--gold2)}
+.ab-hero-sub{font-size:0.9rem;color:var(--slate2);line-height:1.8;margin:1.5rem 0 2.5rem;font-weight:300;max-width:420px}
+.ab-hero-right{padding-bottom:0;display:flex;flex-direction:column;justify-content:flex-end}
+.ab-manifesto{border-left:2px solid var(--gold);padding:1.5rem 1.5rem 1.5rem 2rem;background:rgba(201,168,76,0.04);border-radius:0 8px 8px 0;margin-bottom:3rem}
+.ab-manifesto p{font-size:1.05rem;font-weight:300;line-height:1.65;color:var(--white2);font-style:italic}
+.ab-manifesto cite{display:block;margin-top:1rem;font-size:0.7rem;letter-spacing:0.12em;color:var(--gold);font-style:normal;text-transform:uppercase}
+
+/* FULL-WIDTH BAND */
+.band{background:var(--navy3);padding:1.5rem 3rem;display:flex;gap:4rem;border-top:0.5px solid rgba(201,168,76,0.12);border-bottom:0.5px solid rgba(201,168,76,0.12);justify-content:center;flex-wrap:wrap}
+.band-item{text-align:center}
+.band-num{font-size:2.2rem;font-weight:300;color:var(--gold2);letter-spacing:-0.02em}
+.band-label{font-size:0.65rem;letter-spacing:0.15em;color:var(--slate);text-transform:uppercase;margin-top:0.25rem}
+
+/* STORY SECTION */
+.story{max-width:1100px;margin:0 auto;padding:5rem 3rem;display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+.story-left{position:sticky;top:2rem}
+.story-eyebrow{font-size:0.62rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+.story-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.story-h2{font-size:1.9rem;font-weight:300;line-height:1.2;letter-spacing:-0.02em;color:var(--white)}
+.story-h2 strong{font-weight:600;color:var(--gold2)}
+.gold-bar{width:36px;height:2px;background:var(--gold);margin:1.5rem 0}
+.story-sub{font-size:0.82rem;color:var(--slate2);line-height:1.75}
+
+/* PILLARS */
+.pillars{display:flex;flex-direction:column;gap:0}
+.pillar{padding:2rem 0;border-bottom:0.5px solid rgba(255,255,255,0.06);display:grid;grid-template-columns:48px 1fr;gap:1.25rem;align-items:start;cursor:default;transition:background 0.2s;border-radius:8px;padding:1.75rem 1.25rem}
+.pillar:hover{background:rgba(201,168,76,0.04)}
+.pillar-num{font-size:0.65rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;padding-top:0.2rem}
+.pillar-body h3{font-size:0.95rem;font-weight:500;color:var(--white2);margin-bottom:0.5rem}
+.pillar-body p{font-size:0.78rem;color:var(--slate2);line-height:1.65}
+.pillar-tag{display:inline-block;margin-top:0.75rem;font-size:0.6rem;letter-spacing:0.12em;color:var(--gold2);text-transform:uppercase;border:0.5px solid rgba(201,168,76,0.3);padding:0.2rem 0.6rem;border-radius:100px}
+
+/* VALUES GRID */
+.values-wrap{background:var(--navy2);border-top:0.5px solid rgba(201,168,76,0.12);border-bottom:0.5px solid rgba(201,168,76,0.12)}
+.values{max-width:1100px;margin:0 auto;padding:5rem 3rem}
+.values-title-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;gap:2rem;flex-wrap:wrap}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;border:0.5px solid rgba(201,168,76,0.12);border-radius:12px;overflow:hidden}
+.val-cell{background:var(--navy);padding:2.25rem;position:relative;transition:background 0.25s}
+.val-cell:hover{background:var(--navy3)}
+.val-cell::before{content:attr(data-n);position:absolute;top:1.5rem;right:1.5rem;font-size:0.55rem;letter-spacing:0.15em;color:rgba(201,168,76,0.3);text-transform:uppercase}
+.val-icon{font-size:1.6rem;color:var(--gold2);margin-bottom:1.25rem}
+.val-title{font-size:0.88rem;font-weight:500;color:var(--white2);margin-bottom:0.6rem}
+.val-desc{font-size:0.73rem;color:var(--slate2);line-height:1.6}
+.val-bottom-line{position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width 0.3s}
+.val-cell:hover .val-bottom-line{width:100%}
+
+/* FOUNDERS PHILOSOPHY */
+.found{max-width:1100px;margin:0 auto;padding:5rem 3rem}
+.found-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.found-visual{background:var(--navy3);border:0.5px solid rgba(201,168,76,0.15);border-radius:16px;padding:3rem;position:relative;overflow:hidden}
+.found-vis-bg{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(201,168,76,0.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(201,168,76,0.04) 40px)}
+.found-vis-content{position:relative;z-index:2}
+.found-vis-label{font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem}
+.found-pillars-mini{display:flex;flex-direction:column;gap:0.75rem}
+.fpm-row{display:flex;align-items:center;gap:0.75rem}
+.fpm-bar-wrap{flex:1;height:3px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.fpm-bar{height:100%;background:var(--gold);border-radius:2px;animation:grow 1.5s ease-out forwards}
+@keyframes grow{from{width:0%}to{width:var(--w)}}
+.fpm-name{font-size:0.68rem;color:var(--slate2);width:140px;flex-shrink:0}
+.fpm-pct{font-size:0.62rem;color:var(--gold2);width:32px;text-align:right;flex-shrink:0}
+
+/* BOTTOM CTA BAR */
+.about-cta{background:var(--navy3);border-top:0.5px solid rgba(201,168,76,0.2);padding:4rem 3rem;text-align:center}
+.about-cta h2{font-size:2rem;font-weight:300;color:var(--white);letter-spacing:-0.02em;margin-bottom:0.75rem}
+.about-cta h2 strong{font-weight:600;color:var(--gold2)}
+.about-cta p{font-size:0.85rem;color:var(--slate2);margin-bottom:2rem;line-height:1.6}
+.btn-gold{background:var(--gold);color:var(--navy);padding:0.85rem 2rem;border:none;border-radius:4px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;cursor:pointer;transition:background 0.2s}
+.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--slate2);padding:0.85rem 2rem;border:0.5px solid rgba(255,255,255,0.18);border-radius:4px;font-size:0.78rem;cursor:pointer;margin-left:0.75rem;transition:all 0.2s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold2)}
+
+@media(max-width:640px){
+  .ab-hero,.story,.found-inner,.values-title-row{grid-template-columns:1fr;gap:2rem}
+  .values-grid{grid-template-columns:1fr}
+  .band{gap:2rem}
+  .story-left{position:static}
+}
+</style>
+
+<h2 class="sr-only">MIWAY Books — About Us: Brand story, philosophy, values, and learning pillars</h2>
+
+<div style="background:var(--navy2)">
+
+  <!-- HERO STRIP -->
+  <div class="ab-hero" style="max-width:100%;padding:5rem 3rem 0">
+    <div>
+      <div class="ab-tag">About MIWAY Books</div>
+      <h1 class="ab-h1">We Didn't Build<br>a Curriculum.<br>We Built a <em>Universe</em><br>of Learning.</h1>
+      <p class="ab-hero-sub">MIWAY Books is not a publisher. It is a movement — a complete reimagining of how children encounter knowledge, build character, and discover who they are capable of becoming.</p>
+      <div style="display:flex;gap:0.75rem;margin-bottom:4rem;flex-wrap:wrap">
+        <button class="btn-gold">Our Learning System</button>
+        <button class="btn-outline">Download Brochure</button>
+      </div>
+    </div>
+    <div class="ab-hero-right">
+      <div class="ab-manifesto">
+        <p>Every child who opens a MIWAY Book is not receiving information. They are receiving permission — permission to think deeply, to feel deeply, and to become something extraordinary.</p>
+        <cite>— The MIWAY Manifesto</cite>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAT BAND -->
+  <div class="band">
+    <div class="band-item"><div class="band-num">8</div><div class="band-label">Learning Sciences</div></div>
+    <div class="band-item"><div class="band-num">10</div><div class="band-label">Intelligences Honored</div></div>
+    <div class="band-item"><div class="band-num">15+</div><div class="band-label">Memory Techniques</div></div>
+    <div class="band-item"><div class="band-num">7</div><div class="band-label">Life Habits Woven In</div></div>
+    <div class="band-item"><div class="band-num">∞</div><div class="band-label">Human Potential Unlocked</div></div>
+  </div>
+
+</div>
+
+<!-- STORY + PILLARS -->
+<div class="story">
+  <div class="story-left">
+    <div class="story-eyebrow">Our Origin</div>
+    <h2 class="story-h2">Born from a Question<br>No One Was<br><strong>Brave Enough to Ask.</strong></h2>
+    <div class="gold-bar"></div>
+    <p class="story-sub" style="margin-bottom:1rem">What if education was designed around how children actually think — not how institutions want them to behave?</p>
+    <p class="story-sub" style="margin-bottom:1rem">That question became MIWAY Books. A convergence of Bloom's Taxonomy, Howard Gardner's Multiple Intelligence Theory, Stephen Covey's Seven Habits, whole-brain neuroscience, and 21st-century skill-building — all inside one elegant, living learning ecosystem.</p>
+    <p class="story-sub">We exist for every child who ever felt unseen by a system that measured one kind of intelligence and ignored nine others.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-body">
+        <h3>Neuroscience at the Core</h3>
+        <p>Every lesson, activity, and question inside MIWAY Books is engineered with the biology of learning in mind. We activate multiple neural pathways so knowledge doesn't just enter — it stays, grows, and connects.</p>
+        <span class="pillar-tag">Whole Brain Learning</span>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-body">
+        <h3>Mastery Over Memorisation</h3>
+        <p>Bloom's Taxonomy guides learners from basic recall all the way to original creation. We don't celebrate test scores. We celebrate the moment a child builds something new from what they have learned.</p>
+        <span class="pillar-tag">Bloom's Taxonomy</span>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-body">
+        <h3>Knowledge That Compounds</h3>
+        <p>Spiral Learning means every concept is revisited at greater depth. What starts as a seed in Grade 1 becomes a towering tree of understanding by Grade 5 — because we never abandon an idea. We deepen it.</p>
+        <span class="pillar-tag">Spiral Learning</span>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <div class="pillar-body">
+        <h3>Character Is the Curriculum</h3>
+        <p>Stephen Covey's Seven Habits are not added as an afterthought. They are the invisible architecture behind every story, project, and discussion. We grow humans who lead with empathy and act with integrity.</p>
+        <span class="pillar-tag">Seven Habits</span>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">05</div>
+      <div class="pillar-body">
+        <h3>Every Intelligence Is Valid</h3>
+        <p>We recognise 10 forms of intelligence — including Financial and Spiritual Intelligence — rarely found in any curriculum. In our pages, no child is average. Every learner is gifted in their own language.</p>
+        <span class="pillar-tag">Multiple Intelligences</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VALUES GRID -->
+<div class="values-wrap">
+  <div class="values">
+    <div class="values-title-row">
+      <div>
+        <div class="story-eyebrow">What We Stand For</div>
+        <h2 class="story-h2" style="font-size:1.8rem">Six Beliefs That<br><strong>Define Everything We Do.</strong></h2>
+      </div>
+      <p style="font-size:0.8rem;color:var(--slate2);max-width:280px;line-height:1.7">These are not brand values on a wall. They are the engineering principles behind every book we create.</p>
+    </div>
+    <div class="values-grid">
+      <div class="val-cell" data-n="01">
+        <div class="val-icon"><i class="ti ti-brain" aria-hidden="true"></i></div>
+        <div class="val-title">Think First, Then Know</div>
+        <div class="val-desc">We build thinkers before we build knowledge-holders. Cognition precedes content in everything we design.</div>
+        <div class="val-bottom-line"></div>
+      </div>
+      <div class="val-cell" data-n="02">
+        <div class="val-icon"><i class="ti ti-eye" aria-hidden="true"></i></div>
+        <div class="val-title">See the Whole Child</div>
+        <div class="val-desc">Academic achievement is one dimension of a human being. We nurture all ten — including soul and money wisdom.</div>
+        <div class="val-bottom-line"></div>
+      </div>
+      <div class="val-cell" data-n="03">
+        <div class="val-icon"><i class="ti ti-infinity" aria-hidden="true"></i></div>
+        <div class="val-title">Learning Is Lifelong</div>
+        <div class="val-desc">We build habits and frameworks that serve a child at age 8, age 28, and age 58. Education for life, not exams.</div>
+        <div class="val-bottom-line"></div>
+      </div>
+      <div class="val-cell" data-n="04">
+        <div class="val-icon"><i class="ti ti-sparkles" aria-hidden="true"></i></div>
+        <div class="val-title">Creativity Is Intelligence</div>
+        <div class="val-desc">The highest level of Bloom's Taxonomy is creation. We treat imagination as a measurable, teachable cognitive skill.</div>
+        <div class="val-bottom-line"></div>
+      </div>
+      <div class="val-cell" data-n="05">
+        <div class="val-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+        <div class="val-title">Character Before Content</div>
+        <div class="val-desc">Empathy, integrity, and purpose are not extracurricular. They are the first subjects we teach, and the last we forget.</div>
+        <div class="val-bottom-line"></div>
+      </div>
+      <div class="val-cell" data-n="06">
+        <div class="val-icon"><i class="ti ti-world" aria-hidden="true"></i></div>
+        <div class="val-title">Built for Tomorrow</div>
+        <div class="val-desc">We design for the world that doesn't exist yet — equipping children with adaptability, resilience, and digital confidence.</div>
+        <div class="val-bottom-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOUNDER'S VISUAL -->
+<div class="found">
+  <div class="found-inner">
+    <div>
+      <div class="story-eyebrow">The Architecture</div>
+      <h2 class="story-h2">Eight Sciences.<br>One <strong>Seamless System.</strong></h2>
+      <div class="gold-bar"></div>
+      <p class="story-sub" style="margin-bottom:1rem">MIWAY Books is the only learning ecosystem that integrates eight proven educational sciences into one unified experience — not as modules, but as a single living methodology.</p>
+      <p class="story-sub" style="margin-bottom:1.5rem">Each pillar was chosen because the research is unambiguous. Together, they create a compounding effect — where each science amplifies all the others.</p>
+      <p class="story-sub" style="color:var(--gold2);font-style:italic">"When neuroscience, psychology, and philosophy agree on something — that is where MIWAY Books begins."</p>
+    </div>
+    <div class="found-visual">
+      <div class="found-vis-bg"></div>
+      <div class="found-vis-content">
+        <div class="found-vis-label">Learning Science Integration Index</div>
+        <div class="found-pillars-mini">
+          <div class="fpm-row"><span class="fpm-name">Bloom's Taxonomy</span><div class="fpm-bar-wrap"><div class="fpm-bar" style="--w:96%"></div></div><span class="fpm-pct">96%</span></div>
+          <div class="fpm-row"><span class="fpm-name">Whole Brain Learning</span><div class="fpm-bar-wrap"><div class="fpm-bar" style="--w:93%;animation-delay:0.1s"></div></div><span class="fpm-pct">93%</span></div>
+          <div class="fpm-row"><span class="fpm-name">Multiple Intelligences</span><div class="fpm-bar-wrap"><div class="fpm-bar" style="--w:98%;animation-delay:0.2s"></div></div><span class="fpm-pct">98%</span></div>
+          <div class="fpm-row"><span class="fpm-name">Spiral Learning</span><div class="fpm-bar-wrap"><div class="fpm-bar" style="--w:90%;animation-delay:0.3s"></div></div><span class="fpm-pct">90%</span></div>
+          <div class="fpm-row"><span class="fpm-name">Power Learning</span><div class="fpm-bar-wrap"><div class="fpm-bar" style="--w:88%;animation-delay:0.4s"></div></div><span class="fpm-pct">88%</span></div>
+          <div class="fpm-row"><span class="fpm-name">Sensory Learning</span><div class="fpm-bar-wrap"><div class="fpm-bar" style="--w:85%;animation-delay:0.5s"></div></div><span class="fpm-pct">85%</span></div>
+          <div class="fpm-row"><span class="fpm-name">Seven Habits</span><div class="fpm-bar-wrap"><div class="fpm-bar" style="--w:94%;animation-delay:0.6s"></div></div><span class="fpm-pct">94%</span></div>
+          <div class="fpm-row"><span class="fpm-name">21st Century Skills</span><div class="fpm-bar-wrap"><div class="fpm-bar" style="--w:91%;animation-delay:0.7s"></div></div><span class="fpm-pct">91%</span></div>
+        </div>
+        <div style="margin-top:2rem;padding-top:1.5rem;border-top:0.5px solid rgba(201,168,76,0.15)">
+          <div style="font-size:0.62rem;letter-spacing:0.12em;color:var(--slate);text-transform:uppercase;margin-bottom:0.5rem">Overall Curriculum Completeness</div>
+          <div style="font-size:2rem;font-weight:300;color:var(--gold2)">93<span style="font-size:1rem">%</span></div>
+          <div style="font-size:0.7rem;color:var(--slate2);margin-top:0.25rem">vs. industry average of 34%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAR -->
+<div class="about-cta">
+  <h2>Ready to Transform<br><strong>Your Child's Future?</strong></h2>
+  <p>Join thousands of parents and educators who chose MIWAY Books — and never looked back.</p>
+  <button class="btn-gold">Explore the Collection</button>
+  <button class="btn-outline">Talk to an Educator</button>
+</div>

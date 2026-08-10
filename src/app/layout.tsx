@@ -22,6 +22,12 @@ export const metadata: Metadata = {
     "Teaching Aids India",
   ],
 
+  verification: {
+    other: {
+      "facebook-domain-verification": "appxk8dwrrh6iqmoffwn1gjmc2wzgx",
+    },
+  },
+
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
